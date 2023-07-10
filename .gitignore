@@ -34,3 +34,4 @@
 # IDE
 .idea
 .vscode
+cmake-build-debug
