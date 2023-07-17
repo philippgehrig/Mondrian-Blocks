@@ -1,7 +1,7 @@
-# CPP-Exam
-Abschlussprojekt ITA22 DHBW-Stuttgart
+# C++ Final Exam
+ITA22 DHBW-Stuttgart
 
-Martikelnummern: 
+student number: 
   - 5622763
   - 9431638
   - 1788761
