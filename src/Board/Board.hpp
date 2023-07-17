@@ -10,6 +10,7 @@ class Board
 public:
     Board(/* args */){};
     ~Board(){};
+
     bool isFull();
 
 
