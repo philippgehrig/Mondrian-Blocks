@@ -1,4 +1,4 @@
-#include "Board.hpp"
+#include "../Board/Board.hpp"
 
 bool Board::isFull()
 { 

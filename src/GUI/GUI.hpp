@@ -1,7 +1,7 @@
 #ifndef GUI_HPP
 #define GUI_CPP
 
-#include "Solver.hpp"
+#include "../Solver/Solver.hpp"
 
 class GUI
 {

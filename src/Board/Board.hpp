@@ -1,9 +1,9 @@
 #ifndef BOARD_HPP
 #define BOARD_HPP
 
-#include "Game.hpp"
-#include "Constants.hpp"
-#include "Block.hpp"
+#include "../Game/Game.hpp"
+#include "../Constants.hpp"
+#include "../Block/Block.hpp"
 #include <vector>
 
 class Board

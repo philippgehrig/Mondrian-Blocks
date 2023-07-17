@@ -1,4 +1,4 @@
-#include "GUI.hpp"
+#include "../GUI/GUI.hpp"
 
 void GUI::drawBoard()
 {

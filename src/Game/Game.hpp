@@ -1,8 +1,8 @@
 #ifndef GAME_HPP
 #define GAME_HPP
 
-#include "Board.hpp"
-#include "Solver.hpp"
+#include "../Board/Board.hpp"
+#include "../Solver/Solver.hpp"
 class Game
 {
 private:

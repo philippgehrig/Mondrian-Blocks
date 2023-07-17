@@ -2,7 +2,7 @@
 #define SOLVER_CPP
 
 #include <vector>
-#include "Board.hpp"
+#include "../Board/Board.hpp"
 class Solver
 {
 private:

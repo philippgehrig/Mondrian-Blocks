@@ -1,6 +1,6 @@
 #ifndef STARTBLOCK_HPP
 #define STARTBLOCK_CPP
-#include "Block.hpp"
+#include "../Block/Block.hpp"
 
 class StartBlock : public Block
 {

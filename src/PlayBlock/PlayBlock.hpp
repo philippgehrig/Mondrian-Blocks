@@ -1,6 +1,6 @@
 #ifndef PLAYBLOCK_HPP
 #define PLAYBLOCK_CPP
-#include "Block.hpp"
+#include "../Block/Block.hpp"
 
 class PlayBlock : public Block
 {
