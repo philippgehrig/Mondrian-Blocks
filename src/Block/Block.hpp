@@ -22,6 +22,7 @@ public:
 
     void setSize(int height, int width);
     void setType(int type);
+    void place(int height, int width);
 
 protected:
     int m_type;

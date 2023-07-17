@@ -23,6 +23,24 @@ bool Block::canPlace(int height_coords, int width_coords)
     return true;
 }
 
+void Block::place(int height, int width)
+{
+    if(Block::canPlace(height, width))
+    {
+        int size_height = m_size_height;
+        int size_width = m_size_width;
+        int board[BOARD_HEIGHT][BOARD_WIDTH] = Board::getBoard();
+
+        for (int i = height; i < height + size_height; i++)
+        {
+            for (int j = width; j < width + size_width; j++)
+            {
+                Board::setField(i, j, m_type);
+            }
+        }
+    }
+}
+
 int Block::getType()
 {
     return m_type;

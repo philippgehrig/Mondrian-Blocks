@@ -4,7 +4,7 @@ Dinar:
 - test
 
 Philipp:
--
+- Not Placed Blocks edit when placing / removing blocks
 
 Mattes:
 -
