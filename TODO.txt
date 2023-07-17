@@ -18,4 +18,18 @@ Spielfeld:
 - 3 verschiedene Startkonfigurationen
 - Solver für Startkonfig die User eingeben kann (Eingabe kann selbst entschieden werden)
 - programm soll über eine main laufen
--
+
+Blöcke:
+- Startblöcke:
+    - 1: 1x1
+    - 2: 1x2
+    - 3: 1x3
+- Bewegliche Blöcke:
+    - 4: 2x2
+    - 5: 1x4
+    - 6: 2x5
+    - 7: 2x3
+    - 8: 1x5
+    - 9: 3x3
+    - 10: 2x4
+    - 11: 3x4
