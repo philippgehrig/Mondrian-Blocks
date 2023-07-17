@@ -11,14 +11,14 @@ public:
     Board(/* args */){};
     ~Board(){};
 
-    bool isFull();
+    static bool isFull();
 
     static int** getBoard()
     {
         return m_board;
     }
 
-    void setField(int height, int width, int type);
+    static void setField(int height, int width, int type);
 
 
 private:
