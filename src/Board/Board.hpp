@@ -13,7 +13,7 @@ public:
 
     bool isFull();
 
-    int getBoard();
+    static int getBoard();
 
 
 private:
