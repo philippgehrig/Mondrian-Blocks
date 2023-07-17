@@ -18,6 +18,8 @@ and give a solution to it.
 
 ## UML Diagramm
 
+![img.png](assets/img.png)
+
 ## Getting Started
 
 ### Prequisites
