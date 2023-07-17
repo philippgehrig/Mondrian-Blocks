@@ -18,6 +18,8 @@ public:
         return m_board;
     }
 
+    void setBoard(Board Board);
+
 
 private:
     static int m_board[BOARD_HEIGHT][BOARD_WIDTH];

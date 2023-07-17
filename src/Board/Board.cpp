@@ -15,5 +15,7 @@ bool Board::isFull()
     return true;
 }
 
-
+void Board::setBoard(Board Board) {
+    m_board = Board;
+}
 

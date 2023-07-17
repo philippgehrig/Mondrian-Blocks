@@ -13,7 +13,7 @@ public:
 
     void rotate();
     void remove();
-    void place();
+    void place(int height, int width);
 
 
 private:
