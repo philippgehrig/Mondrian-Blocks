@@ -16,7 +16,7 @@ void PlayBlock::place(int height, int width)  //remove form m_notPlacedBlocks
         {
             for (int j = width; j < width + size_width; j++)
             {
-                board[i][j] = m_type;
+                Board::setField(i, j, m_type);
             }
         }
 

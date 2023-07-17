@@ -18,7 +18,7 @@ public:
         return m_board;
     }
 
-    void setBoard(Board Board);
+    void setField(int height, int width, int type);
 
 
 private:

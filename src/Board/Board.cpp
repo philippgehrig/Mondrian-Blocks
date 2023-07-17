@@ -15,7 +15,7 @@ bool Board::isFull()
     return true;
 }
 
-void Board::setBoard(Board Board) {
-    m_board = Board;
+void Board::setField(int height, int width, int type) {
+    m_board[height][width] = type;
 }
 
