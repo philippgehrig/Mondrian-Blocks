@@ -13,7 +13,7 @@ Martikelnummern:
 
 ## Task
 
-We created a Game to play "Mondrian Blocks". Furthermore we implemented a solver to asses the difficulty of a given game
+We created a game to play "Mondrian Blocks". Furthermore we implemented a solver to asses the difficulty of a given game
 and give a solution to it.
 
 ## UML Diagramm
