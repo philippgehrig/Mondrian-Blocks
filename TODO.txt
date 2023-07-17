@@ -1,7 +1,11 @@
 TODO List
 
 Dinar:
-- update UML Digram: place to Block instead of Child CLasses
+- update UML Digram:
+    - place to Block instead of Child CLasses
+    - remove m_orientation
+    - update m_size to m_size_width and m_size_height
+
 
 Philipp:
 - Not Placed Blocks edit when placing / removing blocks
