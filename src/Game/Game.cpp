@@ -1,0 +1,6 @@
+#include "../Game/Game.hpp"
+
+void Game::start()
+{
+}
+
