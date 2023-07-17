@@ -1,5 +1,5 @@
 #ifndef BLOCK_HPP
-#define BLOCK_CPP
+#define BLOCK_HPP
 
 
 class Block

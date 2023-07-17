@@ -1,5 +1,4 @@
-#include "../Block/Block.hpp"
-#include "../Block/PlayBlock/PlayBlock.hpp"
+#include "PlayBlock.hpp"
 
 void PlayBlock::rotate()
 {

@@ -1,5 +1,5 @@
 #ifndef GUI_HPP
-#define GUI_CPP
+#define GUI_HPP
 
 #include "../Solver/Solver.hpp"
 

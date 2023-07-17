@@ -1,8 +1,9 @@
 #ifndef SOLVER_HPP
-#define SOLVER_CPP
+#define SOLVER_HPP
 
-#include <vector>
 #include "../Board/Board.hpp"
+#include <vector>
+
 class Solver
 {
 private:

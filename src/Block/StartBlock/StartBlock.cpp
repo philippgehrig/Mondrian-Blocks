@@ -1,5 +1,4 @@
-#include "../Block/Block.hpp"
-#include "../Block/StartBlock/StartBlock.hpp"
+#include "StartBlock.hpp"
 
 
 void StartBlock::place()  //remove form m_notPlacedBlocks

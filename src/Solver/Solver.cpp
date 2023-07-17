@@ -1,6 +1,4 @@
-#include "../Solver/Solver.hpp"
-#include "../Board/Board.hpp"
-#include <vector>
+#include "Solver.hpp"
 
 std::vector<Board> Solver::solve(Board StartBoard)
 {

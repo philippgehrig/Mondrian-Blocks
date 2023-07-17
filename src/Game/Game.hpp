@@ -3,15 +3,20 @@
 
 #include "../Board/Board.hpp"
 #include "../Solver/Solver.hpp"
+
 class Game
 {
+
+public:
+    Game(/* args */);
+    ~Game();
+
+    void start();
+
+
 private:
     Board m_board;
     Solver m_solver;
-public:
-    void start();
-    Game(/* args */);
-    ~Game();
 };
 
 
