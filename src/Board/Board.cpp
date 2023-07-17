@@ -15,9 +15,5 @@ bool Board::isFull()
     return true;
 }
 
-int Board::getBoard()
-{
-    return m_board[BOARD_HEIGHT][BOARD_WIDTH];
-}
 
 
