@@ -1,7 +1,7 @@
 TODO List
 
 Dinar:
-- test
+- update UML Digram: place to Block instead of Child CLasses
 
 Philipp:
 - Not Placed Blocks edit when placing / removing blocks
