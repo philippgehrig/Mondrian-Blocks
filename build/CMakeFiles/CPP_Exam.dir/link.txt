@@ -1,3 +1,0 @@
-C:\msys64\mingw64\bin\cmake.exe -E rm -f CMakeFiles\CPP_Exam.dir/objects.a
-C:\msys64\mingw64\bin\ar.exe qc CMakeFiles\CPP_Exam.dir/objects.a @CMakeFiles\CPP_Exam.dir\objects1.rsp
-C:\msys64\mingw64\bin\g++.exe -g -Wl,--whole-archive CMakeFiles\CPP_Exam.dir/objects.a -Wl,--no-whole-archive -o CPP_Exam.exe -Wl,--out-implib,libCPP_Exam.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\CPP_Exam.dir\linklibs.rsp

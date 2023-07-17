@@ -1,7 +1,0 @@
-[
-{
-  "directory": "C:/Users/matte/Documents/C++Vorlesung/CPP-Exam/build",
-  "command": "C:\\msys64\\mingw64\\bin\\g++.exe   -g -std=gnu++23 -o CMakeFiles\\CPP_Exam.dir\\src\\main.cpp.obj -c C:\\Users\\matte\\Documents\\C++Vorlesung\\CPP-Exam\\src\\main.cpp",
-  "file": "C:/Users/matte/Documents/C++Vorlesung/CPP-Exam/src/main.cpp"
-}
-]
