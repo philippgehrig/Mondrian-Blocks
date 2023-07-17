@@ -15,12 +15,16 @@ public:
 
     bool getOrientation();
     int getType();
-    int getSize();
+    int getSizeHeight();
+    int getSizeWidth();
+
+    void rotate();
+    void setSize(int height, int width);
 
 private:
     int m_type;
-    bool m_orientation; // 0 == horizontal, 1 == vertical
-    int m_size[2];
+    int m_size_height;
+    int m_size_width;
 
 };
 
