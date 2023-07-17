@@ -12,8 +12,8 @@ public:
     {};
 
     void rotate();
-    void remove();
-    void place();
+    void remove(int height, int width);
+
 
 private:
     /* data */

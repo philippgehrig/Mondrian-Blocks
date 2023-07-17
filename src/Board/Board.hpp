@@ -10,11 +10,19 @@ class Board
 public:
     Board(/* args */){};
     ~Board(){};
-    bool isFull();
+
+    static bool isFull();
+
+    static int** getBoard()
+    {
+        return m_board;
+    }
+
+    static void setField(int height, int width, int type);
 
 
 private:
-    int m_board[BOARD_HEIGHT][BOARD_WIDTH];
+    static int m_board[BOARD_HEIGHT][BOARD_WIDTH];
     std::vector<Block> m_notPlacedBlocks;
 
 };
