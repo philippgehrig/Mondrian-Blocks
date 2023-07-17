@@ -13,7 +13,8 @@ Martikelnummern:
 
 ## Task
 
--- quick summary what we are doing --
+We created a Game to play "Mondrian Blocks". Furthermore we implemented a solver to asses the difficulty of a given game
+and give a solution to it.
 
 ## UML Diagramm
 
