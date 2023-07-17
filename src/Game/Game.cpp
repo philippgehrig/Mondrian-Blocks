@@ -1,5 +1,9 @@
 #include "Game.hpp"
 
+void Game::start()
+{
+}
+
 Game::Game(/* args */)
 {
 }

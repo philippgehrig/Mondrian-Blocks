@@ -1,0 +1,15 @@
+#include "Block.hpp"
+#include "StartBlock.hpp"
+
+
+void StartBlock::place()  //remove form m_notPlacedBlocks
+{
+}
+
+StartBlock::StartBlock(/* args */)
+{
+}
+
+StartBlock::~StartBlock()
+{
+}

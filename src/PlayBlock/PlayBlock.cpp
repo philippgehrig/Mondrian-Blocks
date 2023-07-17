@@ -5,11 +5,11 @@ void PlayBlock::rotate()
 {
 }
 
-void PlayBlock::remove()
+void PlayBlock::remove() //add to m_notPlacedBlocks
 {
 }
 
-void PlayBlock::place()
+void PlayBlock::place()  //remove form m_notPlacedBlocks
 {
 }
 
