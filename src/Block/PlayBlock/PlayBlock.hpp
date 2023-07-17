@@ -15,6 +15,7 @@ public:
     void remove();
     void place();
 
+
 private:
     /* data */
 

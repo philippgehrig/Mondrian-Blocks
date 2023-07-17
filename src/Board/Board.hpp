@@ -13,6 +13,8 @@ public:
 
     bool isFull();
 
+    int getBoard();
+
 
 private:
     int m_board[BOARD_HEIGHT][BOARD_WIDTH];

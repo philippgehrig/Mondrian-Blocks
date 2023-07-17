@@ -1,6 +1,8 @@
 #ifndef BLOCK_HPP
 #define BLOCK_HPP
 
+#include "../Constants.hpp"
+#include "../Board/Board.hpp"
 
 class Block
 {
@@ -11,17 +13,17 @@ public:
     ~Block()
     {};
 
-    bool canPlace();
+    bool canPlace(int height_coords, int width_coords);
 
-    bool getOrientation();
+
     int getType();
     int getSizeHeight();
     int getSizeWidth();
 
-    void rotate();
     void setSize(int height, int width);
+    void setType(int type);
 
-private:
+protected:
     int m_type;
     int m_size_height;
     int m_size_width;
