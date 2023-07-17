@@ -17,6 +17,8 @@ Martikelnummern:
 
 ## UML Diagramm
 
+![img.png](assets/img.png)
+
 ## Getting Started
 
 ### Prequisites
