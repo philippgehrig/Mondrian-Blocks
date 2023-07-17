@@ -8,3 +8,14 @@ Philipp:
 
 Mattes:
 -
+
+
+
+Spielfeld:
+- 8 x 8 Felder
+- 3 Schwarze Startblöcke die Fest sind
+- Farbe der Blöcke "egal" - Blöcke abmessen
+- 3 verschiedene Startkonfigurationen
+- Solver für Startkonfig die User eingeben kann (Eingabe kann selbst entschieden werden)
+- programm soll über eine main laufen
+-
