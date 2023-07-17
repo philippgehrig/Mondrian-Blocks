@@ -1,7 +1,5 @@
-//
-// Created by Dinar Karchevskii on 10.07.23.
-//
 #include <iostream>
+#include "Constants.hpp"
 
 int main()
 {
