@@ -6,13 +6,19 @@
 
 class Solver
 {
-private:
-    /* data */
 public:
+    Solver(/* args */)
+    {};
+    ~Solver()
+    {};
+
     std::vector<Board> solve(Board StartBoard);
-    int calculateDifficulty();
-    Solver(/* args */);
-    ~Solver();
+    int calculateDifficulty(Board StartBoard);
+
+
+private:
+    int m_difficulty;
+
 };
 
 

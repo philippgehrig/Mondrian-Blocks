@@ -5,14 +5,17 @@
 
 class GUI
 {
-private:
-    /* data */
+
 public:
+    GUI(/* args */){};
+    ~GUI(){};
+
     void drawBoard();
     void drawNotPlacedBlocks();
     void drawStartScreen();
-    GUI(/* args */);
-    ~GUI();
+
+private:
+    /* data */
 };
 
 

@@ -4,10 +4,3 @@ bool Block::canPlace()
 {
 }
 
-Block::Block(/* args */)
-{
-}
-
-Block::~Block()
-{
-}

@@ -12,10 +12,4 @@ void PlayBlock::place()  //remove form m_notPlacedBlocks
 {
 }
 
-PlayBlock::PlayBlock(/* args */)
-{
-}
 
-PlayBlock::~PlayBlock()
-{
-}

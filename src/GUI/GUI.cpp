@@ -12,10 +12,3 @@ void GUI::drawStartScreen()
 {
 }
 
-GUI::GUI(/* args */)
-{
-}
-
-GUI::~GUI()
-{
-}

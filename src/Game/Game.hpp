@@ -8,8 +8,10 @@ class Game
 {
 
 public:
-    Game(/* args */);
-    ~Game();
+    Game(/* args */)
+    {};
+    ~Game()
+    {};
 
     void start();
 

@@ -7,14 +7,16 @@
 
 class Board
 {
+public:
+    Board(/* args */){};
+    ~Board(){};
+    bool isFull();
+
+
 private:
     int m_board[BOARD_HEIGHT][BOARD_WIDTH];
     std::vector<Block> m_notPlacedBlocks;
 
-public:
-    bool isFull();
-    Board(/* args */);
-    ~Board();
 };
 
 #endif 
