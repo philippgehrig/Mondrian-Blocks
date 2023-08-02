@@ -1,8 +1,9 @@
 #include <iostream>
-#include "Constants.hpp"
+#include "Game/Game.hpp"
 
 int main()
 {
-    std::cout << "Hello, World!" << std::endl;
+    Game game();
+    game().start();
     return 0;
 }

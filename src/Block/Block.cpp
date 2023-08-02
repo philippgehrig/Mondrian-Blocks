@@ -23,22 +23,28 @@ bool Block::canPlace(int height_coords, int width_coords)
     return true;
 }
 
-void Block::place(int height, int width)
+int Block::place(int height_coordinate, int width_coordinate)
 {
-    if(Block::canPlace(height, width))
+    if(Block::canPlace(height_coordinate, width_coordinate))
     {
         int size_height = m_size_height;
         int size_width = m_size_width;
         int board[BOARD_HEIGHT][BOARD_WIDTH] = Board::getBoard();
 
-        for (int i = height; i < height + size_height; i++)
+        for (int i = height_coordinate; i < height_coordinate + size_height; i++)
         {
-            for (int j = width; j < width + size_width; j++)
+            for (int j = width_coordinate; j < width_coordinate + size_width; j++)
             {
                 Board::setField(i, j, m_type);
             }
         }
+        return 0;
     }
+    else
+    {
+        return 1;
+    }
+
 }
 
 int Block::getType()
@@ -63,5 +69,27 @@ void Block::setSize(int height, int width)
 
 void Block::setType(int type) {
     m_type = type;
+}
+
+void Block::rotate()
+{
+    int tmp = m_size_height;
+    m_size_height = m_size_width;
+    m_size_width = tmp;
+}
+
+void Block::remove(int height, int width)
+{
+    int size_height = m_size_height;
+    int size_width = m_size_width;
+    int board[BOARD_HEIGHT][BOARD_WIDTH] = Board::getBoard();
+
+    for (int i = height; i < height + size_height; i++)
+    {
+        for (int j = width; j < width + size_width; j++)
+        {
+            Board::setField(i, j, 0);
+        }
+    }
 }
 

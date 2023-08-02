@@ -1,8 +1,15 @@
 #ifndef GAME_HPP
 #define GAME_HPP
 
+#include <iostream>
+#include <random>
+
 #include "../Board/Board.hpp"
 #include "../Solver/Solver.hpp"
+#include "../Block/Block.hpp"
+#include "../Block/StartBlock/StartBlock.hpp"
+#include "../Block/PlayBlock/PlayBlock.hpp"
+
 
 class Game
 {
@@ -14,6 +21,8 @@ public:
     {};
 
     void start();
+    std::vector<Board> init_startblocks();
+    std::vector<Block> init_playblocks();
 
 
 private:
