@@ -15,10 +15,5 @@ void PlayBlock::remove(int height, int width)
     }
 }
 
-void PlayBlock::rotate()
-{
-    int tmp = m_size_height;
-    m_size_height = m_size_width;
-    m_size_width = tmp;
-}
+
 

@@ -19,6 +19,7 @@ public:
     }
 
     static void setField(int height, int width, int type);
+    void clear_Field();
 
 
 private:

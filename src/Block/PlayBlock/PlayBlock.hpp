@@ -11,7 +11,7 @@ public:
     ~PlayBlock()
     {};
 
-    void rotate();
+
     void remove(int height, int width);
 
 

@@ -7,7 +7,10 @@
 class Block
 {
 public:
-    Block(/* args */)
+    Block(int type, int size_height, int size_width)
+    : m_type(type)
+    , m_size_height(size_height)
+    , m_size_width(size_width)
     {};
 
     ~Block()
@@ -20,9 +23,10 @@ public:
     int getSizeHeight();
     int getSizeWidth();
 
+    void rotate();
     void setSize(int height, int width);
     void setType(int type);
-    void place(int height, int width);
+    int place(int height_coordinate, int width_coordinate);
 
 protected:
     int m_type;
