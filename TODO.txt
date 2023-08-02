@@ -31,13 +31,14 @@ Blöcke:
 - Bewegliche Blöcke:
     - 4: 2x2
     - 5: 1x4
-    - 6: 2x5
-    - 7: 2x3
+    - 6: 2x5 -
+    - 7: 2x3 -
     - 8: 1x5
-    - 9: 3x3
-    - 10: 2x4
-    - 11: 3x4
+    - 9: 3x3 -
+    - 10: 2x4 -
+    - 11: 3x4 -
 
+Type = 1 für Startblöcke
 
 
 chnagelog:

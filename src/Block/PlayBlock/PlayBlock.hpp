@@ -6,8 +6,8 @@
 class PlayBlock : public Block
 {
 public:
-    PlayBlock(/* args */)
-    {};
+    PlayBlock(int type, int sizeHeight, int sizeWidth)
+    : Block(type, sizeHeight, sizeWidth) {};
     ~PlayBlock()
     {};
 

@@ -8,6 +8,7 @@
 #include "../Solver/Solver.hpp"
 #include "../Block/Block.hpp"
 #include "../Block/StartBlock/StartBlock.hpp"
+#include "../Block/PlayBlock/PlayBlock.hpp"
 
 
 class Game
@@ -21,6 +22,7 @@ public:
 
     void start();
     void init_startblocks();
+    std::vector<PlayBlock> init_playblocks();
 
 
 private:
