@@ -9,7 +9,6 @@ class Board
 {
 public:
     Board()
-    : m_notPlacedBlocks()
     {};
     ~Board(){};
 
@@ -22,6 +21,7 @@ public:
 
     static void setField(int height, int width, int type);
     void clear_Field();
+    void setBoard(std::vector <Block> blocks);
 
     static std::vector<Block> m_notPlacedBlocks;
 private:
