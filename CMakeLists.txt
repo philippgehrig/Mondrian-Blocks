@@ -34,7 +34,6 @@ enable_testing()
 set(
         Headers
         src/Block/Block.hpp
-        src/Block/PlayBlock/PlayBlock.hpp
         src/Block/StartBlock/StartBlock.hpp
         src/Board/Board.hpp
         src/Game/Game.hpp
@@ -47,7 +46,6 @@ set(
         Sources
         src/main.cpp
         src/Block/Block.cpp
-        src/Block/PlayBlock/PlayBlock.cpp
         src/Block/StartBlock/StartBlock.cpp
         src/Board/Board.cpp
         src/Game/Game.cpp

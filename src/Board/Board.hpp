@@ -14,14 +14,14 @@ public:
 
     static bool isFull();
 
-    static int** getBoard()
-    {
-        return m_board;
-    }
+//    static int** getBoard()
+//    {
+//        return m_board;
+//    }
 
     static void setField(int height, int width, int type);
     void clear_Field();
-    void setBoard(std::vector <Block> blocks);
+    void setBoard(std::vector<Block> blocks);
 
     static std::vector<Block> m_notPlacedBlocks;
 private:
