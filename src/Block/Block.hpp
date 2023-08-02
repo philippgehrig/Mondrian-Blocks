@@ -22,7 +22,7 @@ public:
     int getType();
     int getSizeHeight();
     int getSizeWidth();
-
+    void remove(int height, int width);
     void rotate();
     void setSize(int height, int width);
     void setType(int type);

@@ -2,10 +2,12 @@
 
 void Game::start()
 {
+    init_startblocks();
+    std::vector<Block> playblocks = init_playblocks();
 
 }
 
-void Game::init_startblocks()
+std::vector<Board> Game::init_startblocks()
 {
 
     StartBlock SBlock0(1, 1, 1);
@@ -39,20 +41,25 @@ void Game::init_startblocks()
         m_board.clear_Field();
         init_startblocks();
     }
+    else
+    {
+        return solutions;
+    }
 
 }
 
-std::vector<PlayBlock> Game::init_playblocks()
+std::vector<Block> Game::init_playblocks()
 {
-    PlayBlock PBlock0(2, 4, 3);
-    PlayBlock PBlock1(3, 2, 5);
-    PlayBlock PBlock2(4, 3, 3);
-    PlayBlock PBlock3(5, 2, 4);
-    PlayBlock PBlock4(6, 2, 3);
-    PlayBlock PBlock5(7, 1, 5);
-    PlayBlock PBlock6(8, 1, 4);
-    PlayBlock PBlock7(9, 2, 2);
+    Block PBlock0(2, 4, 3);
+    Block PBlock1(3, 2, 5);
+    Block PBlock2(4, 3, 3);
+    Block PBlock3(5, 2, 4);
+    Block PBlock4(6, 2, 3);
+    Block PBlock5(7, 1, 5);
+    Block PBlock6(8, 1, 4);
+    Block PBlock7(9, 2, 2);
 
-    std::vector<PlayBlock> playblocks {PBlock0, PBlock1, PBlock2, PBlock3, PBlock4, PBlock5, PBlock6, PBlock7};
+    std::vector<Block> playblocks {PBlock0, PBlock1, PBlock2, PBlock3, PBlock4, PBlock5, PBlock6, PBlock7};
+    Board::m_notPlacedBlocks = playblocks;
     return playblocks;
 }

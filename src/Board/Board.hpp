@@ -8,7 +8,9 @@
 class Board
 {
 public:
-    Board(/* args */){};
+    Board()
+    : m_notPlacedBlocks()
+    {};
     ~Board(){};
 
     static bool isFull();
@@ -21,10 +23,10 @@ public:
     static void setField(int height, int width, int type);
     void clear_Field();
 
-
+    static std::vector<Block> m_notPlacedBlocks;
 private:
     static int m_board[BOARD_HEIGHT][BOARD_WIDTH];
-    std::vector<Block> m_notPlacedBlocks;
+
 
 };
 
