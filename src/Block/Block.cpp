@@ -4,7 +4,7 @@ bool Block::canPlace(int height_coords, int width_coords)
 {
     int size_height = m_size_height;
     int size_width = m_size_width;
-    int board[BOARD_HEIGHT][BOARD_WIDTH] = Board::getBoard();
+    int** board = Board::getBoard();
 
     for (int i = height_coords; i < height_coords + size_height; i++)
     {
@@ -29,7 +29,6 @@ int Block::place(int height_coordinate, int width_coordinate)
     {
         int size_height = m_size_height;
         int size_width = m_size_width;
-        int board[BOARD_HEIGHT][BOARD_WIDTH] = Board::getBoard();
 
         for (int i = height_coordinate; i < height_coordinate + size_height; i++)
         {
@@ -82,7 +81,6 @@ void Block::remove(int height, int width)
 {
     int size_height = m_size_height;
     int size_width = m_size_width;
-    int board[BOARD_HEIGHT][BOARD_WIDTH] = Board::getBoard();
 
     for (int i = height; i < height + size_height; i++)
     {

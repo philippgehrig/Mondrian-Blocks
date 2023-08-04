@@ -31,22 +31,22 @@ void Board::clear_Field()
     }
 }
 
-void Board::setBoard(std::vector<Block> blocks)
-{
-    for (auto it : blocks)
-    {
-        int height = it.getSizeHeight();
-        int width = it.getSizeWidth();
-        int type = it.getType();
-
-        for (int i = height; i < height + it.getSizeHeight(); i++)
-        {
-            for (int j = width; j < width + it.getSizeWidth(); j++)
-            {
-                m_board[i][j] = type;
-            }
-        }
-    }
-
-}
+//void Board::setBoard(std::vector<Block> blocks)
+//{
+//    for (auto it : blocks)
+//    {
+//        int height = it.getSizeHeight();
+//        int width = it.getSizeWidth();
+//        int type = it.getType();
+//
+//        for (int i = height; i < height + it.getSizeHeight(); i++)
+//        {
+//            for (int j = width; j < width + it.getSizeWidth(); j++)
+//            {
+//                m_board[i][j] = type;
+//            }
+//        }
+//    }
+//
+//}
 

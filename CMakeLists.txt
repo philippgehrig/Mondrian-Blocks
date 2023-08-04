@@ -37,7 +37,7 @@ set(
         src/Block/StartBlock/StartBlock.hpp
         src/Board/Board.hpp
         src/Game/Game.hpp
-        src/GUI/GUI.hpp
+#        src/GUI/GUI.hpp
         src/Solver/Solver.hpp
         src/Constants.hpp
 )
@@ -49,7 +49,7 @@ set(
         src/Block/StartBlock/StartBlock.cpp
         src/Board/Board.cpp
         src/Game/Game.cpp
-        src/GUI/GUI.cpp
+#        src/GUI/GUI.cpp
         src/Solver/Solver.cpp
 )
 

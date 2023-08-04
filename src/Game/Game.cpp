@@ -19,18 +19,18 @@ std::vector<Board> Game::init_startblocks()
 
     int placecheck = 1;
 
-    for (auto it : startblocks)
+    for (auto block : startblocks)
     {
         // Rotation
-        if(it.generateRotation()) // if tru rotate once, if false dont rotate
+        if(block.generateRotation()) // if tru rotate once, if false dont rotate
         {
-            it.rotate();
+            block.rotate();
         }
 
         //platzieren
         do
         {
-            placecheck = it.place(it.generateHeight(), it.generateWidth());
+            placecheck = block.place(block.generateHeight(), block.generateWidth());
         } while(placecheck);
     }
 
@@ -60,6 +60,6 @@ std::vector<Block> Game::init_playblocks()
     Block PBlock7(9, 2, 2);
 
     std::vector<Block> playblocks {PBlock0, PBlock1, PBlock2, PBlock3, PBlock4, PBlock5, PBlock6, PBlock7};
-    Board::m_notPlacedBlocks = playblocks;
+//    Board::m_notPlacedBlocks = playblocks;
     return playblocks;
 }
