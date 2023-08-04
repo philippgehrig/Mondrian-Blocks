@@ -33,19 +33,19 @@ enable_testing()
 # set all project files here
 set(
         Headers
-        src/Block/Block.hpp
+        src/Block/Block_old.hpp
         src/Block/StartBlock/StartBlock.hpp
         src/Board/Board.hpp
         src/Game/Game.hpp
 #        src/GUI/GUI.hpp
         src/Solver/Solver.hpp
         src/Constants.hpp
-)
+        src/Block/Block.hpp)
 
 set(
         Sources
         src/main.cpp
-        src/Block/Block.cpp
+        src/Block/Block_old.cpp
         src/Block/StartBlock/StartBlock.cpp
         src/Board/Board.cpp
         src/Game/Game.cpp
