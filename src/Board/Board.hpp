@@ -173,6 +173,20 @@ public:
         else return false;
     }
 
+    static void clearFlied()
+    {
+        for(int column = 0; column < BOARD_HEIGHT; column++)
+        {
+            for(int row = 0; row < BOARD_WIDTH; row++)
+            {
+                if(BlockType(m_board[column][row]) > BlockType::ONEBYTHREE)
+                {
+                    m_board[column][row] = static_cast<int>(BlockType::EMPTY);
+                }
+            }
+        }
+    }
+
 
 private:
     /**
