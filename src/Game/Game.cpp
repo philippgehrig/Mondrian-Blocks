@@ -10,27 +10,27 @@ void Game::start()
 std::vector<Board> Game::init_startblocks()
 {
 
-    StartBlock SBlock0(1, 1, 1);
-    StartBlock SBlock1(1, 1, 2);
-    StartBlock SBlock2(1, 1, 3);
+    Block SBlock0(BlockType::ONEBYONE, 1, 1);
+    Block SBlock1(BlockType::ONEBYTWO, 1, 2);
+    Block SBlock2(BlockType::ONEBYTHREE, 1, 3);
 
 
-    std::vector <StartBlock> startblocks {SBlock0, SBlock1, SBlock2};
+    std::vector <Block> startblocks {SBlock0, SBlock1, SBlock2};
 
     int placecheck = 1;
 
     for (auto block : startblocks)
     {
         // Rotation
-        if(block.generateRotation()) // if tru rotate once, if false dont rotate
+        if(Board::generateRotation()) // if tru rotate once, if false dont rotate
         {
-            block.rotate();
+            Board::rotateBlock(block);
         }
 
         //platzieren
         do
         {
-            placecheck = block.place(block.generateHeight(), block.generateWidth());
+            placecheck = Board::placeBlock(block, Board::generateCoordinate(), Board::generateCoordinate()); // generate functions??
         } while(placecheck);
     }
 
@@ -38,7 +38,7 @@ std::vector<Board> Game::init_startblocks()
 
     if(!sizeof(solutions)) // if there is no solutions go in this if
     {
-        m_board.clear_Field();
+        Board::clearFlied();
         init_startblocks();
     }
     else
@@ -50,16 +50,15 @@ std::vector<Board> Game::init_startblocks()
 
 std::vector<Block> Game::init_playblocks()
 {
-    Block PBlock0(2, 4, 3);
-    Block PBlock1(3, 2, 5);
-    Block PBlock2(4, 3, 3);
-    Block PBlock3(5, 2, 4);
-    Block PBlock4(6, 2, 3);
-    Block PBlock5(7, 1, 5);
-    Block PBlock6(8, 1, 4);
-    Block PBlock7(9, 2, 2);
+    Block PBlock0(BlockType::TWOBYTWO, 2, 2);
+    Block PBlock1(BlockType::ONEBYFOUR, 1, 4);
+    Block PBlock2(BlockType::TWOBYFIVE, 2, 5);
+    Block PBlock3(BlockType::TWOBYTHREE, 2, 3);
+    Block PBlock4(BlockType::ONEBYFIVE, 1, 5);
+    Block PBlock5(BlockType::THREEBYTHREE, 3, 3);
+    Block PBlock6(BlockType::TWOBYFOUR, 2, 4);
+    Block PBlock7(BlockType::THREEBYFOUR, 3, 4);
 
     std::vector<Block> playblocks {PBlock0, PBlock1, PBlock2, PBlock3, PBlock4, PBlock5, PBlock6, PBlock7};
-//    Board::m_notPlacedBlocks = playblocks;
     return playblocks;
 }

@@ -7,7 +7,7 @@
 #include "../Board/Board.hpp"
 #include "../Solver/Solver.hpp"
 #include "../Block/Block_old.hpp"
-#include "../Block/StartBlock/StartBlock.hpp"
+
 
 
 class Game
