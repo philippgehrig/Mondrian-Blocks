@@ -39,7 +39,8 @@ std::vector<Board> Game::placeStartblocks(std::vector<Block> startblocks)
 
     auto solutions = m_solver.solve(m_board);
 
-    if(!sizeof(solutions)) // if there is no solutions go in this if
+    int number_of_solutions = solutions.size();
+    if(!number_of_solutions) // if there is no solutions go in this if
     {
         Board::clearFlied();
         placeStartblocks(startblocks);
