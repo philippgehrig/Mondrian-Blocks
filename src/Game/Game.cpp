@@ -42,7 +42,7 @@ std::vector<Board> Game::placeStartblocks(std::vector<Block> startblocks)
     int number_of_solutions = solutions.size();
     if(!number_of_solutions) // if there is no solutions go in this if
     {
-        Board::clearFlied();
+        Board::clearBoard();
         placeStartblocks(startblocks);
     }
     else

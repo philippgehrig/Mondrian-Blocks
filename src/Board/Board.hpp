@@ -82,7 +82,6 @@ public:
         return true;
     }
 
-
     /**
      * @brief place a block on the board
      * @param block: block to be placed
@@ -174,39 +173,56 @@ public:
         else return false;
     }
 
-    static void clearFlied()
+    /**
+     * @brief clears the board
+     */
+    static void clearBoard()
     {
         for(int column = 0; column < BOARD_HEIGHT; column++)
         {
             for(int row = 0; row < BOARD_WIDTH; row++)
             {
-                if(BlockType(m_board[column][row]) > BlockType::ONEBYTHREE)
-                {
-                    m_board[column][row] = 0;
-                }
+                m_board[column][row] = 0;
             }
         }
     }
 
-    static bool generateRotation()
+    /**
+     * @return 0 or 1. 1 -> rotate, 0 -> do not rotate
+     */
+    static int generateRotation()
     {
-        std::random_device rd;
-        std::mt19937 gen(rd());
-        std::uniform_int_distribution<> dis(0, 1);
+        static std::random_device rd;
+        static std::mt19937 gen(rd());
+        static std::uniform_int_distribution<> dis(0, 1);
         return dis(gen);
     }
 
+    /**
+     * @return 0-7 coordinate for height or width (call twice for 2 coordinates)
+     */
     static int generateCoordinate()
     {
-        std::random_device rd;
-        std::mt19937 gen(rd());
-        std::uniform_int_distribution<> dis(0, 7);
+        static std::random_device rd;
+        static std::mt19937 gen(rd());
+        static std::uniform_int_distribution<> dis(0, 7);
         return dis(gen);
     }
 
-
-
-
+    /**
+     * @return true if board full, otherwise false
+     */
+    static bool isFull()
+    {
+        for(int column = 0; column < BOARD_HEIGHT; column++)
+        {
+            for(int row = 0; row < BOARD_WIDTH; row++)
+            {
+                if(m_board[column][row] == 0) return false;
+            }
+        }
+        return true;
+    }
 
 private:
     /**
