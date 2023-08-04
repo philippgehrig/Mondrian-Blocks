@@ -2,6 +2,7 @@
 #define GUI_HPP
 
 #include "../Solver/Solver.hpp"
+#include "../Board/Board.hpp"
 
 class GUI
 {

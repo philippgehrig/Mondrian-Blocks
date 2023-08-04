@@ -6,9 +6,8 @@
 
 #include "../Board/Board.hpp"
 #include "../Solver/Solver.hpp"
-#include "../Block/Block.hpp"
-#include "../Block/StartBlock/StartBlock.hpp"
-#include "../Block/PlayBlock/PlayBlock.hpp"
+#include "../Block/Block_old.hpp"
+
 
 
 class Game
@@ -21,8 +20,9 @@ public:
     {};
 
     void start();
-    std::vector<Board> init_startblocks();
-    std::vector<Block> init_playblocks();
+    std::vector<Block> initStartblocks();
+    std::vector<Board> placeStartblocks(std::vector<Block> startblocks);
+    std::vector<Block> initPlayblocks();
 
 
 private:

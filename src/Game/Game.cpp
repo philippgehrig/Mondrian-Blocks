@@ -2,44 +2,48 @@
 
 void Game::start()
 {
-    init_startblocks();
-    std::vector<Block> playblocks = init_playblocks();
-
+    std::vector<Block> startblocks = initStartblocks();
+    std::vector<Board> solutions = placeStartblocks(startblocks);
+    std::vector<Block> playblocks = initPlayblocks();
 }
 
-std::vector<Board> Game::init_startblocks()
+std::vector<Block> Game::initStartblocks()
 {
+    Block SBlock0(BlockType::ONEBYONE, 1, 1);
+    Block SBlock1(BlockType::ONEBYTWO, 1, 2);
+    Block SBlock2(BlockType::ONEBYTHREE, 1, 3);
+    std::vector <Block> startblocks {SBlock0, SBlock1, SBlock2};
 
-    StartBlock SBlock0(1, 1, 1);
-    StartBlock SBlock1(1, 1, 2);
-    StartBlock SBlock2(1, 1, 3);
+    return startblocks;
+}
 
-
-    std::vector <StartBlock> startblocks {SBlock0, SBlock1, SBlock2};
+std::vector<Board> Game::placeStartblocks(std::vector<Block> startblocks)
+{
 
     int placecheck = 1;
 
-    for (auto it : startblocks)
+    for (auto block : startblocks)
     {
         // Rotation
-        if(it.generateRotation()) // if tru rotate once, if false dont rotate
+        if(Board::generateRotation()) // if tru rotate once, if false dont rotate
         {
-            it.rotate();
+            Board::rotateBlock(block);
         }
 
         //platzieren
         do
         {
-            placecheck = it.place(it.generateHeight(), it.generateWidth());
+            placecheck = Board::placeBlock(block, Board::generateCoordinate(), Board::generateCoordinate()); // generate functions??
         } while(placecheck);
     }
 
     auto solutions = m_solver.solve(m_board);
 
-    if(!sizeof(solutions)) // if there is no solutions go in this if
+    int number_of_solutions = solutions.size();
+    if(!number_of_solutions) // if there is no solutions go in this if
     {
-        m_board.clear_Field();
-        init_startblocks();
+        Board::clearBoard();
+        placeStartblocks(startblocks);
     }
     else
     {
@@ -48,18 +52,16 @@ std::vector<Board> Game::init_startblocks()
 
 }
 
-std::vector<Block> Game::init_playblocks()
-{
-    Block PBlock0(2, 4, 3);
-    Block PBlock1(3, 2, 5);
-    Block PBlock2(4, 3, 3);
-    Block PBlock3(5, 2, 4);
-    Block PBlock4(6, 2, 3);
-    Block PBlock5(7, 1, 5);
-    Block PBlock6(8, 1, 4);
-    Block PBlock7(9, 2, 2);
+std::vector<Block> Game::initPlayblocks() {
+    Block PBlock2x2(BlockType::TWOBYTWO, 2, 2);
+    Block PBlock1x4(BlockType::ONEBYFOUR, 1, 4);
+    Block PBlock2x5(BlockType::TWOBYFIVE, 2, 5);
+    Block PBlock2x3(BlockType::TWOBYTHREE, 2, 3);
+    Block PBlock1x5(BlockType::ONEBYFIVE, 1, 5);
+    Block PBlock3x3(BlockType::THREEBYTHREE, 3, 3);
+    Block PBlock2x4(BlockType::TWOBYFOUR, 2, 4);
+    Block PBlock3x4(BlockType::THREEBYFOUR, 3, 4);
 
-    std::vector<Block> playblocks {PBlock0, PBlock1, PBlock2, PBlock3, PBlock4, PBlock5, PBlock6, PBlock7};
-    Board::m_notPlacedBlocks = playblocks;
+    std::vector<Block> playblocks {PBlock3x4, PBlock2x5, PBlock3x3, PBlock2x4, PBlock2x3, PBlock1x5, PBlock1x4, PBlock2x2};
     return playblocks;
 }

@@ -1,39 +1,42 @@
-#ifndef BLOCK_HPP
-#define BLOCK_HPP
+//
+// Created by Dinar Karchevskii on 04.08.23.
+//
 
-#include "../Constants.hpp"
-#include "../Board/Board.hpp"
+#ifndef CPP_EXAM_BLOCK_HPP
+#define CPP_EXAM_BLOCK_HPP
 
-class Block
-{
-public:
-    Block(int type, int size_height, int size_width)
-    : m_type(type)
-    , m_size_height(size_height)
-    , m_size_width(size_width)
-    {};
-
-    ~Block()
-    {};
-
-    bool canPlace(int height_coords, int width_coords);
+/**
+ * @brief Block struct
+ * @details This struct is used to store information about blocks
+ * @param type Type of block
+ * @param height Height of block
+ * @param width Width of block
+ */
 
 
-    int getType();
-    int getSizeHeight();
-    int getSizeWidth();
-    void remove(int height, int width);
-    void rotate();
-    void setSize(int height, int width);
-    void setType(int type);
-    int place(int height_coordinate, int width_coordinate);
+enum class BlockType{
+    //starting blocks
+    ONEBYONE = 1,
+    ONEBYTWO = 2,
+    ONEBYTHREE = 3,
 
-protected:
-    int m_type;
-    int m_size_height;
-    int m_size_width;
+    //play blocks
+    TWOBYTWO = 4,
+    ONEBYFOUR = 5,
+    TWOBYFIVE = 6,
+    TWOBYTHREE = 7,
+    ONEBYFIVE = 8,
+    THREEBYTHREE = 9,
+    TWOBYFOUR = 10,
+    THREEBYFOUR = 11
 
 };
 
+typedef struct Block
+{
+    BlockType type;
+    int height;
+    int width;
+} Block;
 
-#endif 
+#endif //CPP_EXAM_BLOCK_HPP
