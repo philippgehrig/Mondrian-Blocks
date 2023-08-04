@@ -187,6 +187,25 @@ public:
         }
     }
 
+    static bool generateRotation()
+    {
+        std::random_device rd;
+        std::mt19937 gen(rd());
+        std::uniform_int_distribution<> dis(0, 1);
+        return dis(gen);
+    }
+
+    static int generateCoordinate()
+    {
+        std::random_device rd;
+        std::mt19937 gen(rd());
+        std::uniform_int_distribution<> dis(0, 7);
+        return dis(gen);
+    }
+
+
+
+
 
 private:
     /**
