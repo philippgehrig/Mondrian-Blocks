@@ -182,7 +182,7 @@ public:
             {
                 if(BlockType(m_board[column][row]) > BlockType::ONEBYTHREE)
                 {
-                    m_board[column][row] = static_cast<int>(BlockType::EMPTY);
+                    m_board[column][row] = 0;
                 }
             }
         }

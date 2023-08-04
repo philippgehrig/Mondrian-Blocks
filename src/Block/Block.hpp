@@ -15,8 +15,6 @@
 
 
 enum class BlockType{
-    // empty block
-    EMPTY = 0,
     //starting blocks
     ONEBYONE = 1,
     ONEBYTWO = 2,
