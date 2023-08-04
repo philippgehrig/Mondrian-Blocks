@@ -53,15 +53,15 @@ std::vector<Board> Game::placeStartblocks(std::vector<Block> startblocks)
 }
 
 std::vector<Block> Game::initPlayblocks() {
-    Block PBlock0(BlockType::TWOBYTWO, 2, 2);
-    Block PBlock1(BlockType::ONEBYFOUR, 1, 4);
-    Block PBlock2(BlockType::TWOBYFIVE, 2, 5);
-    Block PBlock3(BlockType::TWOBYTHREE, 2, 3);
-    Block PBlock4(BlockType::ONEBYFIVE, 1, 5);
-    Block PBlock5(BlockType::THREEBYTHREE, 3, 3);
-    Block PBlock6(BlockType::TWOBYFOUR, 2, 4);
-    Block PBlock7(BlockType::THREEBYFOUR, 3, 4);
+    Block PBlock2x2(BlockType::TWOBYTWO, 2, 2);
+    Block PBlock1x4(BlockType::ONEBYFOUR, 1, 4);
+    Block PBlock2x5(BlockType::TWOBYFIVE, 2, 5);
+    Block PBlock2x3(BlockType::TWOBYTHREE, 2, 3);
+    Block PBlock1x5(BlockType::ONEBYFIVE, 1, 5);
+    Block PBlock3x3(BlockType::THREEBYTHREE, 3, 3);
+    Block PBlock2x4(BlockType::TWOBYFOUR, 2, 4);
+    Block PBlock3x4(BlockType::THREEBYFOUR, 3, 4);
 
-    std::vector<Block> playblocks {PBlock0, PBlock1, PBlock2, PBlock3, PBlock4, PBlock5, PBlock6, PBlock7};
+    std::vector<Block> playblocks {PBlock3x4, PBlock2x5, PBlock3x3, PBlock2x4, PBlock2x3, PBlock1x5, PBlock1x4, PBlock2x2};
     return playblocks;
 }
