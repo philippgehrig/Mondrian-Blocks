@@ -2,20 +2,23 @@
 
 void Game::start()
 {
-    init_startblocks();
-    std::vector<Block> playblocks = init_playblocks();
-
+    std::vector<Block> startblocks = initStartblocks();
+    std::vector<Board> solutions = placeStartblocks(startblocks);
+    std::vector<Block> playblocks = initPlayblocks();
 }
 
-std::vector<Board> Game::init_startblocks()
+std::vector<Block> Game::initStartblocks()
 {
-
     Block SBlock0(BlockType::ONEBYONE, 1, 1);
     Block SBlock1(BlockType::ONEBYTWO, 1, 2);
     Block SBlock2(BlockType::ONEBYTHREE, 1, 3);
-
-
     std::vector <Block> startblocks {SBlock0, SBlock1, SBlock2};
+
+    return startblocks;
+}
+
+std::vector<Board> Game::placeStartblocks(std::vector<Block> startblocks)
+{
 
     int placecheck = 1;
 
@@ -39,7 +42,7 @@ std::vector<Board> Game::init_startblocks()
     if(!sizeof(solutions)) // if there is no solutions go in this if
     {
         Board::clearFlied();
-        init_startblocks();
+        placeStartblocks(startblocks);
     }
     else
     {
@@ -48,8 +51,7 @@ std::vector<Board> Game::init_startblocks()
 
 }
 
-std::vector<Block> Game::init_playblocks()
-{
+std::vector<Block> Game::initPlayblocks() {
     Block PBlock0(BlockType::TWOBYTWO, 2, 2);
     Block PBlock1(BlockType::ONEBYFOUR, 1, 4);
     Block PBlock2(BlockType::TWOBYFIVE, 2, 5);

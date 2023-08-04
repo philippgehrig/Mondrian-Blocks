@@ -20,8 +20,9 @@ public:
     {};
 
     void start();
-    std::vector<Board> init_startblocks();
-    std::vector<Block> init_playblocks();
+    std::vector<Block> initStartblocks();
+    std::vector<Board> placeStartblocks(std::vector<Block> startblocks);
+    std::vector<Block> initPlayblocks();
 
 
 private:
