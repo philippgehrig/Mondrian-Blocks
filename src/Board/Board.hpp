@@ -94,7 +94,7 @@ public:
  * @brief getter for the placed blocks
  * @return vector of blocks that are not placed on the board
  */
-    static std::vector<Block> getPlacedBlock()
+    static std::vector<Block> getPlacedBlocks()
     {
         return m_placedBlocks;
     }

@@ -4,7 +4,9 @@ void GUI::drawBoard(Board board)
 {
     BeginDrawing();
     ClearBackground(RAYWHITE);
-    drawBackground();;
+    drawBackground();
+    drawNotPlacedBlocks(board.getNotPlacedPlayBlocks());
+    drawPlacedBlocks(board.getPlacedBlocks());
 }
 
 void GUI::drawNotPlacedBlocks(std::vector<Block> notPlacedBlocks)
