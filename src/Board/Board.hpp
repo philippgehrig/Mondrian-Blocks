@@ -36,30 +36,57 @@ public:
     }
 
     /**
-     * @brief getter for the not placed blocks
+     * @brief getter for the not placed play blocks
      * @return vector of blocks that are not placed on the board
      */
-    static std::vector<Block> getNotPlacedBlocks()
+    static std::vector<Block> getNotPlacedPlayBlocks()
     {
-        return m_notPlacedBlocks;
+        return m_notPlacedPlayBlocks;
     }
 
     /**
-     * @brief setter for the not placed blocks (multiple blocks)
+     * @brief setter for the not placed play blocks (multiple blocks)
      * @param blocks: vector of blocks that are not placed on the board
      */
-    static void setNotPlacedBlocks(std::vector<Block> blocks)
+    static void setNotPlacedPLayBlocks(std::vector<Block> blocks)
     {
-        m_notPlacedBlocks = std::move(blocks);
+        m_notPlacedPlayBlocks = std::move(blocks);
     }
 
     /**
-     * @brief setter for the not placed blocks (single block)
+     * @brief setter for the not placed play blocks (single block)
      * @param block: block that is not placed on the board
      */
-    static void setNotPlacedBlock(const Block& block)
+    static void setNotPlacedPlayBlock(const Block& block)
     {
-        m_notPlacedBlocks.push_back(block);
+        m_notPlacedPlayBlocks.push_back(block);
+    }
+
+    /**
+     * @brief getter for the not placed start blocks
+     * @return vector of blocks that are not placed on the board
+     */
+    static std::vector<Block> getNotPlacedStartBlocks()
+    {
+        return m_notPlacedPlayBlocks;
+    }
+
+    /**
+     * @brief setter for the not placed start blocks (multiple blocks)
+     * @param blocks: vector of blocks that are not placed on the board
+     */
+    static void setNotPlacedStartBlocks(std::vector<Block> blocks)
+    {
+        m_notPlacedPlayBlocks = std::move(blocks);
+    }
+
+    /**
+     * @brief setter for the not placed start blocks (single block)
+     * @param block: block that is not placed on the board
+     */
+    static void setNotPlacedStartBlock(const Block& block)
+    {
+        m_notPlacedPlayBlocks.push_back(block);
     }
 
 
@@ -224,6 +251,20 @@ public:
         return true;
     }
 
+    /**
+     * @brief init board with 0
+     */
+     static void initBoard()
+    {
+        for(int column = 0; column < BOARD_HEIGHT; column++)
+        {
+            for(int row = 0; row < BOARD_WIDTH; row++)
+            {
+                m_board[column][row] = 0;
+            }
+        }
+    }
+
 private:
     /**
      * @param m_board: 2D array representing the board
@@ -247,7 +288,10 @@ private:
     static int m_board[BOARD_HEIGHT][BOARD_WIDTH];
 
     // Container for all blocks that are not placed on the board (so-called aside)
-    static std::vector<Block> m_notPlacedBlocks;
+    static std::vector<Block> m_notPlacedPlayBlocks;
+
+    // Container for start blocks
+    static std::vector<Block> m_notPlacedStartBlocks;
 
 };
 

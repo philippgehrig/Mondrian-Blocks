@@ -4,7 +4,7 @@ std::vector<Board> Solver::solve(Board StartBoard)
 {
     std::vector<Board> solvedBoards;
     std::vector<Block> solutionBlocks;
-    std::vector<Block> playblocks = Board::m_notPlacedBlocks;
+    std::vector<Block> playblocks = Board::getNotPlacedBlocks();
 
     // Brute Force Solution
 
