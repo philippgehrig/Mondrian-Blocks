@@ -35,7 +35,7 @@ set(
         Headers
         src/Board/Board.hpp
         src/Game/Game.hpp
-#        src/GUI/GUI.hpp
+        src/GUI/GUI.hpp
         src/Solver/Solver.hpp
         src/Constants.hpp
         src/Block/Block.hpp
@@ -45,7 +45,7 @@ set(
         Sources
         src/main.cpp
         src/Game/Game.cpp
-#        src/GUI/GUI.cpp
+        src/GUI/GUI.cpp
         src/Solver/Solver.cpp
 )
 
