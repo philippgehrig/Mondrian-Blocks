@@ -5,6 +5,8 @@
 #include "../Board/Board.hpp"
 #include "../Constants.hpp"
 #include "../../raylib-master/src/raylib.h"
+#include <iostream>
+#include <optional>
 
 
 class GUI
@@ -16,8 +18,10 @@ public:
 
     void drawBoard(Board board);
     void drawNotPlacedBlocks(std::vector<Block> notPlacedBlocks);
+    void drawPlacedBlocks(std::vector<Block> placedBlocks);
     void drawStartScreen();
     void drawBackground();
+    std::tuple<int, int> calculateCoordinates();
 
 private:
     /* data */

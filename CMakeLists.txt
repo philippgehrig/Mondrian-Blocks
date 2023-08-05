@@ -23,7 +23,7 @@ include(FetchContent)
 # set(RAYLIB_VERSION 4.5.0)
 # FETCHCONTENT_DECLARE(
 #        raylib
-#        URL URL https://github.com/raysan5/raylib/archive/refs/tags/${RAYLIB_VERSION}.zip
+#        URL https://github.com/raysan5/raylib/archive/refs/tags/${RAYLIB_VERSION}.zip
 #)
 # adds libary without build examples
 #set(BUILD_EXAMPLES OFF CACHE INTERNAL "")
