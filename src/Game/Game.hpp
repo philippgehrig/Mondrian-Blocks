@@ -6,7 +6,8 @@
 
 #include "../Board/Board.hpp"
 #include "../Solver/Solver.hpp"
-#include "../Block/Block_old.hpp"
+#include "../../raylib-master/src/raylib.h"
+#include "../GUI/GUI.hpp"
 
 
 
@@ -28,6 +29,7 @@ public:
 private:
     Board m_board;
     Solver m_solver;
+    GUI m_gui;
 };
 
 

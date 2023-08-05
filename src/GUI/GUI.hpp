@@ -3,6 +3,9 @@
 
 #include "../Solver/Solver.hpp"
 #include "../Board/Board.hpp"
+#include "../Constants.hpp"
+#include "../../raylib-master/src/raylib.h"
+
 
 class GUI
 {
@@ -11,9 +14,10 @@ public:
     GUI(/* args */){};
     ~GUI(){};
 
-    void drawBoard();
-    void drawNotPlacedBlocks();
+    void drawBoard(Board board);
+    void drawNotPlacedBlocks(std::vector<Block> notPlacedBlocks);
     void drawStartScreen();
+    void drawBackground();
 
 private:
     /* data */

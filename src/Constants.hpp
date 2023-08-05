@@ -9,4 +9,7 @@
 constexpr int BOARD_HEIGHT = 8;
 constexpr int BOARD_WIDTH = 8;
 
+constexpr int SCREEN_WIDTH = 2000;
+constexpr int SCREEN_HEIGHT = 1000;
+
 #endif

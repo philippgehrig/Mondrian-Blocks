@@ -2,9 +2,20 @@
 
 void Game::start()
 {
+    // Creation of Blocks
     std::vector<Block> startblocks = initStartblocks();
     std::vector<Board> solutions = placeStartblocks(startblocks);
     std::vector<Block> playblocks = initPlayblocks();
+
+    // GUI
+    InitWindow(SCREEN_WIDTH, SCREEN_HEIGHT, "Mondrian Blocks");
+    SetTargetFPS(60);
+
+    while(!WindowShouldClose())
+    {
+        m_gui.drawBoard(m_board);
+
+    }
 }
 
 std::vector<Block> Game::initStartblocks()

@@ -18,6 +18,19 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 # get version 1.13.0 of gtest from github
 # update url to current version
 include(FetchContent)
+
+
+# set(RAYLIB_VERSION 4.5.0)
+# FETCHCONTENT_DECLARE(
+#        raylib
+#        URL URL https://github.com/raysan5/raylib/archive/refs/tags/${RAYLIB_VERSION}.zip
+#)
+# adds libary without build examples
+#set(BUILD_EXAMPLES OFF CACHE INTERNAL "")
+#FETCHCONTENT_MAKEAVAILABLE(raylib)
+#target_link_libraries(${PROJECT_NAME} PUBLIC raylib)
+
+
 FetchContent_Declare(
         googletest
         URL https://github.com/google/googletest/archive/refs/tags/v1.13.0.zip
@@ -60,3 +73,6 @@ add_library(
 add_subdirectory(test)
 
 include(GoogleTest)
+
+# add_subdirectory(raylib-master)
+# include(raylib)
