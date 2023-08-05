@@ -6,7 +6,7 @@
 
 #include "../Board/Board.hpp"
 #include "../Solver/Solver.hpp"
-#include "../../raylib-master/src/raylib.h"
+#include "../../raylib/src/raylib.h"
 #include "../GUI/GUI.hpp"
 
 
