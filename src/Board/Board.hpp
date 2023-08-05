@@ -68,7 +68,7 @@ public:
      */
     static std::vector<Block> getNotPlacedStartBlocks()
     {
-        return m_notPlacedPlayBlocks;
+        return m_notPlacedStartBlocks;
     }
 
     /**
@@ -77,7 +77,7 @@ public:
      */
     static void setNotPlacedStartBlocks(std::vector<Block> blocks)
     {
-        m_notPlacedPlayBlocks = std::move(blocks);
+        m_notPlacedStartBlocks = std::move(blocks);
     }
 
     /**
@@ -86,9 +86,36 @@ public:
      */
     static void setNotPlacedStartBlock(const Block& block)
     {
-        m_notPlacedPlayBlocks.push_back(block);
+        m_notPlacedStartBlocks.push_back(block);
     }
 
+
+    /**
+ * @brief getter for the placed blocks
+ * @return vector of blocks that are not placed on the board
+ */
+    static std::vector<Block> getPlacedBlock()
+    {
+        return m_placedBlocks;
+    }
+
+    /**
+     * @brief setter for the placed blocks (multiple blocks)
+     * @param blocks: vector of blocks that are not placed on the board
+     */
+    static void setPlacedBlocks(std::vector<Block> blocks)
+    {
+        m_placedBlocks = std::move(blocks);
+    }
+
+    /**
+     * @brief setter for the placed blocks (single block)
+     * @param block: block that is not placed on the board
+     */
+    static void setPlacedBlock(const Block& block)
+    {
+        m_placedBlocks.push_back(block);
+    }
 
     /**
      * @brief checks if block can be placed
@@ -292,6 +319,9 @@ private:
 
     // Container for start blocks
     static std::vector<Block> m_notPlacedStartBlocks;
+
+    // Container for all placed blocks
+    static std::vector<Block> m_placedBlocks;
 
 };
 
