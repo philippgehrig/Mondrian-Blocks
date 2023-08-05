@@ -76,3 +76,6 @@ include(GoogleTest)
 
 # add_subdirectory(raylib-master)
 # include(raylib)
+add_executable(CPP-EXAM ${PROJECT_SOURCE_DIR}/src/main.cpp)
+
+#target_link_libraries()
