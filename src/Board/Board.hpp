@@ -49,7 +49,7 @@ public:
      * @brief setter for the not placed play blocks (multiple blocks)
      * @param blocks: vector of blocks that are not placed on the board
      */
-    static void setNotPlacedPLayBlocks(std::vector<Block> blocks)
+    static void setNotPlacedPlayBlocks(std::vector<Block> blocks)
     {
         m_notPlacedPlayBlocks = std::move(blocks);
     }

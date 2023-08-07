@@ -2,19 +2,39 @@
 
 void Game::start()
 {
-    // Creation of blocks and placing them in board or container
+    // Creating of blocks
     initStartblocks();
-    // placeStartblocks();
     initPlayblocks();
 
     // GUI
     InitWindow(SCREEN_WIDTH, SCREEN_HEIGHT, "Mondrian Blocks");
     SetTargetFPS(60);
+
+    int game_mode = 0;
     while(!WindowShouldClose())
     {
-//        BeginDrawing();
-        m_gui.drawBoard();
-//        EndDrawing();
+
+        BeginDrawing();
+        game_mode = m_gui.drawStartScreen(); // return value 1 = play; 2 = play + set own start blocks; 3 = solve; 0 = nothing
+        EndDrawing();
+
+        switch(game_mode)
+        {
+            case 1: //
+                placeStartblocksGenerate();
+                // draw boards to choose
+                playGame();
+                break;
+            case 2:
+                placeOwnStartblocks();
+                playGame();
+                break;
+            case 3:
+                placeOwnStartblocks();
+                solveGame();
+            default:
+                break;
+        }
     }
 
 }
@@ -28,8 +48,7 @@ void Game::initStartblocks()
     Board::setNotPlacedStartBlocks(startblocks);
 }
 
-std::vector<Board> Game::placeStartblocks()
-{
+std::vector<Board> Game::placeStartblocksGenerate() {
     std::vector<Block> startblocks = Board::getNotPlacedStartBlocks();
     for (auto block : startblocks)
     {
@@ -61,7 +80,8 @@ std::vector<Board> Game::placeStartblocks()
 //    }
 }
 
-void Game::initPlayblocks() {
+void Game::initPlayblocks()
+{
     Block PBlock2x2 = {BlockType::TWOBYTWO, 2, 2};
     Block PBlock1x4 = {BlockType::ONEBYFOUR, 1, 4};
     Block PBlock2x5 = {BlockType::TWOBYFIVE, 2, 5};
@@ -71,6 +91,38 @@ void Game::initPlayblocks() {
     Block PBlock2x4 = {BlockType::TWOBYFOUR, 2, 4};
     Block PBlock3x4 = {BlockType::THREEBYFOUR, 3, 4};
 
-    std::vector<Block> playblocks {PBlock3x4, PBlock2x5, PBlock3x3, PBlock2x4, PBlock2x3, PBlock1x5, PBlock1x4, PBlock2x2};
-    Board::setNotPlacedStartBlocks(playblocks);
+    Board::setNotPlacedPlayBlocks(playblocks);
 }
+
+void Game::playGame()
+{
+    while(!WindowShouldClose())
+    {
+        BeginDrawing();
+        m_gui.drawBackground();
+        m_gui.drawPlacedBlocks(Board::getPlacedBlocks());
+        m_gui.drawNotPlacedBlocks(Board::getNotPlacedPlayBlocks());
+
+        // Drag and Drop
+        while(IsMouseButtonDown(MOUSE_LEFT_BUTTON))
+        {
+            auto coordinates = m_gui.calculateCoordinates();
+            int height_coord = std::get<0>(coordinates);
+            int width_coord = std::get<1>(coordinates);
+
+            // check if there is a block at the coordinates
+            if("block exsist")
+            {
+                Board::removeBlock("block");
+                Board::placeBlock("block", height_coord, width_coord);
+            }
+        }
+
+
+
+
+        EndDrawing();
+
+    }
+}
+
