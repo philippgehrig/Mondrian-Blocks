@@ -7,6 +7,7 @@
 #include <iostream>
 #include <optional>
 #include "raylib.h"
+#include <tuple>
 
 class GUI
 {

@@ -72,5 +72,6 @@ void Game::initPlayblocks() {
     Block PBlock3x4 = {BlockType::THREEBYFOUR, 3, 4};
 
     std::vector<Block> playblocks {PBlock3x4, PBlock2x5, PBlock3x3, PBlock2x4, PBlock2x3, PBlock1x5, PBlock1x4, PBlock2x2};
-    Board::setNotPlacedStartBlocks(playblocks);
+    Board::setNotPlacedPLayBlocks(playblocks);
 }
+
