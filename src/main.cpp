@@ -5,8 +5,5 @@ int main()
 {
     Game game;
     game.start();
-
-    std::cout << "Hello Wurst!";
-
     return 0;
 }

@@ -7,8 +7,8 @@ student number:
   - 1788761
 
 ## Contributers
-- [Dinar Karchevskii](https://github.com/karchevskii)
 - [Philipp Konstantin Gehrig](https://github.com/philippgehrig) 
+- [Dinar Karchevskii](https://github.com/karchevskii)
 - [Mattes Wirths](https://github.com/MWirths)
 
 ## Task

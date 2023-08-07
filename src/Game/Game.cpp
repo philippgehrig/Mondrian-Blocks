@@ -13,6 +13,7 @@ void Game::start()
     int game_mode = 0;
     while(!WindowShouldClose())
     {
+
         BeginDrawing();
         game_mode = m_gui.drawStartScreen(); // return value 1 = play; 2 = play + set own start blocks; 3 = solve; 0 = nothing
         EndDrawing();
