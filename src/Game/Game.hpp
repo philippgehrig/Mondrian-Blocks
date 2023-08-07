@@ -22,7 +22,10 @@ public:
     void start();
     void initStartblocks();
     void initPlayblocks();
-    std::vector<Board> placeStartblocks();
+    void playGame();
+    void solveGame();
+    void placeOwnStartblocks();
+    std::vector<Board> placeStartblocksGenerate();
 
 
 
