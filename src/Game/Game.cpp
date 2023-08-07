@@ -4,18 +4,18 @@ void Game::start()
 {
     // Creation of blocks and placing them in board or container
     initStartblocks();
-    placeStartblocks();
+    // placeStartblocks();
     initPlayblocks();
 
     // GUI
     InitWindow(SCREEN_WIDTH, SCREEN_HEIGHT, "Mondrian Blocks");
     SetTargetFPS(60);
-
     while(!WindowShouldClose())
     {
         m_gui.drawBoard(m_board);
-
+        m_gui.drawBackground();
     }
+
 }
 
 void Game::initStartblocks()
