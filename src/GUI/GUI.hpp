@@ -3,6 +3,10 @@
 
 #include "../Solver/Solver.hpp"
 #include "../Board/Board.hpp"
+#include "../Constants.hpp"
+#include <iostream>
+#include <optional>
+#include "raylib.h"
 
 class GUI
 {
@@ -12,8 +16,11 @@ public:
     ~GUI(){};
 
     void drawBoard();
-    void drawNotPlacedBlocks();
+    void drawNotPlacedBlocks(std::vector<Block> notPlacedBlocks);
+    void drawPlacedBlocks(std::vector<Block> placedBlocks);
     void drawStartScreen();
+    void drawBackground();
+    std::tuple<int, int> calculateCoordinates();
 
 private:
     /* data */

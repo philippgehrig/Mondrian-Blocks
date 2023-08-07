@@ -7,7 +7,7 @@ set(
 
 set(
         Test_Sources
-        test.cpp
+        ../src/main.cpp
 )
 
 add_executable(

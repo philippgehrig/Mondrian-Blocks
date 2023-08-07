@@ -7,6 +7,7 @@
 #include <optional>
 #include <iostream>
 #include <random>
+#include <tuple>
 
 /**
  * @brief Board class. Implemented as static class -> only one instance of the board is possible
@@ -36,32 +37,86 @@ public:
     }
 
     /**
-     * @brief getter for the not placed blocks
+     * @brief getter for the not placed play blocks
      * @return vector of blocks that are not placed on the board
      */
-    static std::vector<Block> getNotPlacedBlocks()
+    static std::vector<Block> getNotPlacedPlayBlocks()
     {
-        return m_notPlacedBlocks;
+        return m_notPlacedPlayBlocks;
     }
 
     /**
-     * @brief setter for the not placed blocks (multiple blocks)
+     * @brief setter for the not placed play blocks (multiple blocks)
      * @param blocks: vector of blocks that are not placed on the board
      */
-    static void setNotPlacedBlocks(std::vector<Block> blocks)
+    static void setNotPlacedPLayBlocks(std::vector<Block> blocks)
     {
-        m_notPlacedBlocks = std::move(blocks);
+        m_notPlacedPlayBlocks = std::move(blocks);
     }
 
     /**
-     * @brief setter for the not placed blocks (single block)
+     * @brief setter for the not placed play blocks (single block)
      * @param block: block that is not placed on the board
      */
-    static void setNotPlacedBlock(const Block& block)
+    static void setNotPlacedPlayBlock(const Block& block)
     {
-        m_notPlacedBlocks.push_back(block);
+        m_notPlacedPlayBlocks.push_back(block);
     }
 
+    /**
+     * @brief getter for the not placed start blocks
+     * @return vector of blocks that are not placed on the board
+     */
+    static std::vector<Block> getNotPlacedStartBlocks()
+    {
+        return m_notPlacedStartBlocks;
+    }
+
+    /**
+     * @brief setter for the not placed start blocks (multiple blocks)
+     * @param blocks: vector of blocks that are not placed on the board
+     */
+    static void setNotPlacedStartBlocks(std::vector<Block> blocks)
+    {
+        m_notPlacedStartBlocks = std::move(blocks);
+    }
+
+    /**
+     * @brief setter for the not placed start blocks (single block)
+     * @param block: block that is not placed on the board
+     */
+    static void setNotPlacedStartBlock(const Block& block)
+    {
+        m_notPlacedStartBlocks.push_back(block);
+    }
+
+
+    /**
+ * @brief getter for the placed blocks
+ * @return vector of blocks that are not placed on the board
+ */
+    static std::vector<Block> getPlacedBlocks()
+    {
+        return m_placedBlocks;
+    }
+
+    /**
+     * @brief setter for the placed blocks (multiple blocks)
+     * @param blocks: vector of blocks that are not placed on the board
+     */
+    static void setPlacedBlocks(std::vector<Block> blocks)
+    {
+        m_placedBlocks = std::move(blocks);
+    }
+
+    /**
+     * @brief setter for the placed blocks (single block)
+     * @param block: block that is not placed on the board
+     */
+    static void setPlacedBlock(const Block& block)
+    {
+        m_placedBlocks.push_back(block);
+    }
 
     /**
      * @brief checks if block can be placed
@@ -89,7 +144,7 @@ public:
      * @param width_coord x-coordinate of the block (row) (top left corner)
      * @return true if the block was placed successfully, false otherwise
      */
-    static bool placeBlock(const Block& block, int height_coord, int width_coord)
+    static bool placeBlock(Block& block, const int height_coord, const int width_coord)
     {
         //if block can be placed
         if(canPlaceBlock(block, height_coord, width_coord))
@@ -105,6 +160,34 @@ public:
         else return false;
     }
 
+    /**
+     * @brief place a block on the board (used by solver)
+     * @param block: block to be placed
+     * @param height_coord y-coordinate of the block (column) (top left corner)
+     * @param width_coord x-coordinate of the block (row) (top left corner)
+     * @return true if the block was placed successfully, false otherwise
+     */
+    static bool placeBlockSolver(Block& block, const int height_coord, const int width_coord, int** board, bool rotated = false)
+    {
+        //if block can be placed
+        if(canPlaceBlock(block, height_coord, width_coord))
+        {
+            if(rotated)
+            {
+                int tmp = block.height;
+                block.height = block.width;
+                block.width = tmp;
+            }
+            for(int column = height_coord; column < height_coord + block.height; column++){
+                for(int row = width_coord; row < width_coord + block.width; row++)
+                {
+                    board[column][row] = static_cast<int>(block.type);
+                }
+            }
+            return true;
+        }
+        else return false;
+    }
 
     /**
      * @brief finds the block in the board
@@ -224,6 +307,20 @@ public:
         return true;
     }
 
+    /**
+     * @brief init board with 0
+     */
+     static void initBoard()
+    {
+        for(int column = 0; column < BOARD_HEIGHT; column++)
+        {
+            for(int row = 0; row < BOARD_WIDTH; row++)
+            {
+                m_board[column][row] = 0;
+            }
+        }
+    }
+
 private:
     /**
      * @param m_board: 2D array representing the board
@@ -247,7 +344,13 @@ private:
     static int m_board[BOARD_HEIGHT][BOARD_WIDTH];
 
     // Container for all blocks that are not placed on the board (so-called aside)
-    static std::vector<Block> m_notPlacedBlocks;
+    static std::vector<Block> m_notPlacedPlayBlocks;
+
+    // Container for start blocks
+    static std::vector<Block> m_notPlacedStartBlocks;
+
+    // Container for all placed blocks
+    static std::vector<Block> m_placedBlocks;
 
 };
 

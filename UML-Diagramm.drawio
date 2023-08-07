@@ -22,7 +22,7 @@
         <mxCell id="p-KNmU-BI59sNPbP7N_D-5" value="m_board: int [height][width]" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="p-KNmU-BI59sNPbP7N_D-4" vertex="1">
           <mxGeometry y="30" width="180" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="p-KNmU-BI59sNPbP7N_D-52" value="m_notPlacedBlocks: vector&amp;lt;Block&amp;gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;perimeterSpacing=0;" parent="p-KNmU-BI59sNPbP7N_D-4" vertex="1">
+        <mxCell id="p-KNmU-BI59sNPbP7N_D-52" value="m_notPlacedPlayBlocks: vector&amp;lt;Block&amp;gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;perimeterSpacing=0;" parent="p-KNmU-BI59sNPbP7N_D-4" vertex="1">
           <mxGeometry y="60" width="180" height="45" as="geometry" />
         </mxCell>
         <mxCell id="p-KNmU-BI59sNPbP7N_D-7" value="bool isFull()&amp;nbsp;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="p-KNmU-BI59sNPbP7N_D-4" vertex="1">

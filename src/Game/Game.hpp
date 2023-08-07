@@ -6,8 +6,8 @@
 
 #include "../Board/Board.hpp"
 #include "../Solver/Solver.hpp"
-#include "../Block/Block_old.hpp"
-
+#include "../GUI/GUI.hpp"
+#include "raylib.h"
 
 
 class Game
@@ -20,14 +20,16 @@ public:
     {};
 
     void start();
-    std::vector<Block> initStartblocks();
-    std::vector<Board> placeStartblocks(std::vector<Block> startblocks);
-    std::vector<Block> initPlayblocks();
+    void initStartblocks();
+    void initPlayblocks();
+    std::vector<Board> placeStartblocks();
+
 
 
 private:
     Board m_board;
     Solver m_solver;
+    GUI m_gui;
 };
 
 
