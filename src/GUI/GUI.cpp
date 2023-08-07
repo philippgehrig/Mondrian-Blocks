@@ -1,6 +1,6 @@
 #include "../GUI/GUI.hpp"
 
-void GUI::drawBoard(Board board)
+void GUI::drawBoard()
 {
     BeginDrawing();
     ClearBackground(RAYWHITE);

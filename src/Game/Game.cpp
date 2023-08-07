@@ -13,7 +13,7 @@ void Game::start()
     while(!WindowShouldClose())
     {
         BeginDrawing();
-        m_gui.drawBoard(m_board);
+        m_gui.drawBoard();
         EndDrawing();
     }
 

@@ -15,7 +15,7 @@ public:
     GUI(/* args */){};
     ~GUI(){};
 
-    void drawBoard(Board board);
+    void drawBoard();
     void drawNotPlacedBlocks(std::vector<Block> notPlacedBlocks);
     void drawPlacedBlocks(std::vector<Block> placedBlocks);
     void drawStartScreen();
