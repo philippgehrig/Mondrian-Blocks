@@ -14,7 +14,6 @@ void Game::start()
     {
         BeginDrawing();
         m_gui.drawBoard(m_board);
-        m_gui.drawBackground();
         EndDrawing();
     }
 
