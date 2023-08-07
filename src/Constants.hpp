@@ -1,7 +1,7 @@
 #ifndef CONSTANTS_HPP
 #define CONSTANTS_HPP
 
-// a ll Constants need to be defined here
+// all Constants need to be defined here
 
 // field size is 8x8
 
