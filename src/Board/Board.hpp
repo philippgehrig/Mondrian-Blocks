@@ -7,6 +7,7 @@
 #include <optional>
 #include <iostream>
 #include <random>
+#include <tuple>
 
 /**
  * @brief Board class. Implemented as static class -> only one instance of the board is possible
