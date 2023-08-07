@@ -7,6 +7,7 @@
 #include <optional>
 #include <iostream>
 #include <random>
+#include <tuple>
 
 /**
  * @brief Board class. Implemented as static class -> only one instance of the board is possible
@@ -143,7 +144,7 @@ public:
      * @param width_coord x-coordinate of the block (row) (top left corner)
      * @return true if the block was placed successfully, false otherwise
      */
-    static bool placeBlock(const Block& block, int height_coord, int width_coord)
+    static bool placeBlock(Block& block, const int height_coord, const int width_coord)
     {
         //if block can be placed
         if(canPlaceBlock(block, height_coord, width_coord))
@@ -159,6 +160,34 @@ public:
         else return false;
     }
 
+    /**
+     * @brief place a block on the board (used by solver)
+     * @param block: block to be placed
+     * @param height_coord y-coordinate of the block (column) (top left corner)
+     * @param width_coord x-coordinate of the block (row) (top left corner)
+     * @return true if the block was placed successfully, false otherwise
+     */
+    static bool placeBlockSolver(Block& block, const int height_coord, const int width_coord, int** board, bool rotated = false)
+    {
+        //if block can be placed
+        if(canPlaceBlock(block, height_coord, width_coord))
+        {
+            if(rotated)
+            {
+                int tmp = block.height;
+                block.height = block.width;
+                block.width = tmp;
+            }
+            for(int column = height_coord; column < height_coord + block.height; column++){
+                for(int row = width_coord; row < width_coord + block.width; row++)
+                {
+                    board[column][row] = static_cast<int>(block.type);
+                }
+            }
+            return true;
+        }
+        else return false;
+    }
 
     /**
      * @brief finds the block in the board
