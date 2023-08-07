@@ -2,18 +2,19 @@
 
 void Game::start()
 {
-    // Creation of blocks and placing them in board or container
+    // Creating of blocks
     initStartblocks();
-    // placeStartblocks();
     initPlayblocks();
 
     // GUI
     InitWindow(SCREEN_WIDTH, SCREEN_HEIGHT, "Mondrian Blocks");
     SetTargetFPS(60);
-    while(!WindowShouldClose())
+
+    int game_mode = 0;
+    while(!WindowShouldClose() || game_mode != 0)
     {
         BeginDrawing();
-        m_gui.drawBoard();
+        m_gui.drawStartScreen();
         EndDrawing();
     }
 
@@ -72,5 +73,5 @@ void Game::initPlayblocks() {
     Block PBlock3x4 = {BlockType::THREEBYFOUR, 3, 4};
 
     std::vector<Block> playblocks {PBlock3x4, PBlock2x5, PBlock3x3, PBlock2x4, PBlock2x3, PBlock1x5, PBlock1x4, PBlock2x2};
-    Board::setNotPlacedStartBlocks(playblocks);
+    Board::setNotPlacedPlayBlocks(playblocks);
 }
