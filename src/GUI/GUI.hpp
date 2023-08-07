@@ -6,7 +6,7 @@
 #include "../Constants.hpp"
 #include <iostream>
 #include <optional>
-
+#include "raylib.h"
 
 class GUI
 {

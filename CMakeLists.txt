@@ -17,7 +17,6 @@
          )
 
  set(Sources
-         src/main.cpp
          src/Game/Game.cpp
          src/GUI/GUI.cpp
          )

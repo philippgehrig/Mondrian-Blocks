@@ -7,6 +7,7 @@
 #include "../Board/Board.hpp"
 #include "../Solver/Solver.hpp"
 #include "../GUI/GUI.hpp"
+#include "raylib.h"
 
 
 class Game
