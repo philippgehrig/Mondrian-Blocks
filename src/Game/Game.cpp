@@ -12,9 +12,9 @@ void Game::start()
     SetTargetFPS(60);
     while(!WindowShouldClose())
     {
-        BeginDrawing();
+//        BeginDrawing();
         m_gui.drawBoard();
-        EndDrawing();
+//        EndDrawing();
     }
 
 }
