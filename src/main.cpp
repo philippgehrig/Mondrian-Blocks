@@ -1,6 +1,8 @@
 #include <iostream>
 #include "Game/Game.hpp"
 
+#define RAYGUI_IMPLEMENTATION
+
 int main()
 {
     //Game game = Game();

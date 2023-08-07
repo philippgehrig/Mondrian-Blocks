@@ -4,7 +4,6 @@
 #include "../Solver/Solver.hpp"
 #include "../Board/Board.hpp"
 #include "../Constants.hpp"
-#include "../../raylib/src/raylib.h"
 #include <iostream>
 #include <optional>
 

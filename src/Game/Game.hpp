@@ -6,9 +6,7 @@
 
 #include "../Board/Board.hpp"
 #include "../Solver/Solver.hpp"
-#include "../../raylib/src/raylib.h"
 #include "../GUI/GUI.hpp"
-
 
 
 class Game
