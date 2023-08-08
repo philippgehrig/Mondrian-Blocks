@@ -1,7 +1,3 @@
-//
-// Created by Dinar Karchevskii on 04.08.23.
-//
-
 #ifndef CPP_EXAM_BLOCK_HPP
 #define CPP_EXAM_BLOCK_HPP
 
@@ -12,6 +8,7 @@
  * @param height Height of block
  * @param width Width of block
  */
+#include "raylib.h"
 
 
 enum class BlockType{
@@ -37,6 +34,7 @@ typedef struct Block
     BlockType type;
     int height;
     int width;
+    Color color;
 } Block;
 
 #endif //CPP_EXAM_BLOCK_HPP

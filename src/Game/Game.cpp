@@ -47,9 +47,9 @@ void Game::start()
 
 void Game::initStartblocks()
 {
-    Block startBlock1 = {BlockType::ONEBYONE, 1, 1};
-    Block startBlock2 = {BlockType::ONEBYTWO, 1, 2};
-    Block startBlock3 = {BlockType::ONEBYTHREE, 1, 3};
+    Block startBlock1 = {BlockType::ONEBYONE, 1, 1, BLACK};
+    Block startBlock2 = {BlockType::ONEBYTWO, 1, 2, BLACK};
+    Block startBlock3 = {BlockType::ONEBYTHREE, 1, 3, BLACK};
     std::vector <Block> startblocks {startBlock1, startBlock2, startBlock3};
     Board::setNotPlacedStartBlocks(startblocks);
 }
@@ -88,14 +88,14 @@ std::vector<Board> Game::placeStartblocksGenerate() {
 
 void Game::initPlayblocks()
 {
-    Block PBlock2x2 = {BlockType::TWOBYTWO, 2, 2};
-    Block PBlock1x4 = {BlockType::ONEBYFOUR, 1, 4};
-    Block PBlock2x5 = {BlockType::TWOBYFIVE, 2, 5};
-    Block PBlock2x3 = {BlockType::TWOBYTHREE, 2, 3};
-    Block PBlock1x5 = {BlockType::ONEBYFIVE, 1, 5};
-    Block PBlock3x3 = {BlockType::THREEBYTHREE, 3, 3};
-    Block PBlock2x4 = {BlockType::TWOBYFOUR, 2, 4};
-    Block PBlock3x4 = {BlockType::THREEBYFOUR, 3, 4};
+    Block PBlock2x2 = {BlockType::TWOBYTWO, 2, 2, RED};
+    Block PBlock1x4 = {BlockType::ONEBYFOUR, 1, 4, GREEN};
+    Block PBlock2x5 = {BlockType::TWOBYFIVE, 2, 5, BLUE};
+    Block PBlock2x3 = {BlockType::TWOBYTHREE, 2, 3, PINK};
+    Block PBlock1x5 = {BlockType::ONEBYFIVE, 1, 5, LIME};
+    Block PBlock3x3 = {BlockType::THREEBYTHREE, 3, 3, DARKBLUE};
+    Block PBlock2x4 = {BlockType::TWOBYFOUR, 2, 4, BROWN};
+    Block PBlock3x4 = {BlockType::THREEBYFOUR, 3, 4, ORANGE};
 
     std::vector<Block> playblocks {PBlock2x2, PBlock1x4, PBlock2x5, PBlock2x3, PBlock1x5, PBlock3x3, PBlock2x4, PBlock3x4};
 
@@ -110,7 +110,7 @@ void Game::playGame()
     m_gui.drawNotPlacedBlocks(Board::getNotPlacedPlayBlocks());
 
     // Drag and Drop
-    while(IsMouseButtonDown(MouseButton ::MOUSE_LEFT_BUTTON))
+    if(IsMouseButtonPressed(MouseButton ::MOUSE_LEFT_BUTTON))
     {
         auto coordinates = m_gui.calculateCoordinates();
         int height_coord = std::get<0>(coordinates);
@@ -123,6 +123,11 @@ void Game::playGame()
             Board::placeBlock("block", height_coord, width_coord);
         }
         */
+        while (IsMouseButtonDown(MouseButton ::MOUSE_LEFT_BUTTON))
+        {
+            // Board::removeBlock("block");
+           // m_gui.drawBlockAtMouse("block");
+        }
 
 
         // check if Board is full
@@ -146,6 +151,7 @@ void Game::debug() {
         BeginDrawing();
         ClearBackground(RAYWHITE);
         m_gui.drawStartScreen();
+        EndDrawing();
     }
 }
 

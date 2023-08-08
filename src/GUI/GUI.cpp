@@ -31,28 +31,28 @@ void GUI::drawNotPlacedBlocks(std::vector<Block> notPlacedBlocks)
         switch (type)
         {
             case BlockType::TWOBYTWO:
-                DrawRectangle(9.5 * 100, 0.5 * 100, width, height, RED);
+                DrawRectangle(9.5 * 100, 0.5 * 100, width, height, block.color);
                 break;
             case BlockType::THREEBYTHREE:
-                DrawRectangle(12.5 * 100, 0 * 100, width, height, VIOLET);
+                DrawRectangle(12.5 * 100, 0 * 100, width, height, block.color);
                 break;
             case BlockType::TWOBYTHREE:
-                DrawRectangle(16 * 100, 0 * 100, width, height, GOLD);
+                DrawRectangle(16 * 100, 0 * 100, width, height, block.color);
                 break;
             case BlockType::ONEBYFOUR:
-                DrawRectangle(12 * 100, 4.5 * 100, width, height, LIME);
+                DrawRectangle(12 * 100, 4.5 * 100, width, height, block.color);
                 break;
             case BlockType::ONEBYFIVE:
-                DrawRectangle(12.5 * 100, 3.25 * 100, height, width, BLUE);
+                DrawRectangle(12.5 * 100, 3.25 * 100, height, width, block.color);
                 break;
             case BlockType::THREEBYFOUR:
-                DrawRectangle(13.5 * 100, 4.5 * 100, width, height, DARKBLUE);
+                DrawRectangle(13.5 * 100, 4.5 * 100, width, height, block.color);
                 break;
             case BlockType::TWOBYFOUR:
-                DrawRectangle(17 * 100, 4.5 * 100, width, height, PINK);
+                DrawRectangle(17 * 100, 4.5 * 100, width, height, block.color);
                 break;
             case BlockType::TWOBYFIVE:
-                DrawRectangle(9.5 * 100, 3 * 100, width, height, YELLOW);
+                DrawRectangle(9.5 * 100, 3 * 100, width, height, block.color);
                 break;
             default:
                 continue;
@@ -81,37 +81,37 @@ void GUI::drawPlacedBlocks(std::vector<Block> placedBlocks)
         switch (type)
         {
             case BlockType::ONEBYONE:
-                DrawRectangle(100 + width_coord * 100, 100 + height_coord * 100, width, height, BLACK);
+                DrawRectangle(100 + width_coord * 100, 100 + height_coord * 100, width, height, block.color);
                 break;
             case BlockType::ONEBYTWO:
-                DrawRectangle(100 + width_coord * 100, 100 + height_coord * 100, width, height, BLACK);
+                DrawRectangle(100 + width_coord * 100, 100 + height_coord * 100, width, height, block.color);
                 break;
             case BlockType::ONEBYTHREE:
-                DrawRectangle(100 + width_coord * 100, 100 + height_coord * 100, width, height, BLACK);
+                DrawRectangle(100 + width_coord * 100, 100 + height_coord * 100, width, height, block.color);
                 break;
             case BlockType::TWOBYTWO:
-                DrawRectangle(100 + width_coord * 100, 100 + height_coord * 100, width, height, RED);
+                DrawRectangle(100 + width_coord * 100, 100 + height_coord * 100, width, height, block.color);
                 break;
             case BlockType::THREEBYTHREE:
-                DrawRectangle(100 + width_coord * 100, 100 + height_coord * 100, width, height, VIOLET);
+                DrawRectangle(100 + width_coord * 100, 100 + height_coord * 100, width, height, block.color);
                 break;
             case BlockType::TWOBYTHREE:
-                DrawRectangle(100 + width_coord * 100, 100 + height_coord * 100, width, height, GOLD);
+                DrawRectangle(100 + width_coord * 100, 100 + height_coord * 100, width, height, block.color);
                 break;
             case BlockType::ONEBYFOUR:
-                DrawRectangle(100 + width_coord * 100, 100 + height_coord * 100, width, height, LIME);
+                DrawRectangle(100 + width_coord * 100, 100 + height_coord * 100, width, height, block.color);
                 break;
             case BlockType::ONEBYFIVE:
-                DrawRectangle(100 + width_coord * 100, 100 + height_coord * 100, width, height, BLUE);
+                DrawRectangle(100 + width_coord * 100, 100 + height_coord * 100, width, height, block.color);
                 break;
             case BlockType::THREEBYFOUR:
-                DrawRectangle(100 + width_coord * 100, 100 + height_coord * 100, width, height, DARKBLUE);
+                DrawRectangle(100 + width_coord * 100, 100 + height_coord * 100, width, height, block.color);
                 break;
             case BlockType::TWOBYFOUR:
-                DrawRectangle(100 + width_coord * 100, 100 + height_coord * 100, width, height, PINK);
+                DrawRectangle(100 + width_coord * 100, 100 + height_coord * 100, width, height, block.color);
                 break;
             case BlockType::TWOBYFIVE:
-                DrawRectangle(100 + width_coord * 100, 100 + height_coord * 100, width, height, YELLOW);
+                DrawRectangle(100 + width_coord * 100, 100 + height_coord * 100, width, height, block.color);
                 break;
             default:
                 continue;
@@ -170,4 +170,20 @@ std::tuple<int, int> GUI::calculateCoordinates()
     int width = (x % 100) + 1;
 
     return std::make_tuple(height, width);
+}
+
+void GUI::drawBlockAtMouse(Block block)
+{
+    auto coordinates = calculateCoordinates();
+    int height_coord = std::get<0>(coordinates);
+    int width_coord = std::get<1>(coordinates);
+
+    int height = block.height;
+    int width = block.width;
+
+    Color color = block.color;
+
+    BeginDrawing();
+    DrawRectangle(width_coord, height_coord, width, height, color);
+    EndDrawing();
 }
