@@ -27,12 +27,12 @@ void Game::start()
                 playGame();
                 break;
             case 2:
-                placeOwnStartblocks();
+                // placeOwnStartblocks();
                 playGame();
                 break;
             case 3:
-                placeOwnStartblocks();
-                solveGame();
+                // placeOwnStartblocks();
+                // solveGame();
             default:
                 break;
 
@@ -101,7 +101,7 @@ void Game::initPlayblocks()
 
 void Game::playGame()
 {
-
+    BeginDrawing();
     m_gui.drawBackground();
     m_gui.drawPlacedBlocks(Board::getPlacedBlocks());
     m_gui.drawNotPlacedBlocks(Board::getNotPlacedPlayBlocks());
@@ -121,7 +121,15 @@ void Game::playGame()
         }
         */
 
+
+        // check if Board is full
+        if(Board::isFull())
+        {
+            // draw win screen
+            // m_gui.drawWinScreen();
+        }
     }
+    EndDrawing();
 
 }
 
