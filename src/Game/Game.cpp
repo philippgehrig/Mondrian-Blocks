@@ -33,6 +33,7 @@ void Game::start()
             case 3:
                 // placeOwnStartblocks();
                 // solveGame();
+                break;
             default:
                 break;
 
