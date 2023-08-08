@@ -20,7 +20,7 @@ public:
     void drawNotPlacedBlocks(std::vector<Block> notPlacedBlocks);
     void drawPlacedBlocks(std::vector<Block> placedBlocks);
     int drawStartScreen();
-    void drawBackground();
+    void drawGameBackground();
     void drawBlockAtMouse(Block block);
     std::tuple<int, int> calculateCoordinates();
 

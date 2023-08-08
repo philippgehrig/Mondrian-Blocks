@@ -4,7 +4,7 @@ void GUI::drawBoard()
 {
     BeginDrawing();
     ClearBackground(RAYWHITE);
-    drawBackground();
+    drawGameBackground();
     drawNotPlacedBlocks(Board::getNotPlacedPlayBlocks());
     drawPlacedBlocks(Board::getPlacedBlocks());
     EndDrawing();
@@ -146,7 +146,7 @@ int GUI::drawStartScreen()
     }
 }
 
-void GUI::drawBackground()
+void GUI::drawGameBackground()
 {
     // vertical lines
     for(int column = 0; column < BOARD_WIDTH + 1; column++)

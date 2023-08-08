@@ -17,7 +17,7 @@ void Game::start()
         BeginDrawing();
         ClearBackground(RAYWHITE);
         // game_mode = m_gui.drawStartScreen(); // return value 1 = play; 2 = play + set own start blocks; 3 = solve; 0 = nothing
-        m_gui.drawBackground();
+        m_gui.drawGameBackground();
         m_gui.drawNotPlacedBlocks(Board::getNotPlacedPlayBlocks());
 
 
@@ -105,7 +105,7 @@ void Game::initPlayblocks()
 void Game::playGame()
 {
     BeginDrawing();
-    m_gui.drawBackground();
+    m_gui.drawGameBackground();
     m_gui.drawPlacedBlocks(Board::getPlacedBlocks());
     m_gui.drawNotPlacedBlocks(Board::getNotPlacedPlayBlocks());
 
