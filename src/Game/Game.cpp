@@ -15,12 +15,13 @@ void Game::start()
     {
 
         BeginDrawing();
-        game_mode = m_gui.drawStartScreen(); // return value 1 = play; 2 = play + set own start blocks; 3 = solve; 0 = nothing
-        EndDrawing();
+        // game_mode = m_gui.drawStartScreen(); // return value 1 = play; 2 = play + set own start blocks; 3 = solve; 0 = nothing
+        m_gui.drawStartScreen();
+
 
         switch(game_mode)
         {
-            case 1: //
+            case 1:
                 placeStartblocksGenerate();
                 // draw boards to choose
                 playGame();
@@ -34,7 +35,9 @@ void Game::start()
                 solveGame();
             default:
                 break;
+
         }
+        EndDrawing();
     }
 
 }
@@ -98,33 +101,28 @@ void Game::initPlayblocks()
 
 void Game::playGame()
 {
-    while(!WindowShouldClose())
+
+    m_gui.drawBackground();
+    m_gui.drawPlacedBlocks(Board::getPlacedBlocks());
+    m_gui.drawNotPlacedBlocks(Board::getNotPlacedPlayBlocks());
+
+    // Drag and Drop
+    while(IsMouseButtonDown(MOUSE_LEFT_BUTTON))
     {
-        BeginDrawing();
-        m_gui.drawBackground();
-        m_gui.drawPlacedBlocks(Board::getPlacedBlocks());
-        m_gui.drawNotPlacedBlocks(Board::getNotPlacedPlayBlocks());
-
-        // Drag and Drop
-        while(IsMouseButtonDown(MOUSE_LEFT_BUTTON))
+        auto coordinates = m_gui.calculateCoordinates();
+        int height_coord = std::get<0>(coordinates);
+        int width_coord = std::get<1>(coordinates);
+        /*
+        // check if there is a block at the coordinates
+        if("block exsist")
         {
-            auto coordinates = m_gui.calculateCoordinates();
-            int height_coord = std::get<0>(coordinates);
-            int width_coord = std::get<1>(coordinates);
-
-            // check if there is a block at the coordinates
-            if("block exsist")
-            {
-                Board::removeBlock("block");
-                Board::placeBlock("block", height_coord, width_coord);
-            }
+            Board::removeBlock("block");
+            Board::placeBlock("block", height_coord, width_coord);
         }
-
-
-
-
-        EndDrawing();
+        */
 
     }
+
 }
+
 
