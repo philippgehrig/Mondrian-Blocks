@@ -19,7 +19,7 @@ public:
     void drawBoard();
     void drawNotPlacedBlocks(std::vector<Block> notPlacedBlocks);
     void drawPlacedBlocks(std::vector<Block> placedBlocks);
-    void drawStartScreen();
+    int drawStartScreen();
     void drawBackground();
     std::tuple<int, int> calculateCoordinates();
 

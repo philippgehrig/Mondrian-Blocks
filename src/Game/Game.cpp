@@ -15,8 +15,10 @@ void Game::start()
     {
 
         BeginDrawing();
+        ClearBackground(RAYWHITE);
         // game_mode = m_gui.drawStartScreen(); // return value 1 = play; 2 = play + set own start blocks; 3 = solve; 0 = nothing
-        m_gui.drawStartScreen();
+        m_gui.drawBackground();
+        m_gui.drawNotPlacedBlocks(Board::getNotPlacedPlayBlocks());
 
 
         switch(game_mode)
@@ -108,7 +110,7 @@ void Game::playGame()
     m_gui.drawNotPlacedBlocks(Board::getNotPlacedPlayBlocks());
 
     // Drag and Drop
-    while(IsMouseButtonDown(MOUSE_LEFT_BUTTON))
+    while(IsMouseButtonDown(MouseButton ::MOUSE_LEFT_BUTTON))
     {
         auto coordinates = m_gui.calculateCoordinates();
         int height_coord = std::get<0>(coordinates);
@@ -132,6 +134,19 @@ void Game::playGame()
     }
     EndDrawing();
 
+}
+
+void Game::debug() {
+    InitWindow(SCREEN_WIDTH, SCREEN_HEIGHT, "Debug");
+    SetTargetFPS(60);
+
+    std::cout << "debug" << std::endl;
+    while(!WindowShouldClose())
+    {
+        BeginDrawing();
+        ClearBackground(RAYWHITE);
+        m_gui.drawStartScreen();
+    }
 }
 
 

@@ -61,7 +61,6 @@
 
  target_link_libraries(${PROJECT_NAME} raylib)
 
- #add_subdirectory(test)
 
  # Web Configurations
  if (${PLATFORM} STREQUAL "Web")

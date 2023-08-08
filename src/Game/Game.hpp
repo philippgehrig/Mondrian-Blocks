@@ -25,6 +25,7 @@ public:
     void playGame();
     void solveGame();
     void placeOwnStartblocks();
+    void debug();
     std::vector<Board> placeStartblocksGenerate();
 
 

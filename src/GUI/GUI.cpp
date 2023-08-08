@@ -119,8 +119,31 @@ void GUI::drawPlacedBlocks(std::vector<Block> placedBlocks)
     }
 }
 
-void GUI::drawStartScreen()
+int GUI::drawStartScreen()
 {
+    BeginDrawing();
+    ClearBackground(RAYWHITE);
+    DrawText("Welcome to Mondrian Blocks", 100, 100, 20, BLACK);
+    DrawText("Press 1 to start the game", 100, 200, 20, BLACK);
+    DrawText("Press 2 to start a game with your own borad", 100, 300, 20, BLACK);
+    DrawText("Press 3 to acces the Solver", 100, 400, 20, BLACK);
+    EndDrawing();
+
+    while(true)
+    {
+        if(IsKeyPressed(KEY_ONE))
+        {
+            return 1;
+        }
+        else if(IsKeyPressed(KEY_TWO))
+        {
+            return 2;
+        }
+        else if(IsKeyPressed(KEY_THREE))
+        {
+            return 3;
+        }
+    }
 }
 
 void GUI::drawBackground()
