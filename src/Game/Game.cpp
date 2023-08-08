@@ -3,6 +3,7 @@
 void Game::start()
 {
     // Creating of blocks
+    m_board.initBoard();
     initStartblocks();
     initPlayblocks();
 
