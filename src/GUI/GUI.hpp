@@ -23,6 +23,7 @@ public:
     void drawGameBackground();
     void drawBlockAtMouse(Block block);
     std::tuple<int, int> calculateCoordinates();
+    BlockType isMouseOnBlock();
 
 private:
     /* data */

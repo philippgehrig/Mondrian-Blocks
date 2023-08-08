@@ -166,8 +166,8 @@ std::tuple<int, int> GUI::calculateCoordinates()
     int x = mousePosition.x;
     int y = mousePosition.y;
 
-    int height = (y % 100) + 1;
-    int width = (x % 100) + 1;
+    int height = (y / 100) - 1;
+    int width = (x /  100) - 1;
 
     return std::make_tuple(height, width);
 }
@@ -186,4 +186,29 @@ void GUI::drawBlockAtMouse(Block block)
     BeginDrawing();
     DrawRectangle(width_coord, height_coord, width, height, color);
     EndDrawing();
+}
+
+BlockType GUI::isMouseOnBlock()
+{
+    // check on field
+    auto coordinates = calculateCoordinates();
+    int height_coord = std::get<0>(coordinates);
+    int width_coord = std::get<1>(coordinates);
+
+    for(auto block : Board::getPlacedBlocks())
+    {
+        if(block.height == height_coord && block.width == width_coord)
+        {
+            return block.type;
+        }
+    }
+
+
+    // check for outside of field
+    Vector2 mousePosition = GetMousePosition();
+    int x_coord = mousePosition.x;
+    int y_coord = mousePosition.y;
+
+
+
 }

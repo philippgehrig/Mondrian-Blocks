@@ -113,23 +113,16 @@ void Game::playGame()
     // Drag and Drop
     if(IsMouseButtonPressed(MouseButton ::MOUSE_LEFT_BUTTON))
     {
-        auto coordinates = m_gui.calculateCoordinates();
-        int height_coord = std::get<0>(coordinates);
-        int width_coord = std::get<1>(coordinates);
-        /*
-        // check if there is a block at the coordinates
-        if("block exsist")
+        auto type = m_gui.isMouseOnBlock();
+        if(type > BlockType::ONEBYTHREE)
         {
-            Board::removeBlock("block");
-            Board::placeBlock("block", height_coord, width_coord);
-        }
-        */
-        while (IsMouseButtonDown(MouseButton ::MOUSE_LEFT_BUTTON))
-        {
-            // Board::removeBlock("block");
-           // m_gui.drawBlockAtMouse("block");
-        }
+            while (IsMouseButtonDown(MouseButton ::MOUSE_LEFT_BUTTON))
+            {
+                // Board::removeBlock("block");
+                // m_gui.drawBlockAtMouse("block");
+            }
 
+        }
 
         // check if Board is full
         if(Board::isFull())
@@ -139,7 +132,6 @@ void Game::playGame()
         }
     }
     EndDrawing();
-
 }
 
 void Game::debug() {
