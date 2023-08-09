@@ -118,8 +118,7 @@ void Game::playGame()
         {
             while (IsMouseButtonDown(MouseButton ::MOUSE_LEFT_BUTTON))
             {
-                // Board::removeBlock("block");
-                // m_gui.drawBlockAtMouse("block");
+                // m_gui.drawBlockAtMouse(type);
             }
 
         }
