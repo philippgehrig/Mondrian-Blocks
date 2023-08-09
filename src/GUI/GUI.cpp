@@ -215,9 +215,7 @@ BlockType GUI::isMouseOnBlock()
 
 Block GUI::findBlockFromType(BlockType type)
 {
-
-
-    for(auto block : blocks)
+    for(auto block :  Board::getPlacedBlocks())
     {
         if(block.type == type)
         {
