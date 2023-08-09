@@ -17,8 +17,8 @@ void GUI::drawNotPlacedBlocks(std::vector<Block> notPlacedBlocks)
         int height = block.height;
         int width = block.width;
 
-        height *= 100;
-        width *= 100;
+        height *= DRAW_HELP;
+        width *= DRAW_HELP;
 
         if(width > height)  //Ensures that height is bigger than width
         {
@@ -31,28 +31,28 @@ void GUI::drawNotPlacedBlocks(std::vector<Block> notPlacedBlocks)
         switch (type)
         {
             case BlockType::TWOBYTWO:
-                DrawRectangle(9.5 * 100, 0.5 * 100, width, height, block.color);
+                DrawRectangle(9.5 * DRAW_HELP, 0.5 * DRAW_HELP, width, height, block.color);
                 break;
             case BlockType::THREEBYTHREE:
-                DrawRectangle(12.5 * 100, 0 * 100, width, height, block.color);
+                DrawRectangle(12.5 * DRAW_HELP, 0 * DRAW_HELP, width, height, block.color);
                 break;
             case BlockType::TWOBYTHREE:
-                DrawRectangle(16 * 100, 0 * 100, width, height, block.color);
+                DrawRectangle(16 * DRAW_HELP, 0 * DRAW_HELP, width, height, block.color);
                 break;
             case BlockType::ONEBYFOUR:
-                DrawRectangle(12 * 100, 4.5 * 100, width, height, block.color);
+                DrawRectangle(12 * DRAW_HELP, 4.5 * DRAW_HELP, width, height, block.color);
                 break;
             case BlockType::ONEBYFIVE:
-                DrawRectangle(12.5 * 100, 3.25 * 100, height, width, block.color);
+                DrawRectangle(12.5 * DRAW_HELP, 3.25 * DRAW_HELP, height, width, block.color);
                 break;
             case BlockType::THREEBYFOUR:
-                DrawRectangle(13.5 * 100, 4.5 * 100, width, height, block.color);
+                DrawRectangle(13.5 * DRAW_HELP, 4.5 * DRAW_HELP, width, height, block.color);
                 break;
             case BlockType::TWOBYFOUR:
-                DrawRectangle(17 * 100, 4.5 * 100, width, height, block.color);
+                DrawRectangle(17 * DRAW_HELP, 4.5 * DRAW_HELP, width, height, block.color);
                 break;
             case BlockType::TWOBYFIVE:
-                DrawRectangle(9.5 * 100, 3 * 100, width, height, block.color);
+                DrawRectangle(9.5 * DRAW_HELP, 3 * DRAW_HELP, width, height, block.color);
                 break;
             default:
                 continue;
@@ -68,8 +68,8 @@ void GUI::drawPlacedBlocks(std::vector<Block> placedBlocks)
         int height = block.height;
         int width = block.width;
 
-        height *= 100;
-        width *= 100;
+        height *= DRAW_HELP;
+        width *= DRAW_HELP;
 
         BlockType type = block.type;
 
@@ -81,37 +81,37 @@ void GUI::drawPlacedBlocks(std::vector<Block> placedBlocks)
         switch (type)
         {
             case BlockType::ONEBYONE:
-                DrawRectangle(100 + width_coord * 100, 100 + height_coord * 100, width, height, block.color);
+                DrawRectangle(DRAW_HELP + width_coord * DRAW_HELP, DRAW_HELP + height_coord * DRAW_HELP, width, height, block.color);
                 break;
             case BlockType::ONEBYTWO:
-                DrawRectangle(100 + width_coord * 100, 100 + height_coord * 100, width, height, block.color);
+                DrawRectangle(DRAW_HELP + width_coord * DRAW_HELP, DRAW_HELP + height_coord * DRAW_HELP, width, height, block.color);
                 break;
             case BlockType::ONEBYTHREE:
-                DrawRectangle(100 + width_coord * 100, 100 + height_coord * 100, width, height, block.color);
+                DrawRectangle(DRAW_HELP + width_coord * DRAW_HELP, DRAW_HELP + height_coord * DRAW_HELP, width, height, block.color);
                 break;
             case BlockType::TWOBYTWO:
-                DrawRectangle(100 + width_coord * 100, 100 + height_coord * 100, width, height, block.color);
+                DrawRectangle(DRAW_HELP + width_coord * DRAW_HELP, DRAW_HELP + height_coord * DRAW_HELP, width, height, block.color);
                 break;
             case BlockType::THREEBYTHREE:
-                DrawRectangle(100 + width_coord * 100, 100 + height_coord * 100, width, height, block.color);
+                DrawRectangle(DRAW_HELP + width_coord * DRAW_HELP, DRAW_HELP + height_coord * DRAW_HELP, width, height, block.color);
                 break;
             case BlockType::TWOBYTHREE:
-                DrawRectangle(100 + width_coord * 100, 100 + height_coord * 100, width, height, block.color);
+                DrawRectangle(DRAW_HELP + width_coord * DRAW_HELP, DRAW_HELP + height_coord * DRAW_HELP, width, height, block.color);
                 break;
             case BlockType::ONEBYFOUR:
-                DrawRectangle(100 + width_coord * 100, 100 + height_coord * 100, width, height, block.color);
+                DrawRectangle(DRAW_HELP + width_coord * DRAW_HELP, DRAW_HELP + height_coord * DRAW_HELP, width, height, block.color);
                 break;
             case BlockType::ONEBYFIVE:
-                DrawRectangle(100 + width_coord * 100, 100 + height_coord * 100, width, height, block.color);
+                DrawRectangle(DRAW_HELP + width_coord * DRAW_HELP, DRAW_HELP + height_coord * DRAW_HELP, width, height, block.color);
                 break;
             case BlockType::THREEBYFOUR:
-                DrawRectangle(100 + width_coord * 100, 100 + height_coord * 100, width, height, block.color);
+                DrawRectangle(DRAW_HELP + width_coord * DRAW_HELP, DRAW_HELP + height_coord * DRAW_HELP, width, height, block.color);
                 break;
             case BlockType::TWOBYFOUR:
-                DrawRectangle(100 + width_coord * 100, 100 + height_coord * 100, width, height, block.color);
+                DrawRectangle(DRAW_HELP + width_coord * DRAW_HELP, DRAW_HELP + height_coord * DRAW_HELP, width, height, block.color);
                 break;
             case BlockType::TWOBYFIVE:
-                DrawRectangle(100 + width_coord * 100, 100 + height_coord * 100, width, height, block.color);
+                DrawRectangle(DRAW_HELP + width_coord * DRAW_HELP, DRAW_HELP + height_coord * DRAW_HELP, width, height, block.color);
                 break;
             default:
                 continue;
@@ -151,12 +151,12 @@ void GUI::drawGameBackground()
     // vertical lines
     for(int column = 0; column < BOARD_WIDTH + 1; column++)
     {
-        DrawLine(100 + column * 100, 100, 100 + column * 100, 900, BLACK);
+        DrawLine(DRAW_HELP + column * DRAW_HELP, DRAW_HELP, DRAW_HELP + column * DRAW_HELP, 9 * DRAW_HELP, BLACK);
     }
     // horizontal lines
     for(int row = 0; row < BOARD_HEIGHT + 1; row++)
     {
-        DrawLine(100 , 100 + row * 100, 900, 100 + row * 100, BLACK);
+        DrawLine(DRAW_HELP , DRAW_HELP + row * DRAW_HELP, 9 * DRAW_HELP, DRAW_HELP + row * DRAW_HELP, BLACK);
     }
 }
 
@@ -166,8 +166,8 @@ std::tuple<int, int> GUI::calculateCoordinates()
     int x = mousePosition.x;
     int y = mousePosition.y;
 
-    int height = (y / 100) - 1;
-    int width = (x /  100) - 1;
+    int height = (y / DRAW_HELP) - 1;
+    int width = (x /  DRAW_HELP) - 1;
 
     return std::make_tuple(height, width);
 }
