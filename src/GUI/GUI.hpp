@@ -21,9 +21,11 @@ public:
     void drawPlacedBlocks(std::vector<Block> placedBlocks);
     int drawStartScreen();
     void drawGameBackground();
-    void drawBlockAtMouse(Block block);
+    void drawBlockAtMouse(BlockType type);
     std::tuple<int, int> calculateCoordinates();
     BlockType isMouseOnBlock();
+    Block findBlockFromType(BlockType type);
+
 
 private:
     /* data */

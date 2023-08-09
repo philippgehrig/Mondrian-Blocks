@@ -172,11 +172,13 @@ std::tuple<int, int> GUI::calculateCoordinates()
     return std::make_tuple(height, width);
 }
 
-void GUI::drawBlockAtMouse(Block block)
+void GUI::drawBlockAtMouse(BlockType type)
 {
     auto coordinates = calculateCoordinates();
     int height_coord = std::get<0>(coordinates);
     int width_coord = std::get<1>(coordinates);
+
+    Block block = findBlockFromType(type);
 
     int height = block.height;
     int width = block.width;
@@ -209,6 +211,17 @@ BlockType GUI::isMouseOnBlock()
     int x_coord = mousePosition.x;
     int y_coord = mousePosition.y;
 
+}
+
+Block GUI::findBlockFromType(BlockType type)
+{
 
 
+    for(auto block : blocks)
+    {
+        if(block.type == type)
+        {
+            return block;
+        }
+    }
 }

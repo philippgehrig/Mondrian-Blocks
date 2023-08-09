@@ -53,6 +53,7 @@ void Game::initStartblocks()
     Block startBlock3 = {BlockType::ONEBYTHREE, 1, 3, BLACK};
     std::vector <Block> startblocks {startBlock1, startBlock2, startBlock3};
     Board::setNotPlacedStartBlocks(startblocks);
+    Board::setAllBlocks(startblocks);
 }
 
 std::vector<Board> Game::placeStartblocksGenerate() {
@@ -101,6 +102,7 @@ void Game::initPlayblocks()
     std::vector<Block> playblocks {PBlock2x2, PBlock1x4, PBlock2x5, PBlock2x3, PBlock1x5, PBlock3x3, PBlock2x4, PBlock3x4};
 
     Board::setNotPlacedPlayBlocks(playblocks);
+    Board::setAllBlocks(playblocks);
 }
 
 void Game::playGame()
@@ -113,7 +115,7 @@ void Game::playGame()
     // Drag and Drop
     if(IsMouseButtonPressed(MouseButton ::MOUSE_LEFT_BUTTON))
     {
-        auto type = m_gui.isMouseOnBlock();
+        BlockType type = m_gui.isMouseOnBlock();
         if(type > BlockType::ONEBYTHREE)
         {
             while (IsMouseButtonDown(MouseButton ::MOUSE_LEFT_BUTTON))

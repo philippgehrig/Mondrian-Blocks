@@ -118,6 +118,38 @@ public:
         m_placedBlocks.push_back(block);
     }
 
+    // ------------
+
+    /**
+* @brief getter for all Blocks
+* @return vector of blocks that are not placed on the board
+*/
+    static std::vector<Block> getAllBlocks()
+    {
+        return m_allBlocks;
+    }
+
+    /**
+     * @brief setter for all Blocks (multiple blocks)
+     * @param blocks: vector of blocks that are not placed on the board
+     */
+    static void setAllBlocks(std::vector<Block> blocks)
+    {
+        m_allBlocks = std::move(blocks);
+    }
+
+    /**
+     * @brief setter for all Blocks (single block)
+     * @param block: block that is not placed on the board
+     */
+    static void setAllBlock(const Block& block)
+    {
+        m_allBlocks.push_back(block);
+    }
+
+    // ----------
+
+
     /**
      * @brief checks if block can be placed
      * @param block: block that is to be placed
@@ -351,6 +383,9 @@ private:
 
     // Container for all placed blocks
     static std::vector<Block> m_placedBlocks;
+
+    // Container for all blocks
+    static std::vector<Block> m_allBlocks;
 
 };
 
