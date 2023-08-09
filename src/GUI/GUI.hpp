@@ -48,6 +48,11 @@ public:
     void drawBlockAtMouse(BlockType type);
 
     /**
+     * @brief Drag and Drop function
+     */
+    void drackAndDrop();
+
+    /**
      * @brief transfers mouse coordinates into Board coordinates
      * @return Board coordinates
      */
