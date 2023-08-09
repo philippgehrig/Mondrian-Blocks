@@ -25,7 +25,8 @@ enum class BlockType{
     ONEBYFIVE = 8,
     THREEBYTHREE = 9,
     TWOBYFOUR = 10,
-    THREEBYFOUR = 11
+    THREEBYFOUR = 11,
+    NONE = -1
 
 };
 

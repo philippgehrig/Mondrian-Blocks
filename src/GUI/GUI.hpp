@@ -51,7 +51,7 @@ public:
      * @brief transfers mouse coordinates into Board coordinates
      * @return Board coordinates
      */
-    std::tuple<int, int> calculateCoordinates();
+    std::tuple<int, int> calculateMouseCoordinates();
 
     /**
      * @brief checks if mouse is on a Block

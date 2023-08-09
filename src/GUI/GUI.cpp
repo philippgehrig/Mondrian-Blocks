@@ -160,7 +160,7 @@ void GUI::drawGameBackground()
     }
 }
 
-std::tuple<int, int> GUI::calculateCoordinates()
+std::tuple<int, int> GUI::calculateMouseCoordinates()
 {
     Vector2 mousePosition = GetMousePosition();
     int x = mousePosition.x;
@@ -174,7 +174,7 @@ std::tuple<int, int> GUI::calculateCoordinates()
 
 void GUI::drawBlockAtMouse(BlockType type)
 {
-    auto coordinates = calculateCoordinates();
+    auto coordinates = calculateMouseCoordinates();
     int height_coord = std::get<0>(coordinates);
     int width_coord = std::get<1>(coordinates);
 
@@ -193,13 +193,19 @@ void GUI::drawBlockAtMouse(BlockType type)
 BlockType GUI::isMouseOnBlock()
 {
     // check on field
-    auto coordinates = calculateCoordinates();
+    auto coordinates = calculateMouseCoordinates();
     int height_coord = std::get<0>(coordinates);
     int width_coord = std::get<1>(coordinates);
 
+    int height_coord_block = 0;
+    int width_coord_block = 0;
     for(auto block : Board::getPlacedBlocks())
     {
-        if(block.height == height_coord && block.width == width_coord)
+        std::optional<std::tuple<int, int>> coordinates = Board::findBlock(block);
+
+        height_coord_block = std::get<0>(coordinates.value());
+        width_coord_block = std::get<1>(coordinates.value());
+        if(height_coord == height_coord_block && width_coord == width_coord_block)
         {
             return block.type;
         }
@@ -208,9 +214,65 @@ BlockType GUI::isMouseOnBlock()
 
     // check for outside of field
     Vector2 mousePosition = GetMousePosition();
-    int x_coord = mousePosition.x;
-    int y_coord = mousePosition.y;
+    height_coord = mousePosition.y;
+    width_coord = mousePosition.x;
 
+
+    if((width_coord > 9.5 * DRAW_HELP && width_coord < (9.5 + 2) * DRAW_HELP)
+    && ((height_coord > 0.5 * DRAW_HELP) && (height_coord < (0.5 + 2) * DRAW_HELP)))
+    {
+        return BlockType::TWOBYTWO;
+    }
+
+    if((width_coord > 12.5 * DRAW_HELP && width_coord < (12.5 + 3) * DRAW_HELP)
+    && ((height_coord > 0 * DRAW_HELP) && (height_coord < (0 + 3) * DRAW_HELP)))
+    {
+        return BlockType::THREEBYTHREE;
+    }
+
+    if((width_coord > 16 * DRAW_HELP && width_coord < (16 + 2) * DRAW_HELP)
+    && ((height_coord > 0 * DRAW_HELP) && (height_coord < (0 + 3) * DRAW_HELP)))
+    {
+        return BlockType::TWOBYTHREE;
+    }
+
+    if((width_coord > 12 * DRAW_HELP && width_coord < (12 + 1) * DRAW_HELP)
+    && ((height_coord > 4.5 * DRAW_HELP) && (height_coord < (4.5 + 4) * DRAW_HELP)))
+    {
+        return BlockType::ONEBYFOUR;
+    }
+
+    if((width_coord > 12.5 * DRAW_HELP && width_coord < (12.5 + 5) * DRAW_HELP)
+    && ((height_coord > 3.25 * DRAW_HELP) && (height_coord < (3.25 + 1) * DRAW_HELP)))
+    {
+        return BlockType::ONEBYFIVE;
+    }
+
+    if((width_coord > 12 * DRAW_HELP && width_coord < (12 + 1) * DRAW_HELP)
+       && ((height_coord > 4.5 * DRAW_HELP) && (height_coord < (4.5 + 4) * DRAW_HELP)))
+    {
+        return BlockType::ONEBYFOUR;
+    }
+
+    if((width_coord > 13.5 * DRAW_HELP && width_coord < (13.5 + 3) * DRAW_HELP)
+       && ((height_coord > 4.5 * DRAW_HELP) && (height_coord < (4.5 + 4) * DRAW_HELP)))
+    {
+        return BlockType::THREEBYFOUR;
+    }
+
+    if((width_coord > 17 * DRAW_HELP && width_coord < (17 + 2) * DRAW_HELP)
+       && ((height_coord > 4.5 * DRAW_HELP) && (height_coord < (4.5 + 4) * DRAW_HELP)))
+    {
+        return BlockType::TWOBYFOUR;
+    }
+
+    if((width_coord > 9.5 * DRAW_HELP && width_coord < (9.5 + 2) * DRAW_HELP)
+       && ((height_coord > 3 * DRAW_HELP) && (height_coord < (3 + 5) * DRAW_HELP)))
+    {
+        return BlockType::TWOBYFIVE;
+    }
+
+    return BlockType::NONE;
 }
 
 Block GUI::findBlockFromType(BlockType type)
