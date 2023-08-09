@@ -16,14 +16,53 @@ public:
     GUI(/* args */){};
     ~GUI(){};
 
+    /**
+     * @brief starts every draw function to game
+     */
     void drawBoard();
+
+    /**
+     * @brief draws every not placed Block
+     */
     void drawNotPlacedBlocks(std::vector<Block> notPlacedBlocks);
+
+    /**
+     * @brief draws every placed Block
+     */
     void drawPlacedBlocks(std::vector<Block> placedBlocks);
+
+    /**
+     * @brief draws the Start Screen
+     * @return the mode you choose
+     */
     int drawStartScreen();
+
+    /**
+     * @brief draws the Backgorund of the Game
+     */
     void drawGameBackground();
+
+    /**
+     * @brief Draws the Block with mouse Movement
+     */
     void drawBlockAtMouse(BlockType type);
+
+    /**
+     * @brief transfers mouse coordinates into Board coordinates
+     * @return Board coordinates
+     */
     std::tuple<int, int> calculateCoordinates();
+
+    /**
+     * @brief checks if mouse is on a Block
+     * @return block Type
+     */
     BlockType isMouseOnBlock();
+
+    /**
+     * @brief finds Block with the type given
+     * @return the Block with the given Type
+     */
     Block findBlockFromType(BlockType type);
 
 
