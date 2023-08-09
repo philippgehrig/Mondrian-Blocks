@@ -218,56 +218,56 @@ BlockType GUI::isMouseOnBlock()
     width_coord = mousePosition.x;
 
 
-    if((width_coord > 9.5 * DRAW_HELP && width_coord < (9.5 + 2) * DRAW_HELP)
-    && ((height_coord > 0.5 * DRAW_HELP) && (height_coord < (0.5 + 2) * DRAW_HELP)))
+    if(((width_coord > (9.5 * DRAW_HELP)) && (width_coord < ((9.5 + 2) * DRAW_HELP)))
+    && ((height_coord > (0.5 * DRAW_HELP)) && (height_coord < ((0.5 + 2) * DRAW_HELP))))
     {
         return BlockType::TWOBYTWO;
     }
 
-    if((width_coord > 12.5 * DRAW_HELP && width_coord < (12.5 + 3) * DRAW_HELP)
-    && ((height_coord > 0 * DRAW_HELP) && (height_coord < (0 + 3) * DRAW_HELP)))
+    if(((width_coord > (12.5 * DRAW_HELP))&& (width_coord < ((12.5 + 3) * DRAW_HELP)))
+    && ((height_coord > (0 * DRAW_HELP)) && (height_coord < ((0 + 3) * DRAW_HELP))))
     {
         return BlockType::THREEBYTHREE;
     }
 
-    if((width_coord > 16 * DRAW_HELP && width_coord < (16 + 2) * DRAW_HELP)
-    && ((height_coord > 0 * DRAW_HELP) && (height_coord < (0 + 3) * DRAW_HELP)))
+    if(((width_coord > (16 * DRAW_HELP)) && (width_coord < ((16 + 2) * DRAW_HELP)))
+    && ((height_coord > (0 * DRAW_HELP)) && (height_coord < ((0 + 3) * DRAW_HELP))))
     {
         return BlockType::TWOBYTHREE;
     }
 
-    if((width_coord > 12 * DRAW_HELP && width_coord < (12 + 1) * DRAW_HELP)
-    && ((height_coord > 4.5 * DRAW_HELP) && (height_coord < (4.5 + 4) * DRAW_HELP)))
+    if(((width_coord > (12 * DRAW_HELP)) && (width_coord < ((12 + 1) * DRAW_HELP)))
+    && ((height_coord > (4.5 * DRAW_HELP)) && (height_coord < ((4.5 + 4) * DRAW_HELP))))
     {
         return BlockType::ONEBYFOUR;
     }
 
-    if((width_coord > 12.5 * DRAW_HELP && width_coord < (12.5 + 5) * DRAW_HELP)
-    && ((height_coord > 3.25 * DRAW_HELP) && (height_coord < (3.25 + 1) * DRAW_HELP)))
+    if(((width_coord > (12.5 * DRAW_HELP)) && (width_coord < ((12.5 + 5) * DRAW_HELP)))
+    && ((height_coord > (3.25 * DRAW_HELP)) && (height_coord < ((3.25 + 1) * DRAW_HELP))))
     {
         return BlockType::ONEBYFIVE;
     }
 
-    if((width_coord > 12 * DRAW_HELP && width_coord < (12 + 1) * DRAW_HELP)
-       && ((height_coord > 4.5 * DRAW_HELP) && (height_coord < (4.5 + 4) * DRAW_HELP)))
+    if(((width_coord > (12 * DRAW_HELP)) && (width_coord < ((12 + 1) * DRAW_HELP)))
+       && ((height_coord > (4.5 * DRAW_HELP)) && (height_coord < ((4.5 + 4) * DRAW_HELP))))
     {
         return BlockType::ONEBYFOUR;
     }
 
-    if((width_coord > 13.5 * DRAW_HELP && width_coord < (13.5 + 3) * DRAW_HELP)
-       && ((height_coord > 4.5 * DRAW_HELP) && (height_coord < (4.5 + 4) * DRAW_HELP)))
+    if(((width_coord > (13.5 * DRAW_HELP)) && (width_coord < ((13.5 + 3) * DRAW_HELP)))
+       && ((height_coord > (4.5 * DRAW_HELP)) && (height_coord < ((4.5 + 4) * DRAW_HELP))))
     {
         return BlockType::THREEBYFOUR;
     }
 
-    if((width_coord > 17 * DRAW_HELP && width_coord < (17 + 2) * DRAW_HELP)
-       && ((height_coord > 4.5 * DRAW_HELP) && (height_coord < (4.5 + 4) * DRAW_HELP)))
+    if(((width_coord > (17 * DRAW_HELP)) && (width_coord < ((17 + 2) * DRAW_HELP)))
+       && ((height_coord > (4.5 * DRAW_HELP)) && (height_coord < ((4.5 + 4) * DRAW_HELP))))
     {
         return BlockType::TWOBYFOUR;
     }
 
-    if((width_coord > 9.5 * DRAW_HELP && width_coord < (9.5 + 2) * DRAW_HELP)
-       && ((height_coord > 3 * DRAW_HELP) && (height_coord < (3 + 5) * DRAW_HELP)))
+    if(((width_coord > (9.5 * DRAW_HELP)) && (width_coord < ((9.5 + 2) * DRAW_HELP)))
+       && ((height_coord > (3 * DRAW_HELP)) && (height_coord < ((3 + 5) * DRAW_HELP))))
     {
         return BlockType::TWOBYFIVE;
     }
