@@ -1,4 +1,5 @@
 #include "../GUI/GUI.hpp"
+#include <iostream>
 
 void GUI::drawBoard()
 {
@@ -40,7 +41,7 @@ void GUI::drawNotPlacedBlocks(std::vector<Block> notPlacedBlocks)
                 DrawRectangle(16 * DRAW_HELP, 0 * DRAW_HELP, width, height, block.color);
                 break;
             case BlockType::ONEBYFOUR:
-                DrawRectangle(12 * DRAW_HELP, 4.5 * DRAW_HELP, width, height, block.color);
+                DrawRectangle(12 * DRAW_HELP, 4.5 * DRAW_HELP, width, height,block.color);
                 break;
             case BlockType::ONEBYFIVE:
                 DrawRectangle(12.5 * DRAW_HELP, 3.25 * DRAW_HELP, height, width, block.color);
@@ -111,7 +112,7 @@ void GUI::drawPlacedBlocks(std::vector<Block> placedBlocks)
                 DrawRectangle(DRAW_HELP + width_coord * DRAW_HELP, DRAW_HELP + height_coord * DRAW_HELP, width, height, block.color);
                 break;
             case BlockType::TWOBYFIVE:
-                DrawRectangle(DRAW_HELP + width_coord * DRAW_HELP, DRAW_HELP + height_coord * DRAW_HELP, width, height, block.color);
+                DrawRectangle(DRAW_HELP + width_coord * DRAW_HELP, DRAW_HELP + height_coord * DRAW_HELP, width, height,block.color);
                 break;
             default:
                 continue;
@@ -174,9 +175,10 @@ std::tuple<int, int> GUI::calculateMouseCoordinates()
 
 void GUI::drawBlockAtMouse(BlockType type)
 {
-    auto coordinates = calculateMouseCoordinates();
-    int height_coord = std::get<0>(coordinates);
-    int width_coord = std::get<1>(coordinates);
+    Vector2 mousePosition = GetMousePosition();
+
+    int height_coord = mousePosition.y;
+    int width_coord = mousePosition.x;
 
     Block block = findBlockFromType(type);
 
@@ -185,9 +187,9 @@ void GUI::drawBlockAtMouse(BlockType type)
 
     Color color = block.color;
 
-    BeginDrawing();
-    DrawRectangle(width_coord, height_coord, width, height, color);
-    EndDrawing();
+    //BeginDrawing();
+    DrawRectangle(width_coord, height_coord, width * DRAW_HELP, height * DRAW_HELP, color);
+    //EndDrawing();
 }
 
 BlockType GUI::isMouseOnBlock()
@@ -217,7 +219,13 @@ BlockType GUI::isMouseOnBlock()
     height_coord = mousePosition.y;
     width_coord = mousePosition.x;
 
-
+    //Money is awesome
+    std::vector<BlockType> possibilities;
+    for(auto block : Board::getNotPlacedPlayBlocks())
+    {
+        possibilities.push_back(block.type);
+    }
+    
     if(((width_coord > (9.5 * DRAW_HELP)) && (width_coord < ((9.5 + 2) * DRAW_HELP)))
     && ((height_coord > (0.5 * DRAW_HELP)) && (height_coord < ((0.5 + 2) * DRAW_HELP))))
     {
@@ -287,7 +295,3 @@ Block GUI::findBlockFromType(BlockType type)
     }
 }
 
-void GUI::drackAndDrop()
-{
-    
-}

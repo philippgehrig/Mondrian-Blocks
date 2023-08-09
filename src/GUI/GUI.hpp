@@ -23,11 +23,13 @@ public:
 
     /**
      * @brief draws every not placed Block
+     * @param notPlacedBlocks: vector of not placed Blocks
      */
     void drawNotPlacedBlocks(std::vector<Block> notPlacedBlocks);
 
     /**
      * @brief draws every placed Block
+     * @param placedBlocks: vector of placed Blocks
      */
     void drawPlacedBlocks(std::vector<Block> placedBlocks);
 
@@ -44,13 +46,9 @@ public:
 
     /**
      * @brief Draws the Block with mouse Movement
+     * @param type: declares type of  Block which is moved
      */
     void drawBlockAtMouse(BlockType type);
-
-    /**
-     * @brief Drag and Drop function
-     */
-    void drackAndDrop();
 
     /**
      * @brief transfers mouse coordinates into Board coordinates
@@ -66,9 +64,11 @@ public:
 
     /**
      * @brief finds Block with the type given
+     * @param type: given type
      * @return the Block with the given Type
      */
     Block findBlockFromType(BlockType type);
+
 
 
 private:

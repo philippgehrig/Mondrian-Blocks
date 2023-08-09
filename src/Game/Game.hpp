@@ -28,6 +28,8 @@ public:
     void debug();
     std::vector<Board> placeStartblocksGenerate();
 
+    void GUItest();
+
 
 
 private:

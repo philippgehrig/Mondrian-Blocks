@@ -8,6 +8,7 @@
 #include <iostream>
 #include <random>
 #include <tuple>
+#include <algorithm>
 
 /**
  * @brief Board class. Implemented as static class -> only one instance of the board is possible
@@ -118,6 +119,40 @@ public:
         m_placedBlocks.push_back(block);
     }
 
+    /**
+     * @brief removes element from placed blocks vector
+     * @param block: the block which will be removed
+     */
+     static void removePlacedBlock(Block& block)
+     {
+         //m_placedBlocks.erase(std::remove(m_placedBlocks.begin(), m_placedBlocks.end(), block), m_placedBlocks.end());
+        for(auto it = m_placedBlocks.begin(); it != m_placedBlocks.end(); ++it)
+        {
+            if (*it == block.type) {
+                m_placedBlocks.erase(it);
+                break;
+            }
+        }
+        std::cout << "Block ist nicht vorhanden\n";
+     }
+
+    /**
+   * @brief removes element from placed blocks vector
+   * @param block: the block which will be removed
+   */
+    static void removeNotPlacedBlock(Block& block)
+    {
+        //m_placedBlocks.erase(std::remove(m_placedBlocks.begin(), m_placedBlocks.end(), block), m_placedBlocks.end());
+        for(auto it = m_notPlacedPlayBlocks.begin(); it != m_notPlacedPlayBlocks.end(); ++it)
+        {
+            if (*it == block.type) {
+                m_notPlacedPlayBlocks.erase(it);
+                break;
+            }
+        }
+        std::cout << "Block ist nicht vorhanden\n";
+    }
+
     // ------------
 
     /**
@@ -187,6 +222,7 @@ public:
                     m_board[column][row] = static_cast<int>(block.type);
                 }
             }
+
             return true;
         }
         else return false;

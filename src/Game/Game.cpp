@@ -99,7 +99,8 @@ void Game::initPlayblocks()
     Block PBlock2x4 = {BlockType::TWOBYFOUR, 2, 4, BROWN};
     Block PBlock3x4 = {BlockType::THREEBYFOUR, 3, 4, ORANGE};
 
-    std::vector<Block> playblocks {PBlock2x2, PBlock1x4, PBlock2x5, PBlock2x3, PBlock1x5, PBlock3x3, PBlock2x4, PBlock3x4};
+    std::vector<Block> playblocks
+    {PBlock2x2, PBlock1x4, PBlock2x5, PBlock2x3, PBlock1x5, PBlock3x3, PBlock2x4, PBlock3x4};
 
     Board::setNotPlacedPlayBlocks(playblocks);
     Board::setAllBlocks(playblocks);
@@ -149,4 +150,83 @@ void Game::debug() {
     }
 }
 
+void Game::GUItest()
+{
+    m_board.initBoard();
+    initStartblocks();
+    initPlayblocks();
+    InitWindow(SCREEN_WIDTH, SCREEN_HEIGHT, "GUI");
+    SetTargetFPS(60);
+
+    std::cout << "GUITest" << std::endl;
+    while(!WindowShouldClose())
+    {
+        BeginDrawing();
+        ClearBackground(RAYWHITE);
+        m_gui.drawGameBackground();
+        m_gui.drawNotPlacedBlocks(Board::getNotPlacedPlayBlocks());
+        m_gui.drawPlacedBlocks(Board::getPlacedBlocks());
+        Block block;
+
+        EndDrawing();
+        if(IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
+        {
+            BlockType blockType = m_gui.isMouseOnBlock();
+            block = m_gui.findBlockFromType(blockType);
+
+            Board::removePlacedBlock(block);
+            Board::removeNotPlacedBlock(block);
+            while(IsMouseButtonDown(MOUSE_BUTTON_LEFT))
+            {
+                BeginDrawing();
+                ClearBackground(RAYWHITE);
+
+                if(IsMouseButtonPressed(MOUSE_BUTTON_RIGHT))
+                {
+                    m_board.rotateBlock(block);
+                }
+
+                m_gui.drawGameBackground();
+                m_gui.drawNotPlacedBlocks(Board::getNotPlacedPlayBlocks());
+                m_gui.drawPlacedBlocks(Board::getPlacedBlocks());
+                m_gui.drawBlockAtMouse(blockType);
+
+
+                /*
+                Block block = m_gui.findBlockFromType(BlockType::TWOBYTHREE);
+
+                int height = block.height;
+                int width = block.width;
+
+                Color color = block.color;
+                Vector2 mousePosition = GetMousePosition();
+
+                int height_coord = mousePosition.y;
+                int width_coord = mousePosition.x;
+
+                DrawRectangle(width_coord, height_coord, width * DRAW_HELP, height * DRAW_HELP, color);
+                 */
+                std::cout << "Button Down\n";
+                EndDrawing();
+            }
+            std::tuple<int, int> mouseCoordinates= m_gui.calculateMouseCoordinates();
+            int height_coord = std::get<0>(mouseCoordinates);
+            int width_coord = std::get<1>(mouseCoordinates);
+            if((0 <= width_coord < BOARD_WIDTH) && (0 <= height_coord < BOARD_HEIGHT))
+            {
+                if(m_board.placeBlock(block, height_coord, width_coord))
+                {
+                    Board::setPlacedBlock(block);
+                }
+                else
+                {
+                    Board::setNotPlacedPlayBlock(block);
+                }
+
+            }
+        }
+
+
+    }
+}
 

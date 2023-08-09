@@ -28,6 +28,8 @@ enum class BlockType{
     THREEBYFOUR = 11,
     NONE = -1
 
+
+
 };
 
 typedef struct Block
@@ -36,6 +38,11 @@ typedef struct Block
     int height;
     int width;
     Color color;
+
+    bool operator==(BlockType otherType) const {
+        return type == otherType;
+    }
+
 } Block;
 
 #endif //CPP_EXAM_BLOCK_HPP
