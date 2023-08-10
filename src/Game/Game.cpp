@@ -127,11 +127,7 @@ void Game::playGame()
         }
 
         // check if Board is full
-        if(Board::isFull())
-        {
-            // draw win screen
-            // m_gui.drawWinScreen();
-        }
+
     }
     EndDrawing();
 }
@@ -191,22 +187,6 @@ void Game::GUItest()
                 m_gui.drawPlacedBlocks(Board::getPlacedBlocks());
                 m_gui.drawBlockAtMouse(blockType);
 
-
-                /*
-                Block block = m_gui.findBlockFromType(BlockType::TWOBYTHREE);
-
-                int height = block.height;
-                int width = block.width;
-
-                Color color = block.color;
-                Vector2 mousePosition = GetMousePosition();
-
-                int height_coord = mousePosition.y;
-                int width_coord = mousePosition.x;
-
-                DrawRectangle(width_coord, height_coord, width * DRAW_HELP, height * DRAW_HELP, color);
-                 */
-                std::cout << "Button Down\n";
                 EndDrawing();
             }
             std::tuple<int, int> mouseCoordinates= m_gui.calculateMouseCoordinates();
@@ -217,12 +197,20 @@ void Game::GUItest()
                 if(m_board.placeBlock(block, height_coord, width_coord))
                 {
                     Board::setPlacedBlock(block);
+                    std::cout << "Block Placed on " << height_coord << " * " << width_coord <<"\n";
+                    Board::printBoard();
                 }
                 else
                 {
                     Board::setNotPlacedPlayBlock(block);
+                    std::cout << "Block not Placed\n";
                 }
 
+            }
+            if(Board::isFull())
+            {
+                // draw win screen
+                // m_gui.drawWinScreen();
             }
         }
 

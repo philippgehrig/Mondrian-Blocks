@@ -125,7 +125,6 @@ public:
      */
      static void removePlacedBlock(Block& block)
      {
-         //m_placedBlocks.erase(std::remove(m_placedBlocks.begin(), m_placedBlocks.end(), block), m_placedBlocks.end());
         for(auto it = m_placedBlocks.begin(); it != m_placedBlocks.end(); ++it)
         {
             if (*it == block.type) {
@@ -137,12 +136,11 @@ public:
      }
 
     /**
-   * @brief removes element from placed blocks vector
+   * @brief removes element from not placed blocks vector
    * @param block: the block which will be removed
    */
     static void removeNotPlacedBlock(Block& block)
     {
-        //m_placedBlocks.erase(std::remove(m_placedBlocks.begin(), m_placedBlocks.end(), block), m_placedBlocks.end());
         for(auto it = m_notPlacedPlayBlocks.begin(); it != m_notPlacedPlayBlocks.end(); ++it)
         {
             if (*it == block.type) {
@@ -335,6 +333,21 @@ public:
             {
                 m_board[column][row] = 0;
             }
+        }
+    }
+
+    /**
+     * @brief prints the board
+     */
+    static void printBoard()
+    {
+        for(int column = 0; column < BOARD_HEIGHT; column++)
+        {
+            for(int row = 0; row < BOARD_WIDTH; row++)
+            {
+                std::cout << m_board[column][row] << " ";
+            }
+            std::cout << std::endl;
         }
     }
 
