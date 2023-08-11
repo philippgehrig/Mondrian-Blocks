@@ -48,9 +48,9 @@ void Game::start()
 
 void Game::initStartblocks()
 {
-    Block startBlock1 = {BlockType::ONEBYONE, 1, 1, BLACK};
-    Block startBlock2 = {BlockType::ONEBYTWO, 1, 2, BLACK};
-    Block startBlock3 = {BlockType::ONEBYTHREE, 1, 3, BLACK};
+    Block startBlock1 = {BlockType::ONEBYONE, 1, 1, NULL, NULL, BLACK};
+    Block startBlock2 = {BlockType::ONEBYTWO, 1, 2, NULL, NULL,BLACK};
+    Block startBlock3 = {BlockType::ONEBYTHREE, 1, 3, NULL, NULL,BLACK};
     std::vector <Block> startblocks {startBlock1, startBlock2, startBlock3};
     Board::setNotPlacedStartBlocks(startblocks);
     Board::setAllBlocks(startblocks);
@@ -90,14 +90,14 @@ std::vector<Board> Game::placeStartblocksGenerate() {
 
 void Game::initPlayblocks()
 {
-    Block PBlock2x2 = {BlockType::TWOBYTWO, 2, 2, RED};
-    Block PBlock1x4 = {BlockType::ONEBYFOUR, 1, 4, GREEN};
-    Block PBlock2x5 = {BlockType::TWOBYFIVE, 2, 5, BLUE};
-    Block PBlock2x3 = {BlockType::TWOBYTHREE, 2, 3, PINK};
-    Block PBlock1x5 = {BlockType::ONEBYFIVE, 1, 5, LIME};
-    Block PBlock3x3 = {BlockType::THREEBYTHREE, 3, 3, DARKBLUE};
-    Block PBlock2x4 = {BlockType::TWOBYFOUR, 2, 4, BROWN};
-    Block PBlock3x4 = {BlockType::THREEBYFOUR, 3, 4, ORANGE};
+    Block PBlock2x2 = {BlockType::TWOBYTWO, 2, 2, NULL, NULL,RED};
+    Block PBlock1x4 = {BlockType::ONEBYFOUR, 1, 4,NULL, NULL, GREEN};
+    Block PBlock2x5 = {BlockType::TWOBYFIVE, 2, 5, NULL, NULL,BLUE};
+    Block PBlock2x3 = {BlockType::TWOBYTHREE, 2, 3,NULL, NULL, PINK};
+    Block PBlock1x5 = {BlockType::ONEBYFIVE, 1, 5, NULL, NULL,LIME};
+    Block PBlock3x3 = {BlockType::THREEBYTHREE, 3, 3,NULL, NULL, DARKBLUE};
+    Block PBlock2x4 = {BlockType::TWOBYFOUR, 2, 4, NULL, NULL,BROWN};
+    Block PBlock3x4 = {BlockType::THREEBYFOUR, 3, 4, NULL, NULL,ORANGE};
 
     std::vector<Block> playblocks
     {PBlock2x2, PBlock1x4, PBlock2x5, PBlock2x3, PBlock1x5, PBlock3x3, PBlock2x4, PBlock3x4};

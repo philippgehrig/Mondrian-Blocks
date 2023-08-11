@@ -196,7 +196,10 @@ public:
             for(int row = width_coord; row < width_coord + block.width; row++)
             {
                 if(column > BOARD_HEIGHT || row > BOARD_WIDTH)
-                if(m_board[column][row] != 0) return false;
+                {
+                    if(m_board[column][row] != 0) return false;
+                }
+
             }
         }
         return true;
