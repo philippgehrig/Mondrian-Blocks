@@ -69,6 +69,8 @@ public:
      */
     Block findBlockFromType(BlockType type);
 
+    void drawWinScreen();
+
 
 
 private:

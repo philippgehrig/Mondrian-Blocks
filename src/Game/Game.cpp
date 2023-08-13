@@ -154,6 +154,8 @@ void Game::GUItest()
     InitWindow(SCREEN_WIDTH, SCREEN_HEIGHT, "GUI");
     SetTargetFPS(60);
 
+
+
     std::cout << "GUITest" << std::endl;
     while(!WindowShouldClose())
     {
@@ -192,6 +194,7 @@ void Game::GUItest()
             std::tuple<int, int> mouseCoordinates= m_gui.calculateMouseCoordinates();
             int height_coord = std::get<0>(mouseCoordinates);
             int width_coord = std::get<1>(mouseCoordinates);
+
             if((0 <= width_coord < BOARD_WIDTH) && (0 <= height_coord < BOARD_HEIGHT))
             {
                 if(m_board.placeBlock(block, height_coord, width_coord))
@@ -216,5 +219,6 @@ void Game::GUItest()
 
 
     }
+
 }
 
