@@ -187,13 +187,17 @@ void Game::GUItest()
                 m_gui.drawNotPlacedBlocks(Board::getNotPlacedPlayBlocks());
                 m_gui.drawPlacedBlocks(Board::getPlacedBlocks());
                 m_gui.drawBlockAtMouse(blockType);
+                std::tuple<int, int> mouseCoordinates= m_gui.calculateMouseCoordinates();
+                int height_coord = std::get<0>(mouseCoordinates);
+                int width_coord = std::get<1>(mouseCoordinates);
+                std::cout << width_coord << " * " << height_coord << std::endl;
 
                 EndDrawing();
             }
             std::tuple<int, int> mouseCoordinates= m_gui.calculateMouseCoordinates();
             int height_coord = std::get<0>(mouseCoordinates);
             int width_coord = std::get<1>(mouseCoordinates);
-            if((0 <= width_coord < BOARD_WIDTH) && (0 <= height_coord < BOARD_HEIGHT))
+            //if((0 <= width_coord < BOARD_WIDTH) && (0 <= height_coord < BOARD_HEIGHT))
             {
                 if(m_board.placeBlock(block, height_coord, width_coord))
                 {
