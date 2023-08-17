@@ -10,7 +10,7 @@ Dinar:
 
 
 Philipp:
-- Not Placed Blocks edit when placing / removing blocks
+- repair canPlace()
 
 Mattes:
 -
