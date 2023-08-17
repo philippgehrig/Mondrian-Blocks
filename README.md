@@ -20,6 +20,12 @@ and give a solution to it.
 
 ![img.png](assets/img.png)
 
+## Extensions
+
+For our GUI we used [raylib](https://www.raylib.com). We belive that this makes the usage of the application more self-explainitory. 
+
+
+
 ## Getting Started
 
 ### Prequisites
@@ -31,4 +37,4 @@ and give a solution to it.
 ### Examples
 
 ## Contributions
-Unfortunately, we cannot accept any contributions at the moment. However, if you have any suggestions you can open an issue.
+Unfortunately, we cannot accept any contributions at the moment, since its a requirement for the course to be completed by us alone.
