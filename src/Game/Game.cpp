@@ -172,6 +172,7 @@ void Game::GUItest()
 
             Board::removePlacedBlock(block);
             Board::removeNotPlacedBlock(block);
+            Board::removeBlock(block);
             while(IsMouseButtonDown(MOUSE_BUTTON_LEFT))
             {
                 BeginDrawing();
