@@ -171,9 +171,9 @@ void Game::GUItest()
         {
             BlockType blockType = m_gui.isMouseOnBlock();
             block = m_gui.findBlockFromType(blockType);
-
             Board::removePlacedBlock(block);
             Board::removeNotPlacedBlock(block);
+
             while(IsMouseButtonDown(MOUSE_BUTTON_LEFT))
             {
                 BeginDrawing();

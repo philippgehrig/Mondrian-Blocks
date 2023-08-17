@@ -121,18 +121,30 @@ public:
 
     /**
      * @brief removes element from placed blocks vector
+     * @breif sets board array to 0 (where block was previously placed)
      * @param block: the block which will be removed
      */
      static void removePlacedBlock(Block& block)
      {
-        for(auto it = m_placedBlocks.begin(); it != m_placedBlocks.end(); ++it)
+         // remove it from the vector
+        for(auto it = m_placedBlocks.begin(); it != m_placedBlocks.end(); it++)
         {
             if (*it == block.type) {
                 m_placedBlocks.erase(it);
-                break;
             }
         }
-        std::cout << "Block ist nicht vorhanden\n";
+
+        // set positions of the block to 0
+        for(int column = 0; column < BOARD_HEIGHT; column++)
+        {
+            for(int row = 0; row < BOARD_WIDTH; row++)
+            {
+                if(m_board[column][row] == static_cast<int>(block.type))
+                {
+                    m_board[column][row] = 0;
+                }
+            }
+        }
      }
 
     /**
