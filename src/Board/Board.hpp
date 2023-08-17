@@ -190,14 +190,19 @@ public:
      * @param width_coord x-coordinate of the block (row) (top left corner)
      * @return true if the block can be placed, false otherwise
      **/
-    static bool canPlaceBlock(const Block& block, int height_coord, int width_coord)
+    static bool canPlaceBlock(Block& block, int height_coord, int width_coord)
     {
         for(int column = height_coord; column < height_coord + block.height; column++){
             for(int row = width_coord; row < width_coord + block.width; row++)
             {
-                if(column < BOARD_HEIGHT || row < BOARD_WIDTH)
+                if(column > BOARD_HEIGHT || row > BOARD_WIDTH)
                 {
-                    if(m_board[column][row] != 0) return false;
+                    return false;
+                }
+
+                if(m_board[column][row] != 0)
+                {
+                    return false;
                 }
 
             }
