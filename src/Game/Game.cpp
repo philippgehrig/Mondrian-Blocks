@@ -218,8 +218,6 @@ void Game::GUItest()
                 // m_gui.drawWinScreen();
             }
         }
-
-
     }
 }
 

@@ -14,12 +14,14 @@
          src/Board/Board.hpp
          src/GUI/GUI.hpp
          src/Constants.hpp
+         src/Solver/Solver.hpp
          )
 
  set(Sources
          src/Board/Board.cpp
          src/Game/Game.cpp
          src/GUI/GUI.cpp
+         src/Solver/Solver.cpp
          )
 
  # Generate compile_commands.json
