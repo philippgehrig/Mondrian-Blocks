@@ -75,43 +75,43 @@ void GUI::drawPlacedBlocks(std::vector<Block> placedBlocks)
         BlockType type = block.type;
 
         std::optional<std::tuple<int, int>> coordinates = Board::findBlock(block);
-        block.height_coord = std::get<0>(coordinates.value());
-        block.width_coord = std::get<1>(coordinates.value());
+        int height_coord = std::get<0>(coordinates.value());
+        int width_coord = std::get<1>(coordinates.value());
 
         switch (type)
         {
             case BlockType::ONEBYONE:
-                DrawRectangle(DRAW_HELP + block.width_coord * DRAW_HELP, DRAW_HELP + block.height_coord * DRAW_HELP, width, height, block.color);
+                DrawRectangle(DRAW_HELP + width_coord * DRAW_HELP, DRAW_HELP + height_coord * DRAW_HELP, width, height, block.color);
                 break;
             case BlockType::ONEBYTWO:
-                DrawRectangle(DRAW_HELP + block.width_coord * DRAW_HELP, DRAW_HELP + block.height_coord * DRAW_HELP, width, height, block.color);
+                DrawRectangle(DRAW_HELP + width_coord * DRAW_HELP, DRAW_HELP + height_coord * DRAW_HELP, width, height, block.color);
                 break;
             case BlockType::ONEBYTHREE:
-                DrawRectangle(DRAW_HELP + block.width_coord * DRAW_HELP, DRAW_HELP + block.height_coord * DRAW_HELP, width, height, block.color);
+                DrawRectangle(DRAW_HELP + width_coord * DRAW_HELP, DRAW_HELP + height_coord * DRAW_HELP, width, height, block.color);
                 break;
             case BlockType::TWOBYTWO:
-                DrawRectangle(DRAW_HELP + block.width_coord * DRAW_HELP, DRAW_HELP + block.height_coord * DRAW_HELP, width, height, block.color);
+                DrawRectangle(DRAW_HELP + width_coord * DRAW_HELP, DRAW_HELP + height_coord * DRAW_HELP, width, height, block.color);
                 break;
             case BlockType::THREEBYTHREE:
-                DrawRectangle(DRAW_HELP + block.width_coord * DRAW_HELP, DRAW_HELP + block.height_coord * DRAW_HELP, width, height, block.color);
+                DrawRectangle(DRAW_HELP + width_coord * DRAW_HELP, DRAW_HELP + height_coord * DRAW_HELP, width, height, block.color);
                 break;
             case BlockType::TWOBYTHREE:
-                DrawRectangle(DRAW_HELP + block.width_coord * DRAW_HELP, DRAW_HELP + block.height_coord * DRAW_HELP, width, height, block.color);
+                DrawRectangle(DRAW_HELP + width_coord * DRAW_HELP, DRAW_HELP + height_coord * DRAW_HELP, width, height, block.color);
                 break;
             case BlockType::ONEBYFOUR:
-                DrawRectangle(DRAW_HELP + block.width_coord * DRAW_HELP, DRAW_HELP + block.height_coord * DRAW_HELP, width, height, block.color);
+                DrawRectangle(DRAW_HELP + width_coord * DRAW_HELP, DRAW_HELP + height_coord * DRAW_HELP, width, height, block.color);
                 break;
             case BlockType::ONEBYFIVE:
-                DrawRectangle(DRAW_HELP + block.width_coord * DRAW_HELP, DRAW_HELP + block.height_coord * DRAW_HELP, width, height, block.color);
+                DrawRectangle(DRAW_HELP + width_coord * DRAW_HELP, DRAW_HELP + height_coord * DRAW_HELP, width, height, block.color);
                 break;
             case BlockType::THREEBYFOUR:
-                DrawRectangle(DRAW_HELP + block.width_coord * DRAW_HELP, DRAW_HELP + block.height_coord * DRAW_HELP, width, height, block.color);
+                DrawRectangle(DRAW_HELP + width_coord * DRAW_HELP, DRAW_HELP + height_coord * DRAW_HELP, width, height, block.color);
                 break;
             case BlockType::TWOBYFOUR:
-                DrawRectangle(DRAW_HELP + block.width_coord * DRAW_HELP, DRAW_HELP + block.height_coord * DRAW_HELP, width, height, block.color);
+                DrawRectangle(DRAW_HELP + width_coord * DRAW_HELP, DRAW_HELP + height_coord * DRAW_HELP, width, height, block.color);
                 break;
             case BlockType::TWOBYFIVE:
-                DrawRectangle(DRAW_HELP + block.width_coord * DRAW_HELP, DRAW_HELP + block.height_coord * DRAW_HELP, width, height,block.color);
+                DrawRectangle(DRAW_HELP + width_coord * DRAW_HELP, DRAW_HELP + height_coord * DRAW_HELP, width, height,block.color);
                 break;
             default:
                 continue;

@@ -37,8 +37,6 @@ typedef struct Block
     BlockType type;
     int height;
     int width;
-    int height_coord;
-    int width_coord;
     Color color;
 
     bool operator==(BlockType otherType) const {
