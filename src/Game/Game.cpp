@@ -173,6 +173,7 @@ void Game::GUItest()
             block = m_gui.findBlockFromType(blockType);
             Board::removePlacedBlock(block);
             Board::removeNotPlacedBlock(block);
+            Board::removeBlock(block);
 
             while(IsMouseButtonDown(MOUSE_BUTTON_LEFT))
             {

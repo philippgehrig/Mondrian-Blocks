@@ -133,18 +133,6 @@ public:
                 m_placedBlocks.erase(it);
             }
         }
-
-        // set positions of the block to 0
-        for(int column = 0; column < BOARD_HEIGHT; column++)
-        {
-            for(int row = 0; row < BOARD_WIDTH; row++)
-            {
-                if(m_board[column][row] == static_cast<int>(block.type))
-                {
-                    m_board[column][row] = 0;
-                }
-            }
-        }
      }
 
     /**
