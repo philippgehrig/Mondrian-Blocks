@@ -321,13 +321,22 @@ public:
         //if res == null opt (if block is not in the board)
         if(!res.has_value())
         {
-            int tmp = block.height;
-            block.height = block.width;
-            block.width = tmp;
+
             return true;
         }
         else return false;
     }
+
+    /**
+     * @brief rotates Block on Hand
+     * @param block is Cock
+     */
+     void rotateBlockOnHand(Block& block)
+     {
+         int tmp = block.height;
+         block.height = block.width;
+         block.width = tmp;
+     }
 
     /**
      * @brief clears the board

@@ -141,7 +141,6 @@ void Game::debug() {
     {
         BeginDrawing();
         ClearBackground(RAYWHITE);
-        Board teset = m_gui.drawBoardSelection();
         EndDrawing();
     }
 }
@@ -173,14 +172,16 @@ void Game::GUItest()
             Board::removePlacedBlock(block);
             Board::removeNotPlacedBlock(block);
             Board::removeBlock(block);
+
+
             while(IsMouseButtonDown(MOUSE_BUTTON_LEFT))
             {
                 BeginDrawing();
                 ClearBackground(RAYWHITE);
 
-                if(IsMouseButtonPressed(MOUSE_BUTTON_RIGHT))
+                if (IsMouseButtonPressed(MOUSE_BUTTON_RIGHT))
                 {
-                    m_board.rotateBlock(block);
+                    m_board.rotateBlockOnHand(block);
                 }
 
                 m_gui.drawGameBackground();
@@ -215,7 +216,7 @@ void Game::GUItest()
             if(Board::isFull())
             {
                 // draw win screen
-                // m_gui.drawWinScreen();
+                m_gui.drawWinScreen();
             }
         }
     }
