@@ -139,7 +139,10 @@ void Game::debug() {
     std::cout << "debug" << std::endl;
     while(!WindowShouldClose())
     {
-        m_gui.drawWinScreen();
+        BeginDrawing();
+        ClearBackground(RAYWHITE);
+        Board teset = m_gui.drawBoardSelection();
+        EndDrawing();
     }
 }
 

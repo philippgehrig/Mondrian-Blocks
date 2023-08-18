@@ -69,7 +69,18 @@ public:
      */
     Block findBlockFromType(BlockType type);
 
-    void drawWinScreen();
+    /**
+     * @brief draws Win Screen
+     * @return choose new gamemode
+     */
+    int drawWinScreen();
+
+    /**
+     * @brief draws Board Selection
+     * @param Boards Boards to select from
+     * @return choosen Board
+     */
+     Board drawBoardSelection(std::vector<Board> Boards);
 
 
 

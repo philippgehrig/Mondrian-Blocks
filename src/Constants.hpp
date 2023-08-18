@@ -13,5 +13,7 @@ constexpr int SCREEN_WIDTH = 1900;
 constexpr int SCREEN_HEIGHT = 1000;
 
 constexpr int DRAW_HELP = 100;
+constexpr int DRAW_HELP_BOARDSELECTION = 50;
+
 
 #endif
