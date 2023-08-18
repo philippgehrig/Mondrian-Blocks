@@ -61,6 +61,41 @@ void GUI::drawNotPlacedBlocks(std::vector<Block> notPlacedBlocks)
     }
 }
 
+void GUI::drawNotPlacedStartBlocks(std::vector<Block> notPlacedStartBlocks)
+{
+    for (auto block : notPlacedStartBlocks)
+    {
+        int height = block.height;
+        int width = block.width;
+
+        height *= DRAW_HELP;
+        width *= DRAW_HELP;
+
+        if(width > height)  //Ensures that height is bigger than width
+        {
+            int safe = height;
+            height = width;
+            width = safe;
+        }
+        BlockType type = block.type;
+
+        switch (type)
+        {
+            case BlockType::ONEBYONE:
+                DrawRectangle(10 * DRAW_HELP, 1 * DRAW_HELP, width, height, block.color);
+                break;
+            case BlockType::ONEBYTWO:
+                DrawRectangle(12 * DRAW_HELP, 1 * DRAW_HELP, width, height, block.color);
+                break;
+            case BlockType::ONEBYTHREE:
+                DrawRectangle(14 * DRAW_HELP, 1 * DRAW_HELP, width, height, block.color);
+                break;
+            default:
+                continue;
+        }
+    }
+}
+
 void GUI::drawPlacedBlocks(std::vector<Block> placedBlocks)
 {
 
@@ -280,8 +315,8 @@ BlockType GUI::isMouseOnBlock()
 
 Block GUI::findBlockFromType(BlockType type)
 {
-
-    for(auto block :  Board::getAllBlocks())
+    auto blocks = Board::getAllBlocks();
+    for(auto block : blocks)
     {
         if(block.type == type)
         {
@@ -292,10 +327,17 @@ Block GUI::findBlockFromType(BlockType type)
 
 int GUI::drawWinScreen()
 {
-    BeginDrawing();
-    ClearBackground(RAYWHITE);
-    DrawText("You won!", 20, 20, 40, BLACK);
-    EndDrawing();
+    InitWindow(SCREEN_WIDTH, SCREEN_HEIGHT, "GUI");
+    SetTargetFPS(60);
+    while(!WindowShouldClose())
+    {
+        BeginDrawing();
+        ClearBackground(RAYWHITE);
+
+        DrawText("You won!", 20, 20, 40, BLACK);
+        EndDrawing();
+    }
+
 }
 
 int GUI::drawBoardSelection()
@@ -359,6 +401,57 @@ int GUI::drawBoardSelection()
         return 3;
     }
 }
+
+BlockType GUI::isMouseOnStartBlock()
+{
+    // check on field
+    auto coordinates = calculateMouseCoordinates();
+    int height_coord = std::get<0>(coordinates);
+    int width_coord = std::get<1>(coordinates);
+
+    int height_coord_block = 0;
+    int width_coord_block = 0;
+    for(auto block : Board::getPlacedBlocks())
+    {
+        std::optional<std::tuple<int, int>> coordinates = Board::findBlock(block);
+
+        height_coord_block = std::get<0>(coordinates.value());
+        width_coord_block = std::get<1>(coordinates.value());
+        if(height_coord == height_coord_block && width_coord == width_coord_block)
+        {
+            return block.type;
+        }
+    }
+
+
+    // check for outside of field
+    Vector2 mousePosition = GetMousePosition();
+    height_coord = mousePosition.y;
+    width_coord = mousePosition.x;
+
+    if(((width_coord > (10 * DRAW_HELP)) && (width_coord < ((10 + 1) * DRAW_HELP)))
+       && ((height_coord > (1 * DRAW_HELP)) && (height_coord < ((1 + 1) * DRAW_HELP))))
+    {
+        return BlockType::ONEBYONE;
+    }
+
+    if(((width_coord > (12 * DRAW_HELP))&& (width_coord < ((12 + 1) * DRAW_HELP)))
+       && ((height_coord > (1 * DRAW_HELP)) && (height_coord < ((1 + 2) * DRAW_HELP))))
+    {
+        return BlockType::ONEBYTWO;
+    }
+
+    if(((width_coord > (14 * DRAW_HELP)) && (width_coord < ((14 + 1) * DRAW_HELP)))
+       && ((height_coord > (1 * DRAW_HELP)) && (height_coord < ((1 + 3) * DRAW_HELP))))
+    {
+        return BlockType::ONEBYTHREE;
+    }
+
+
+
+    return BlockType::NONE;
+}
+
 
 
 

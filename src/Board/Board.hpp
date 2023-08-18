@@ -151,6 +151,24 @@ public:
         std::cout << "Block ist nicht vorhanden\n";
     }
 
+    /**
+   * @brief removes element from not placed blocks vector
+   * @param block: the block which will be removed
+   */
+    static void removeNotPlacedStartBlock(Block& block)
+    {
+        for(auto it = m_notPlacedStartBlocks.begin(); it != m_notPlacedStartBlocks.end(); ++it)
+        {
+            if (*it == block.type) {
+                m_notPlacedStartBlocks.erase(it);
+                break;
+            }
+        }
+        std::cout << "Block ist nicht vorhanden\n";
+    }
+
+
+
     // ------------
 
     /**
@@ -168,7 +186,8 @@ public:
      */
     static void setAllBlocks(std::vector<Block> blocks)
     {
-        m_allBlocks = std::move(blocks);
+        for(auto block : blocks)
+        m_allBlocks.push_back(block);
     }
 
     /**

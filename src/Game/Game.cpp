@@ -43,6 +43,9 @@ void Game::initStartblocks()
     std::vector <Block> startblocks {startBlock1, startBlock2, startBlock3};
     Board::setNotPlacedStartBlocks(startblocks);
     Board::setAllBlocks(startblocks);
+
+    auto blocks = Board::getAllBlocks();
+
 }
 
 std::vector<Board> Game::placeStartblocksGenerate() {
@@ -93,6 +96,8 @@ void Game::initPlayblocks()
 
     Board::setNotPlacedPlayBlocks(playblocks);
     Board::setAllBlocks(playblocks);
+
+    auto blocks = Board::getAllBlocks();
 }
 
 void Game::buildGame()
@@ -103,27 +108,34 @@ void Game::buildGame()
     InitWindow(SCREEN_WIDTH, SCREEN_HEIGHT, "GUI");
     SetTargetFPS(60);
 
-    std::cout << "GUITest" << std::endl;
+    std::cout << "buildGame" << std::endl;
     while(!WindowShouldClose())
     {
         BeginDrawing();
         ClearBackground(RAYWHITE);
         m_gui.drawGameBackground();
-        m_gui.drawNotPlacedBlocks(Board::getNotPlacedPlayBlocks());
+        m_gui.drawNotPlacedStartBlocks(Board::getNotPlacedStartBlocks());
         m_gui.drawPlacedBlocks(Board::getPlacedBlocks());
         Block block;
+
+        if(IsKeyPressed(KEY_S))
+        {
+            CloseWindow();
+            GamePlay();
+            std::cout << "Starte Spiel\n";
+        }
 
         EndDrawing();
         if(IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
         {
-            BlockType blockType = m_gui.isMouseOnBlock();
+            BlockType blockType = m_gui.isMouseOnStartBlock();
             block = m_gui.findBlockFromType(blockType);
-
             Board::removePlacedBlock(block);
-            Board::removeNotPlacedBlock(block);
+            Board::removeNotPlacedStartBlock(block);
             Board::removeBlock(block);
             while(IsMouseButtonDown(MOUSE_BUTTON_LEFT))
             {
+                std::cout << (int)blockType << std::endl;
                 if(IsKeyPressed(KEY_R))
                 {
                     m_board.rotateBlockOnHand(block);
@@ -134,7 +146,7 @@ void Game::buildGame()
                 ClearBackground(RAYWHITE);
 
                 m_gui.drawGameBackground();
-                m_gui.drawNotPlacedBlocks(Board::getNotPlacedPlayBlocks());
+                m_gui.drawNotPlacedStartBlocks(Board::getNotPlacedStartBlocks());
                 m_gui.drawPlacedBlocks(Board::getPlacedBlocks());
                 m_gui.drawBlockAtMouse(blockType);
 
@@ -153,15 +165,10 @@ void Game::buildGame()
                 }
                 else
                 {
-                    Board::setNotPlacedPlayBlock(block);
+                    Board::setNotPlacedStartBlock(block);
                     std::cout << "Block not Placed\n";
                 }
 
-            }
-            if(Board::isFull())
-            {
-                // draw win screen
-                m_gui.drawWinScreen();
             }
         }
     }
@@ -169,7 +176,7 @@ void Game::buildGame()
 
 void Game::GamePlay()
 {
-    m_board.initBoard();
+    //m_board.initBoard();
     initStartblocks();
     initPlayblocks();
     InitWindow(SCREEN_WIDTH, SCREEN_HEIGHT, "GUI");
@@ -189,6 +196,10 @@ void Game::GamePlay()
         if(IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
         {
             BlockType blockType = m_gui.isMouseOnBlock();
+            if(blockType == BlockType::ONEBYONE || blockType == BlockType::ONEBYTWO || blockType == BlockType::ONEBYTHREE)
+            {
+                continue;
+            }
             block = m_gui.findBlockFromType(blockType);
 
             Board::removePlacedBlock(block);
@@ -241,6 +252,7 @@ void Game::GamePlay()
             if(Board::isFull())
             {
                 // draw win screen
+                CloseWindow();
                 m_gui.drawWinScreen();
             }
         }
@@ -272,15 +284,13 @@ void Game::play()
             CloseWindow();
             buildGame();
         }
-
-
         EndDrawing();
     }
 }
 
 void Game::boardSelection()
 {
-    m_board.initBoard();
+    //m_board.initBoard();
     initStartblocks();
     initPlayblocks();
     InitWindow(SCREEN_WIDTH, SCREEN_HEIGHT, "GUI");

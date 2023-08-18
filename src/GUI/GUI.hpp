@@ -28,6 +28,12 @@ public:
     void drawNotPlacedBlocks(std::vector<Block> notPlacedBlocks);
 
     /**
+     * @brief draws every not placed Start Block
+     * @param notPlacedStartBlocks: vector of not placed Start Blocks
+     */
+    void drawNotPlacedStartBlocks(std::vector<Block> notPlacedStartBlocks);
+
+    /**
      * @brief draws every placed Block
      * @param placedBlocks: vector of placed Blocks
      */
@@ -81,6 +87,14 @@ public:
      * @return choosen Board Number
      */
      int drawBoardSelection();
+
+     /**
+      * @brief checks if mouse is on a Block
+      * @return block Type
+      */
+     BlockType isMouseOnStartBlock();
+
+
 
 
 
