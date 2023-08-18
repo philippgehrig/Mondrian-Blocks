@@ -194,22 +194,25 @@ void Game::GUItest()
             Board::removeBlock(block);
             while(IsMouseButtonDown(MOUSE_BUTTON_LEFT))
             {
+                if(IsKeyPressed(KEY_R))
+                {
+                    m_board.rotateBlockOnHand(block);
+                }
+
                 BeginDrawing();
                 ClearBackground(RAYWHITE);
-
-                if(IsMouseButtonPressed(MOUSE_BUTTON_RIGHT))
-                {
-                    m_board.rotateBlock(block);
-                }
 
                 m_gui.drawGameBackground();
                 m_gui.drawNotPlacedBlocks(Board::getNotPlacedPlayBlocks());
                 m_gui.drawPlacedBlocks(Board::getPlacedBlocks());
                 m_gui.drawBlockAtMouse(blockType);
+
+                /*
                 std::tuple<int, int> mouseCoordinates= m_gui.calculateMouseCoordinates();
                 int height_coord = std::get<0>(mouseCoordinates);
                 int width_coord = std::get<1>(mouseCoordinates);
                 std::cout << width_coord << " * " << height_coord << std::endl;
+                */
 
                 EndDrawing();
             }
