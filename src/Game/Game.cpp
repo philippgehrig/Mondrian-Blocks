@@ -197,6 +197,7 @@ void Game::GUItest()
                 if(IsKeyPressed(KEY_R))
                 {
                     m_board.rotateBlockOnHand(block);
+                    std::cout << "Rotatet Block\n";
                 }
 
                 BeginDrawing();
@@ -211,8 +212,9 @@ void Game::GUItest()
                 std::tuple<int, int> mouseCoordinates= m_gui.calculateMouseCoordinates();
                 int height_coord = std::get<0>(mouseCoordinates);
                 int width_coord = std::get<1>(mouseCoordinates);
-                std::cout << width_coord << " * " << height_coord << std::endl;
                 */
+
+
 
                 EndDrawing();
             }

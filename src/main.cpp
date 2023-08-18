@@ -4,6 +4,6 @@
 int main()
 {
     Game game;
-    game.start();
+    game.GUItest();
     return 0;
 }
