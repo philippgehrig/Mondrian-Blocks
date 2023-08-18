@@ -11,39 +11,28 @@ void Game::start()
     InitWindow(SCREEN_WIDTH, SCREEN_HEIGHT, "Mondrian Blocks");
     SetTargetFPS(60);
 
-    int game_mode = 0;
     while(!WindowShouldClose())
     {
-
         BeginDrawing();
         ClearBackground(RAYWHITE);
-        // game_mode = m_gui.drawStartScreen(); // return value 1 = play; 2 = play + set own start blocks; 3 = solve; 0 = nothing
-        m_gui.drawGameBackground();
-        m_gui.drawNotPlacedBlocks(Board::getNotPlacedPlayBlocks());
-
-
+        // int game_mode = m_gui.drawStartScreen();
+        EndDrawing();
+        int game_mode = 1;
         switch(game_mode)
         {
             case 1:
-                placeStartblocksGenerate();
-                // draw boards to choose
+                // placeStartblocksGenerate();
                 playGame();
                 break;
             case 2:
                 // placeOwnStartblocks();
                 playGame();
                 break;
-            case 3:
-                // placeOwnStartblocks();
-                // solveGame();
-                break;
             default:
+                DrawText("Error, please restart the Game", 10, 10, 20, RED);
                 break;
-
         }
-        EndDrawing();
     }
-
 }
 
 void Game::initStartblocks()
@@ -112,38 +101,69 @@ void Game::playGame()
     m_gui.drawGameBackground();
     m_gui.drawPlacedBlocks(Board::getPlacedBlocks());
     m_gui.drawNotPlacedBlocks(Board::getNotPlacedPlayBlocks());
+    Block block;
 
     // Drag and Drop
-    if(IsMouseButtonPressed(MouseButton ::MOUSE_LEFT_BUTTON))
-    {
-        BlockType type = m_gui.isMouseOnBlock();
-        if(type > BlockType::ONEBYTHREE)
+    if(IsMouseButtonPressed(MOUSE_BUTTON_LEFT)) {
+        BlockType blockType = m_gui.isMouseOnBlock();
+        block = m_gui.findBlockFromType(blockType);
+        Board::removePlacedBlock(block);
+        Board::removeNotPlacedBlock(block);
+        Board::removeBlock(block);
+
+        while (IsMouseButtonDown(MOUSE_BUTTON_LEFT)) {
+            BeginDrawing();
+            ClearBackground(RAYWHITE);
+
+            if (IsMouseButtonPressed(MOUSE_BUTTON_RIGHT)) {
+                m_board.rotateBlock(block);
+            }
+
+            m_gui.drawGameBackground();
+            m_gui.drawNotPlacedBlocks(Board::getNotPlacedPlayBlocks());
+            m_gui.drawPlacedBlocks(Board::getPlacedBlocks());
+            m_gui.drawBlockAtMouse(blockType);
+
+            std::tuple<int, int> mouseCoordinates = m_gui.calculateMouseCoordinates();
+            int height_coord = std::get<0>(mouseCoordinates);
+            int width_coord = std::get<1>(mouseCoordinates);
+            std::cout << width_coord << " * " << height_coord << std::endl;
+            EndDrawing();
+        }
+        std::tuple<int, int> mouseCoordinates = m_gui.calculateMouseCoordinates();
+        int height_coord = std::get<0>(mouseCoordinates);
+        int width_coord = std::get<1>(mouseCoordinates);
+        //if((0 <= width_coord < BOARD_WIDTH) && (0 <= height_coord < BOARD_HEIGHT))
         {
-            while (IsMouseButtonDown(MouseButton ::MOUSE_LEFT_BUTTON))
-            {
-                // m_gui.drawBlockAtMouse(type);
+            if (m_board.placeBlock(block, height_coord, width_coord)) {
+                Board::setPlacedBlock(block);
+                std::cout << "Block Placed on " << height_coord << " * " << width_coord << "\n";
+                Board::printBoard();
+            } else {
+                Board::setNotPlacedPlayBlock(block);
+                std::cout << "Block not Placed\n";
             }
 
         }
-
-        // check if Board is full
-
-    }
-    EndDrawing();
-}
-
-void Game::debug() {
-    InitWindow(SCREEN_WIDTH, SCREEN_HEIGHT, "Debug");
-    SetTargetFPS(60);
-
-    std::cout << "debug" << std::endl;
-    while(!WindowShouldClose())
-    {
-        BeginDrawing();
-        ClearBackground(RAYWHITE);
         EndDrawing();
     }
+    if(Board::isFull())
+    {
+        // draw win screen
+        int nextGamePhase = m_gui.drawWinScreen();
+        switch(nextGamePhase)
+        {
+            case 1: // restart
+                Board::clearBoard();
+                start();
+                break;
+            case 2:
+                WindowShouldClose();
+        }
+    }
 }
+
+
 
 void Game::GUItest()
 {
@@ -172,16 +192,14 @@ void Game::GUItest()
             Board::removePlacedBlock(block);
             Board::removeNotPlacedBlock(block);
             Board::removeBlock(block);
-
-
             while(IsMouseButtonDown(MOUSE_BUTTON_LEFT))
             {
                 BeginDrawing();
                 ClearBackground(RAYWHITE);
 
-                if (IsMouseButtonPressed(MOUSE_BUTTON_RIGHT))
+                if(IsMouseButtonPressed(MOUSE_BUTTON_RIGHT))
                 {
-                    m_board.rotateBlockOnHand(block);
+                    m_board.rotateBlock(block);
                 }
 
                 m_gui.drawGameBackground();
@@ -216,7 +234,7 @@ void Game::GUItest()
             if(Board::isFull())
             {
                 // draw win screen
-                m_gui.drawWinScreen();
+                // m_gui.drawWinScreen();
             }
         }
     }
