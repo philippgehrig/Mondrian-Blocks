@@ -298,7 +298,10 @@ void GUI::drawWinScreen()
 {
     BeginDrawing();
     ClearBackground(RAYWHITE);
-    DrawText("You won!", 20, 20, 40, LIGHTGRAY);
+    DrawText("You won!", 20, 20, 40, BLACK);
+    DrawText("Press 1 to play again", 20, 100, 20, BLACK);
+    DrawText("Press 2 to go back to the start screen", 20, 200, 20, BLACK);
+    DrawText("Press 3 to exit the game", 20, 300, 20, BLACK);
     EndDrawing();
 }
 

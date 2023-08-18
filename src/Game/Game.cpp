@@ -139,10 +139,7 @@ void Game::debug() {
     std::cout << "debug" << std::endl;
     while(!WindowShouldClose())
     {
-        BeginDrawing();
-        ClearBackground(RAYWHITE);
-        m_gui.drawStartScreen();
-        EndDrawing();
+        m_gui.drawWinScreen();
     }
 }
 
