@@ -22,13 +22,13 @@ public:
     void start();
     void initStartblocks();
     void initPlayblocks();
-    void playGame();
+    void buildGame();
     void solveGame();
     void placeOwnStartblocks();
-    void debug();
+    void play();
     std::vector<Board> placeStartblocksGenerate();
-
-    void GUItest();
+    void boardSelection();
+    void GamePlay();
 
 
 

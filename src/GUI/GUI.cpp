@@ -121,15 +121,14 @@ void GUI::drawPlacedBlocks(std::vector<Block> placedBlocks)
 
 int GUI::drawStartScreen()
 {
-    BeginDrawing();
-    ClearBackground(RAYWHITE);
-    DrawText("Welcome to Mondrian Blocks", 100, 100, 20, BLACK);
-    DrawText("Press 1 to start the game", 100, 200, 20, BLACK);
-    DrawText("Press 2 to start a game with your own board", 100, 300, 20, BLACK);
-    EndDrawing();
 
-    while(true)
+    //while(true)
     {
+        DrawText("Welcome to Mondrian Blocks", 100, 100, 20, BLACK);
+        DrawText("Press 1 to start the game", 100, 200, 20, BLACK);
+        DrawText("Press 2 to start a game with your own board", 100, 300, 20, BLACK);
+
+
         if(IsKeyPressed(KEY_ONE))
         {
             return 1;
@@ -138,6 +137,8 @@ int GUI::drawStartScreen()
         {
             return 2;
         }
+
+        return -1;
     }
 }
 
@@ -294,25 +295,26 @@ int GUI::drawWinScreen()
     BeginDrawing();
     ClearBackground(RAYWHITE);
     DrawText("You won!", 20, 20, 40, BLACK);
-    DrawText("Press 1 to go back to the start screen", 20, 200, 20, BLACK);
-    DrawText("Press 2 to exit the game", 20, 300, 20, BLACK);
     EndDrawing();
-
-    while(true)
-    {
-        if(IsKeyPressed(KEY_ONE))
-        {
-            return 1;
-        }
-        else if(IsKeyPressed(KEY_TWO))
-        {
-            return 2;
-        }
-    }
 }
 
-Board GUI::drawBoardSelection(std::vector<Board> Boards)
+int GUI::drawBoardSelection()
 {
+    ///Test
+    int board[3][8][8] = {0};
+
+    board[0][2][3] = 1;
+    board[0][2][4] = 1;
+    board[0][2][5] = 1;
+
+    board[1][3][1] = 1;
+    board[1][4][1] = 1;
+    board[1][5][1] = 1;
+
+    board[2][0][3] = 1;
+    board[2][1][4] = 1;
+    board[2][2][5] = 1;
+    ///
     //Boards
     for(int i = 0; i < 3; i++)
     {
@@ -327,28 +329,35 @@ Board GUI::drawBoardSelection(std::vector<Board> Boards)
             DrawLine((i * 600) + 3 * DRAW_HELP_BOARDSELECTION ,  (10 + row) * DRAW_HELP_BOARDSELECTION, (i * 600) + 11 * DRAW_HELP_BOARDSELECTION, (10 + row) * DRAW_HELP_BOARDSELECTION, BLACK);
         }
 
-        int** board = Boards[i].getBoard();
+        //int** board = Board::getBoard();
 
-        /*
-        int board[8][8] = {0};
 
-        board[2][3] = 1;
-        board[2][4] = 1;
-        board[2][5] = 1;
-        */
+
+
+
         for(int column = 0; column < BOARD_HEIGHT; column++)
         {
             for(int row = 0; row < BOARD_WIDTH; row++)
             {
-                if(board[column][row] != 0)
+                if(board[i][column][row] != 0)
                 {
                     DrawRectangle((i * 600) + 3 * DRAW_HELP_BOARDSELECTION + column * DRAW_HELP_BOARDSELECTION, (10 + row) * DRAW_HELP_BOARDSELECTION, DRAW_HELP_BOARDSELECTION, DRAW_HELP_BOARDSELECTION, BLACK);
                 }
             }
         }
     }
-
-    //Headings
+    if(IsKeyPressed(KEY_ONE))
+    {
+        return 1;
+    }
+    else if(IsKeyPressed(KEY_TWO))
+    {
+        return 2;
+    }
+    else if(IsKeyPressed(KEY_THREE))
+    {
+        return 3;
+    }
 }
 
 

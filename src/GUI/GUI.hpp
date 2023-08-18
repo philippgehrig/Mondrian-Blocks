@@ -78,9 +78,9 @@ public:
     /**
      * @brief draws Board Selection
      * @param Boards Boards to select from
-     * @return choosen Board
+     * @return choosen Board Number
      */
-     Board drawBoardSelection(std::vector<Board> Boards);
+     int drawBoardSelection();
 
 
 

@@ -4,6 +4,7 @@
 int main()
 {
     Game game;
-    game.GUItest();
+    //game.GamePlay();
+    game.play();
     return 0;
 }

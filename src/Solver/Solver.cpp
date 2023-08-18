@@ -3,7 +3,7 @@
 
 void Solver::setWinningBoard(int **board) {
     for (int col = 0; col < BOARD_HEIGHT; col++) {
-        for (int row = 0; row < 8; row++) {
+        for (int row = 0; row < BOARD_WIDTH; row++) {
             m_wining_board[col][row] = board[col][row];
         }
     }
