@@ -61,7 +61,7 @@
 
  add_library(${PROJECT_NAME}_lib STATIC ${Sources} ${Headers})
 
- target_link_libraries(${PROJECT_NAME} raylib)
+ target_link_libraries(${PROJECT_NAME} raylib gtest)
 
 
  # Web Configurations
