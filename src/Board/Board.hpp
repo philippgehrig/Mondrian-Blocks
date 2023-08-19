@@ -253,6 +253,43 @@ public:
     }
 
     /**
+     * @brief checks if block can be placed
+     * @param block: block that is to be placed
+     * @param board: board on which the block is to be placed
+     * @param height_coord y-coordinate of the block (column) (top left corner)
+     * @param width_coord x-coordinate of the block (row) (top left corner)
+     * @return true if the block can be placed, false otherwise
+     **/
+    static bool canPlaceBlockSolver(const Block& block, int height_coord, int width_coord, int** board)
+    {
+        for(int column = height_coord; column < height_coord + block.height; column++){
+            for(int row = width_coord; row < width_coord + block.width; row++)
+            {
+                if(column >= BOARD_HEIGHT || row >= BOARD_WIDTH)
+                {
+                    return false;
+                }
+
+                if(board[column][row] != 0)
+                {
+                    return false;
+                }
+                if(board[column][row] == static_cast<int>(block.type))
+                {
+                    return false;
+                }
+            }
+        }
+        for(int column = 0; column < height_coord + block.height; column++){
+            for(int row = width_coord; row < width_coord + block.width; row++)
+            {
+
+            }
+        }
+        return true;
+    }
+
+    /**
      * @brief place a block on the board (used by solver)
      * @param block: block to be placed
      * @param height_coord y-coordinate of the block (column) (top left corner)
@@ -262,7 +299,7 @@ public:
     static bool placeBlockSolver(Block& block, const int height_coord, const int width_coord, int** board, bool rotated = false)
     {
         //if block can be placed
-        if(canPlaceBlock(block, height_coord, width_coord))
+        if(canPlaceBlockSolver(block, height_coord, width_coord, board))
         {
             if(rotated)
             {
@@ -436,6 +473,7 @@ public:
             }
         }
     }
+
 
 private:
     /**

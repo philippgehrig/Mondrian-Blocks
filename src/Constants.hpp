@@ -15,5 +15,7 @@ constexpr int SCREEN_HEIGHT = 1000;
 constexpr int DRAW_HELP = 100;
 constexpr int DRAW_HELP_BOARDSELECTION = 50;
 
+constexpr int PLAYBLOCK_AMOUNT = 8;
+
 
 #endif
