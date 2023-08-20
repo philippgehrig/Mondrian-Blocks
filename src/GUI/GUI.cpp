@@ -452,6 +452,25 @@ BlockType GUI::isMouseOnStartBlock()
     return BlockType::NONE;
 }
 
+int GUI::drawDifficultySelection()
+{
+DrawText("Choose Difficulty", 100, 100, 20, BLACK);
+    DrawText("Press 1 for easy", 100, 200, 20, BLACK);
+    DrawText("Press 2 for medium", 100, 300, 20, BLACK);
+    DrawText("Press 3 for hard", 100, 400, 20, BLACK);
 
+    if(IsKeyPressed(KEY_ONE))
+    {
+        return 1;
+    }
+    else if(IsKeyPressed(KEY_TWO))
+    {
+        return 2;
+    }
+    else if(IsKeyPressed(KEY_THREE))
+    {
+        return 3;
+    }
+}
 
 

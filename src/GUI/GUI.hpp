@@ -94,6 +94,8 @@ public:
       */
      BlockType isMouseOnStartBlock();
 
+     int drawDifficultySelection();
+
 
 
 
