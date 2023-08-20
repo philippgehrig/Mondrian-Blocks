@@ -21,9 +21,11 @@ void Solver::setPieces() {
 
 }
 
-void Solver::solve() {
+int Solver::solve() {
     setPieces();
     solvePiece(0, Board::getBoard());
+
+    return 1;
 }
 
 

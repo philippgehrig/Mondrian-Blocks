@@ -50,29 +50,25 @@ void Game::initStartblocks()
 
 void Game::placeStartblocksGenerate(int difficulty) {
     std::vector<Block> startblocks = Board::getNotPlacedStartBlocks();
-    for(int i = 0; i< 3; i++)
+    do
     {
-        do
+        m_board.clearBoard();
+        for (auto block : startblocks)
         {
-            m_board.clearBoard();
-            for (auto block : startblocks)
+            int placecheck = 1;
+            // Rotation
+            if(Board::generateRotation()) // if true rotate once, if false don't rotate
             {
-                int placecheck = 1;
-                // Rotation
-                if(Board::generateRotation()) // if true rotate once, if false don't rotate
-                {
-                    Board::rotateBlock(block);
-                }
-                //place
-                do
-                {
-                    placecheck = Board::placeBlock(block, Board::generateCoordinate(), Board::generateCoordinate());
-                } while(!placecheck);
+                Board::rotateBlock(block);
             }
-            m_solver.solve();
-            std::cout << "Durchlauch\n";
-        }while(!m_solver.getWin());
-    }
+            //place
+            do
+            {
+                placecheck = Board::placeBlock(block, Board::generateCoordinate(), Board::generateCoordinate());
+            } while(!placecheck);
+        }
+        std::cout << "Durchlauch\n";
+    }while(m_solver.solve() == difficulty);
 
 
 //    auto solutions = m_solver.solve(m_board);

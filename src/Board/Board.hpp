@@ -422,6 +422,7 @@ public:
                 m_board[column][row] = 0;
             }
         }
+
     }
 
     /**

@@ -17,7 +17,7 @@ public:
 
     ~Solver() = default;
 
-    void solve();
+    int solve();
     void setPieces();
     void solvePiece(int index, int** board);
     void setWinningBoard(int** board);
