@@ -26,8 +26,8 @@ public:
     void solveGame();
     void placeOwnStartblocks();
     void play();
-    std::vector<Board> placeStartblocksGenerate();
-    void boardSelection();
+    void placeStartblocksGenerate(int difficulty);
+    void difficultySelection();
     void GamePlay();
 
 

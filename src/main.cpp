@@ -5,12 +5,12 @@
 
 int main()
 {
-    /*
+
       Game game;
       game.GamePlay();
       game.play();
-    */
 
+    /*
     Block startBlock1 = {BlockType::ONEBYONE, 1, 1, BLACK};
     Block startBlock2 = {BlockType::ONEBYTWO, 1, 2, BLACK};
     Block startBlock3 = {BlockType::ONEBYTHREE, 1, 3, BLACK};
@@ -22,6 +22,7 @@ int main()
     Solver solver;
     solver.solve();
     int** board = solver.getWinningBoard();
+     */
 
 
     return 0;

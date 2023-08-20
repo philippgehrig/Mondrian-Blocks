@@ -48,9 +48,8 @@ void Game::initStartblocks()
 
 }
 
-std::vector<Board> Game::placeStartblocksGenerate() {
+void Game::placeStartblocksGenerate(int difficulty) {
     std::vector<Block> startblocks = Board::getNotPlacedStartBlocks();
-    std::vector<Board> Boards;
     for(int i = 0; i< 3; i++)
     {
         do
@@ -73,12 +72,9 @@ std::vector<Board> Game::placeStartblocksGenerate() {
             m_solver.solve();
             std::cout << "Durchlauch\n";
         }while(!m_solver.getWin());
-        Boards.push_back(m_board);
     }
 
 
-
-    return Boards;
 //    auto solutions = m_solver.solve(m_board);
 //
 //    int number_of_solutions = solutions.size();
@@ -290,7 +286,7 @@ void Game::play()
         if(debugo == 1)
         {
             CloseWindow();
-            boardSelection();
+            difficultySelection();
         }
         if(debugo == 2)
         {
@@ -301,7 +297,7 @@ void Game::play()
     }
 }
 
-void Game::boardSelection()
+void Game::difficultySelection()
 {
     //m_board.initBoard();
     initStartblocks();
@@ -309,22 +305,22 @@ void Game::boardSelection()
     InitWindow(SCREEN_WIDTH, SCREEN_HEIGHT, "GUI");
     SetTargetFPS(60);
 
-    std::cout << "boardSelection" << std::endl;
+    std::cout << "difficultySelection" << std::endl;
     int selection;
-    std::vector<Board> boards = placeStartblocksGenerate();
+
 
     while(!WindowShouldClose())
     {
         BeginDrawing();
         ClearBackground(RAYWHITE);
 
-        selection = m_gui.drawBoardSelection(boards);
+        selection = m_gui.drawDifficultySelection();
 
-        if(selection == 1){m_board = boards[0]; GamePlay();}
+        if(selection == 1){placeStartblocksGenerate(1); GamePlay();}
 
-        if(selection == 2){m_board = boards[1];GamePlay();}
+        if(selection == 2){placeStartblocksGenerate(2);GamePlay();}
 
-        if(selection == 3){m_board = boards[2];GamePlay();}
+        if(selection == 3){placeStartblocksGenerate(3);GamePlay();}
 
         EndDrawing();
         //Board::printBoard();
