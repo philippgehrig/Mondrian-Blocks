@@ -50,22 +50,31 @@ void Game::initStartblocks()
 
 std::vector<Board> Game::placeStartblocksGenerate() {
     std::vector<Block> startblocks = Board::getNotPlacedStartBlocks();
-    for (auto block : startblocks)
+    std::vector<Board> Boards;
+    for(int i = 0; i< 3; i++)
     {
-        int placecheck = 1;
-        // Rotation
-        if(Board::generateRotation()) // if true rotate once, if false don't rotate
-        {
-            Board::rotateBlock(block);
-        }
-
-        //place
         do
         {
-            placecheck = Board::placeBlock(block, Board::generateCoordinate(), Board::generateCoordinate());
-        } while(!placecheck);
+            m_board.clearBoard();
+            for (auto block : startblocks)
+            {
+                int placecheck = 1;
+                // Rotation
+                if(Board::generateRotation()) // if true rotate once, if false don't rotate
+                {
+                    Board::rotateBlock(block);
+                }
+                //place
+                do
+                {
+                    placecheck = Board::placeBlock(block, Board::generateCoordinate(), Board::generateCoordinate());
+                } while(!placecheck);
+            }
+            m_solver.solve(m_board.getBoard());
+        }while(m_solver.getWin());
+        Boards.push_back(m_board);
     }
-
+    return Boards;
 //    auto solutions = m_solver.solve(m_board);
 //
 //    int number_of_solutions = solutions.size();
@@ -302,7 +311,7 @@ void Game::boardSelection()
     {
         BeginDrawing();
         ClearBackground(RAYWHITE);
-        selection = m_gui.drawBoardSelection();
+        selection = m_gui.drawBoardSelection(m_board);
 
         if(selection == 1){GamePlay();}
 

@@ -20,6 +20,8 @@ public:
     void setWinningBoard(int** board);
     void nextPiece(int** board);
 
+    bool getWin();
+
 
 
 private:

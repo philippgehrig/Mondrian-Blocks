@@ -83,10 +83,10 @@ public:
 
     /**
      * @brief draws Board Selection
-     * @param Boards Boards to select from
+     * @param mainboard is the new Board
      * @return choosen Board Number
      */
-     int drawBoardSelection();
+     int drawBoardSelection(Board &mainboard);
 
      /**
       * @brief checks if mouse is on a Block

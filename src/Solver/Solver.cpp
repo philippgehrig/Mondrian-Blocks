@@ -51,5 +51,11 @@ void Solver::nextPiece(int** board)
     }
 }
 
+bool Solver::getWin()
+{
+    return m_win;
+}
+
+
 
 

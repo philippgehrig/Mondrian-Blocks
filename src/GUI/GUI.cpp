@@ -340,7 +340,7 @@ int GUI::drawWinScreen()
 
 }
 
-int GUI::drawBoardSelection()
+int GUI::drawBoardSelection(Board &mainboard)
 {
     ///Test
     int board[3][8][8] = {0};
