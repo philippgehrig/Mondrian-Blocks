@@ -83,10 +83,10 @@ public:
 
     /**
      * @brief draws Board Selection
-     * @param mainboard is the new Board
+     * @param boards the possible boards
      * @return choosen Board Number
      */
-     int drawBoardSelection(Board &mainboard);
+     int drawBoardSelection(std::vector<Board> boards);
 
      /**
       * @brief checks if mouse is on a Block

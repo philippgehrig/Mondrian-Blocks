@@ -102,7 +102,7 @@ void Solver::solveNextPiece(int new_index, int**newboard)
 
 bool Solver::getWin()
 {
-    return m_win;
+    return m_is_won;
 }
 
 

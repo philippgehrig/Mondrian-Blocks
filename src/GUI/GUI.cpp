@@ -340,7 +340,7 @@ int GUI::drawWinScreen()
 
 }
 
-int GUI::drawBoardSelection(Board &mainboard)
+int GUI::drawBoardSelection(std::vector<Board> boards)
 {
     ///Test
     int board[3][8][8] = {0};
@@ -381,7 +381,7 @@ int GUI::drawBoardSelection(Board &mainboard)
         {
             for(int row = 0; row < BOARD_WIDTH; row++)
             {
-                if(board[i][column][row] != 0)
+                if(boards[i].getBoard()[row][column] != 0) //Switched row and column
                 {
                     DrawRectangle((i * 600) + 3 * DRAW_HELP_BOARDSELECTION + column * DRAW_HELP_BOARDSELECTION, (10 + row) * DRAW_HELP_BOARDSELECTION, DRAW_HELP_BOARDSELECTION, DRAW_HELP_BOARDSELECTION, BLACK);
                 }

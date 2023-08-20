@@ -70,10 +70,14 @@ std::vector<Board> Game::placeStartblocksGenerate() {
                     placecheck = Board::placeBlock(block, Board::generateCoordinate(), Board::generateCoordinate());
                 } while(!placecheck);
             }
-            m_solver.solve(m_board.getBoard());
-        }while(m_solver.getWin());
+            m_solver.solve();
+            std::cout << "Durchlauch\n";
+        }while(!m_solver.getWin());
         Boards.push_back(m_board);
     }
+
+
+
     return Boards;
 //    auto solutions = m_solver.solve(m_board);
 //
@@ -247,13 +251,13 @@ void Game::GamePlay()
             {
                 if(m_board.placeBlock(block, height_coord, width_coord))
                 {
-                    Board::setPlacedBlock(block);
+                    //Board::setPlacedBlock(block);
                     std::cout << "Block Placed on " << height_coord << " * " << width_coord <<"\n";
                     Board::printBoard();
                 }
                 else
                 {
-                    Board::setNotPlacedPlayBlock(block);
+                    //Board::setNotPlacedPlayBlock(block);
                     std::cout << "Block not Placed\n";
                 }
 
@@ -307,19 +311,23 @@ void Game::boardSelection()
 
     std::cout << "boardSelection" << std::endl;
     int selection;
+    std::vector<Board> boards = placeStartblocksGenerate();
+
     while(!WindowShouldClose())
     {
         BeginDrawing();
         ClearBackground(RAYWHITE);
-        selection = m_gui.drawBoardSelection(m_board);
 
-        if(selection == 1){GamePlay();}
+        selection = m_gui.drawBoardSelection(boards);
 
-        if(selection == 2){GamePlay();}
+        if(selection == 1){m_board = boards[0]; GamePlay();}
 
-        if(selection == 3){GamePlay();}
+        if(selection == 2){m_board = boards[1];GamePlay();}
+
+        if(selection == 3){m_board = boards[2];GamePlay();}
 
         EndDrawing();
+        //Board::printBoard();
     }
 }
 

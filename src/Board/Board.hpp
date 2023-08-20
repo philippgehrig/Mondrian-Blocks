@@ -9,6 +9,7 @@
 #include <random>
 #include <tuple>
 #include <algorithm>
+#include <chrono>
 
 /**
  * @brief Board class. Implemented as static class -> only one instance of the board is possible
@@ -237,6 +238,7 @@ public:
      */
     static bool placeBlock(Block& block, const int height_coord, const int width_coord)
     {
+
         //if block can be placed
         if(canPlaceBlock(block, height_coord, width_coord))
         {
@@ -246,10 +248,24 @@ public:
                     m_board[column][row] = static_cast<int>(block.type);
                 }
             }
-
+            setPlacedBlock(block);
+            if(block.type == BlockType::ONEBYONE || block.type == BlockType::ONEBYTWO || block.type == BlockType::ONEBYTHREE)
+                removeNotPlacedStartBlock(block);
+            else
+                removeNotPlacedBlock(block);
             return true;
         }
-        else return false;
+        else
+        {
+            if(block.type == BlockType::ONEBYONE || block.type == BlockType::ONEBYTWO || block.type == BlockType::ONEBYTHREE)
+                Board::setNotPlacedStartBlock(block);
+            else
+                Board::setNotPlacedPlayBlock(block);
+            removePlacedBlock(block);
+            removeBlock(block);
+            return false;
+        }
+
     }
 
     /**
@@ -428,10 +444,12 @@ public:
      */
     static int generateRotation()
     {
-        static std::random_device rd;
-        static std::mt19937 gen(rd());
-        static std::uniform_int_distribution<> dis(0, 1);
-        return dis(gen);
+        unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
+        std::default_random_engine generator(seed);
+        std::uniform_int_distribution<int> distribution(0, 1);
+        int random_number = distribution(generator);
+
+        return random_number;
     }
 
     /**
@@ -439,10 +457,12 @@ public:
      */
     static int generateCoordinate()
     {
-        static std::random_device rd;
-        static std::mt19937 gen(rd());
-        static std::uniform_int_distribution<> dis(0, 7);
-        return dis(gen);
+        unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
+        std::default_random_engine generator(seed);
+        std::uniform_int_distribution<int> distribution(0, 7);
+        int random_number = distribution(generator);
+
+        return random_number;
     }
 
     /**
