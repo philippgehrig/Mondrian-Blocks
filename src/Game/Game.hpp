@@ -19,16 +19,47 @@ public:
     ~Game()
     {};
 
-    void start();
-    void initStartblocks();
-    void initPlayblocks();
-    void buildGame();
-    void solveGame();
-    void placeOwnStartblocks();
+
+    /**
+     * @brief starts the Main Menu of the Game
+     */
     void play();
-    void placeStartblocksGenerate(int difficulty);
+
+    /**
+     * @brief starts Mode to build your own Board
+     */
+    void buildGame();
+
+    /**
+     * @brief starts Menu for difficulty Selection
+     */
     void difficultySelection();
+
+    /**
+     * @brief starts actual Gameplay with placing blocks
+     */
     void GamePlay();
+
+    /**
+     * @brief opens Menu for little tips
+     */
+    void showTips();
+
+    /**
+     * @brief initialisiert Startblocks
+     */
+    void initStartblocks();
+
+    /**
+     * @brief initialisiert Playblocks
+     */
+    void initPlayblocks();
+
+    /**
+     * @brief generates StartBlocks on block depending on choosen difficulty
+     * @param difficulty difficulty influences how the StartBlocks are placed
+     */
+    void placeStartblocksGenerate(int difficulty);
 
 
 

@@ -1,39 +1,5 @@
 #include "../Game/Game.hpp"
 
-void Game::start()
-{
-    // Creating of blocks
-    m_board.initBoard();
-    initStartblocks();
-    initPlayblocks();
-
-    // GUI
-    InitWindow(SCREEN_WIDTH, SCREEN_HEIGHT, "Mondrian Blocks");
-    SetTargetFPS(60);
-
-    while(!WindowShouldClose())
-    {
-        BeginDrawing();
-        ClearBackground(RAYWHITE);
-        // int game_mode = m_gui.drawStartScreen();
-        EndDrawing();
-        int game_mode = 1;
-        switch(game_mode)
-        {
-            case 1:
-                // placeStartblocksGenerate();
-                buildGame();
-                break;
-            case 2:
-                // placeOwnStartblocks();
-                buildGame();
-                break;
-            default:
-                DrawText("Error, please restart the Game", 10, 10, 20, RED);
-                break;
-        }
-    }
-}
 
 void Game::initStartblocks()
 {
@@ -289,6 +255,11 @@ void Game::play()
             CloseWindow();
             buildGame();
         }
+        if(debugo == 3)
+        {
+            CloseWindow();
+            showTips();
+        }
         EndDrawing();
     }
 }
@@ -323,5 +294,44 @@ void Game::difficultySelection()
     }
 }
 
+void Game::showTips()
+{
 
+}
 
+/*
+void Game::start()
+{
+    // Creating of blocks
+    m_board.initBoard();
+    initStartblocks();
+    initPlayblocks();
+
+    // GUI
+    InitWindow(SCREEN_WIDTH, SCREEN_HEIGHT, "Mondrian Blocks");
+    SetTargetFPS(60);
+
+    while(!WindowShouldClose())
+    {
+        BeginDrawing();
+        ClearBackground(RAYWHITE);
+        // int game_mode = m_gui.drawStartScreen();
+        EndDrawing();
+        int game_mode = 1;
+        switch(game_mode)
+        {
+            case 1:
+                // placeStartblocksGenerate();
+                buildGame();
+                break;
+            case 2:
+                // placeOwnStartblocks();
+                buildGame();
+                break;
+            default:
+                DrawText("Error, please restart the Game", 10, 10, 20, RED);
+                break;
+        }
+    }
+}
+*/
