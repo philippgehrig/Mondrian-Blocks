@@ -76,6 +76,11 @@ public:
      */
     int drawDifficultySelection();
 
+    /**
+     * @brief draws Menu for little Tips
+     */
+     void drawShowTips();
+
      /**
       * @brief checks if mouse is on a Block
       * @return block Type

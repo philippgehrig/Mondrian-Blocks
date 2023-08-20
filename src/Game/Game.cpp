@@ -34,7 +34,7 @@ void Game::placeStartblocksGenerate(int difficulty) {
             } while(!placecheck);
         }
         std::cout << "Durchlauch\n";
-    }while(m_solver.solve() == difficulty);
+    }while(!(m_solver.solve() == difficulty));
 
 
 //    auto solutions = m_solver.solve(m_board);
@@ -296,7 +296,22 @@ void Game::difficultySelection()
 
 void Game::showTips()
 {
+    InitWindow(SCREEN_WIDTH, SCREEN_HEIGHT, "GUI");
+    SetTargetFPS(60);
 
+    std::cout << "showTips" << std::endl;
+    int selection;
+
+    while(!WindowShouldClose())
+    {
+        BeginDrawing();
+        ClearBackground(RAYWHITE);
+
+        m_gui.drawShowTips();
+
+        EndDrawing();
+        //Board::printBoard();
+    }
 }
 
 /*

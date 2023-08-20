@@ -153,6 +153,7 @@ int GUI::drawStartScreen()
         DrawText("Welcome to Mondrian Blocks", 100, 100, 20, BLACK);
         DrawText("Press 1 to start the game", 100, 200, 20, BLACK);
         DrawText("Press 2 to start a game with your own board", 100, 300, 20, BLACK);
+        DrawText("Press 3 to show some Tips", 100, 400, 20, BLACK);
 
 
         if(IsKeyPressed(KEY_ONE))
@@ -162,7 +163,11 @@ int GUI::drawStartScreen()
         else if(IsKeyPressed(KEY_TWO))
         {
             return 2;
+        }else if(IsKeyPressed(KEY_THREE))
+        {
+            return 3;
         }
+
 
         return -1;
     }
@@ -331,7 +336,6 @@ int GUI::drawWinScreen()
 
 }
 
-
 BlockType GUI::isMouseOnStartBlock()
 {
     // check on field
@@ -384,7 +388,7 @@ BlockType GUI::isMouseOnStartBlock()
 
 int GUI::drawDifficultySelection()
 {
-DrawText("Choose Difficulty", 100, 100, 20, BLACK);
+    DrawText("Choose Difficulty", 100, 100, 20, BLACK);
     DrawText("Press 1 for easy", 100, 200, 20, BLACK);
     DrawText("Press 2 for medium", 100, 300, 20, BLACK);
     DrawText("Press 3 for hard", 100, 400, 20, BLACK);
@@ -401,6 +405,13 @@ DrawText("Choose Difficulty", 100, 100, 20, BLACK);
     {
         return 3;
     }
+}
+
+void GUI::drawShowTips()
+{
+    DrawText("Little Tips", 100, 100, 20, BLACK);
+    DrawText("Press R to rotate Block", 100, 200, 20, BLACK);
+    DrawText("Press S in build Menu to start playing", 100, 300, 20, BLACK);
 }
 
 
