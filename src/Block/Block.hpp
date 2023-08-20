@@ -27,9 +27,6 @@ enum class BlockType{
     TWOBYFOUR = 10,
     THREEBYFOUR = 11,
     NONE = -1
-
-
-
 };
 
 typedef struct Block

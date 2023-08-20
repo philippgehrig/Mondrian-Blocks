@@ -15,10 +15,9 @@ int main()
     Board::placeBlock(startBlock1, 0,0);
     Board::placeBlock(startBlock2, 0,1);
     Board::placeBlock(startBlock3, 0,3);
-    //print board
-//    Board::printBoard();
     Solver solver;
     solver.solve();
-    int** board = solver.getWinningBoard();
+    solver.printStatus();
+//    int** board = solver.getWinningBoard();
     return 0;
 }

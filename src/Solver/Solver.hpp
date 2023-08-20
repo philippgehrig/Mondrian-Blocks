@@ -19,11 +19,12 @@ public:
 
     void solve();
     void setPieces();
-    void solvePiece(int index, int** board);
+    void solvePiece(int** board);
     void setWinningBoard(int** board);
     void solveNextPiece(int new_index, int** newboard);
     int** getWinningBoard();
-
+    void printStatus();
+    bool isPlaced(int index);
 
 
 private:
@@ -34,6 +35,7 @@ private:
     int m_open = 0;
     int m_try_counter = 0;
     Block m_play_blocks[PLAYBLOCK_AMOUNT];
+    std::vector<Block> m_placed_blocks = {};
 
 };
 
