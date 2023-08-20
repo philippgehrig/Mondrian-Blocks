@@ -1,15 +1,6 @@
 #include "../GUI/GUI.hpp"
 #include <iostream>
 
-void GUI::drawBoard()
-{
-    BeginDrawing();
-    ClearBackground(RAYWHITE);
-    drawGameBackground();
-    drawNotPlacedBlocks(Board::getNotPlacedPlayBlocks());
-    drawPlacedBlocks(Board::getPlacedBlocks());
-    EndDrawing();
-}
 
 void GUI::drawNotPlacedBlocks(std::vector<Block> notPlacedBlocks)
 {
@@ -340,67 +331,6 @@ int GUI::drawWinScreen()
 
 }
 
-int GUI::drawBoardSelection(std::vector<Board> boards)
-{
-    ///Test
-    int board[3][8][8] = {0};
-
-    board[0][2][3] = 1;
-    board[0][2][4] = 1;
-    board[0][2][5] = 1;
-
-    board[1][3][1] = 1;
-    board[1][4][1] = 1;
-    board[1][5][1] = 1;
-
-    board[2][0][3] = 1;
-    board[2][1][4] = 1;
-    board[2][2][5] = 1;
-    ///
-    //Boards
-    for(int i = 0; i < 3; i++)
-    {
-        //vertical lines
-        for(int column = 0; column < BOARD_WIDTH + 1; column++)
-        {
-            DrawLine((i * 600) + 3 * DRAW_HELP_BOARDSELECTION + column * DRAW_HELP_BOARDSELECTION, 10 * DRAW_HELP_BOARDSELECTION, (i * 600) + 3 * DRAW_HELP_BOARDSELECTION + column * DRAW_HELP_BOARDSELECTION, 18 * DRAW_HELP_BOARDSELECTION, BLACK);
-        }
-        // horizontal lines
-        for(int row = 0; row < BOARD_HEIGHT + 1; row++)
-        {
-            DrawLine((i * 600) + 3 * DRAW_HELP_BOARDSELECTION ,  (10 + row) * DRAW_HELP_BOARDSELECTION, (i * 600) + 11 * DRAW_HELP_BOARDSELECTION, (10 + row) * DRAW_HELP_BOARDSELECTION, BLACK);
-        }
-
-        //int** board = Board::getBoard();
-
-
-
-
-
-        for(int column = 0; column < BOARD_HEIGHT; column++)
-        {
-            for(int row = 0; row < BOARD_WIDTH; row++)
-            {
-                if(boards[i].getBoard()[row][column] != 0) //Switched row and column
-                {
-                    DrawRectangle((i * 600) + 3 * DRAW_HELP_BOARDSELECTION + column * DRAW_HELP_BOARDSELECTION, (10 + row) * DRAW_HELP_BOARDSELECTION, DRAW_HELP_BOARDSELECTION, DRAW_HELP_BOARDSELECTION, BLACK);
-                }
-            }
-        }
-    }
-    if(IsKeyPressed(KEY_ONE))
-    {
-        return 1;
-    }
-    else if(IsKeyPressed(KEY_TWO))
-    {
-        return 2;
-    }
-    else if(IsKeyPressed(KEY_THREE))
-    {
-        return 3;
-    }
-}
 
 BlockType GUI::isMouseOnStartBlock()
 {
@@ -474,3 +404,66 @@ DrawText("Choose Difficulty", 100, 100, 20, BLACK);
 }
 
 
+/*
+int GUI::drawBoardSelection(std::vector<Board> boards)
+{
+    ///Test
+    int board[3][8][8] = {0};
+
+    board[0][2][3] = 1;
+    board[0][2][4] = 1;
+    board[0][2][5] = 1;
+
+    board[1][3][1] = 1;
+    board[1][4][1] = 1;
+    board[1][5][1] = 1;
+
+    board[2][0][3] = 1;
+    board[2][1][4] = 1;
+    board[2][2][5] = 1;
+    ///
+    //Boards
+    for(int i = 0; i < 3; i++)
+    {
+        //vertical lines
+        for(int column = 0; column < BOARD_WIDTH + 1; column++)
+        {
+            DrawLine((i * 600) + 3 * DRAW_HELP_BOARDSELECTION + column * DRAW_HELP_BOARDSELECTION, 10 * DRAW_HELP_BOARDSELECTION, (i * 600) + 3 * DRAW_HELP_BOARDSELECTION + column * DRAW_HELP_BOARDSELECTION, 18 * DRAW_HELP_BOARDSELECTION, BLACK);
+        }
+        // horizontal lines
+        for(int row = 0; row < BOARD_HEIGHT + 1; row++)
+        {
+            DrawLine((i * 600) + 3 * DRAW_HELP_BOARDSELECTION ,  (10 + row) * DRAW_HELP_BOARDSELECTION, (i * 600) + 11 * DRAW_HELP_BOARDSELECTION, (10 + row) * DRAW_HELP_BOARDSELECTION, BLACK);
+        }
+
+        //int** board = Board::getBoard();
+
+
+
+
+
+        for(int column = 0; column < BOARD_HEIGHT; column++)
+        {
+            for(int row = 0; row < BOARD_WIDTH; row++)
+            {
+                if(boards[i].getBoard()[row][column] != 0) //Switched row and column
+                {
+                    DrawRectangle((i * 600) + 3 * DRAW_HELP_BOARDSELECTION + column * DRAW_HELP_BOARDSELECTION, (10 + row) * DRAW_HELP_BOARDSELECTION, DRAW_HELP_BOARDSELECTION, DRAW_HELP_BOARDSELECTION, BLACK);
+                }
+            }
+        }
+    }
+    if(IsKeyPressed(KEY_ONE))
+    {
+        return 1;
+    }
+    else if(IsKeyPressed(KEY_TWO))
+    {
+        return 2;
+    }
+    else if(IsKeyPressed(KEY_THREE))
+    {
+        return 3;
+    }
+}
+*/

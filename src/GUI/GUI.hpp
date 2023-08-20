@@ -17,11 +17,6 @@ public:
     ~GUI(){};
 
     /**
-     * @brief starts every draw function to game
-     */
-    void drawBoard();
-
-    /**
      * @brief draws every not placed Block
      * @param notPlacedBlocks: vector of not placed Blocks
      */
@@ -63,12 +58,6 @@ public:
     std::tuple<int, int> calculateMouseCoordinates();
 
     /**
-     * @brief checks if mouse is on a Block
-     * @return block Type
-     */
-    BlockType isMouseOnBlock();
-
-    /**
      * @brief finds Block with the type given
      * @param type: given type
      * @return the Block with the given Type
@@ -82,11 +71,10 @@ public:
     int drawWinScreen();
 
     /**
-     * @brief draws Board Selection
-     * @param boards the possible boards
-     * @return choosen Board Number
+     * @brief draws Menu for difficulty Selection
+     * @return integer for Difficultyselection
      */
-     int drawBoardSelection(std::vector<Board> boards);
+    int drawDifficultySelection();
 
      /**
       * @brief checks if mouse is on a Block
@@ -94,7 +82,13 @@ public:
       */
      BlockType isMouseOnStartBlock();
 
-     int drawDifficultySelection();
+    /**
+      * @brief checks if mouse is on a Block
+      * @return block Type
+      */
+     BlockType isMouseOnBlock();
+
+
 
 
 
