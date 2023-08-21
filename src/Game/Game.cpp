@@ -34,7 +34,7 @@ void Game::placeStartblocksGenerate(int difficulty) {
             } while(!placecheck);
         }
         std::cout << "Durchlauch\n";
-    }while(m_solver.solve() != difficulty);
+    }while(m_solver.solve(difficulty) != difficulty);
 
 }
 
@@ -282,11 +282,14 @@ void Game::difficultySelection()
 
         selection = m_gui.drawDifficultySelection();
 
-        if(selection == 1){placeStartblocksGenerate(1); GamePlay();}
+        if(selection == 1){placeStartblocksGenerate(1);
+            GamePlay();}
 
-        if(selection == 2){placeStartblocksGenerate(2);GamePlay();}
+        if(selection == 2){placeStartblocksGenerate(2);
+            GamePlay();}
 
-        if(selection == 3){placeStartblocksGenerate(3);GamePlay();}
+        if(selection == 3){placeStartblocksGenerate(3);
+            GamePlay();}
 
         EndDrawing();
         //Board::printBoard();
