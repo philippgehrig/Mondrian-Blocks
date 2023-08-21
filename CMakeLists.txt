@@ -57,7 +57,9 @@
 
  # Our Project
  add_executable(${PROJECT_NAME} ${Sources} ${Headers}
-         src/main.cpp)
+         src/main.cpp
+         test/test.cpp
+ )
 
  add_library(${PROJECT_NAME}_lib STATIC ${Sources} ${Headers})
 

@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.25)
 
 set(
         Tests
-        programTests
+        test.cpp
 )
 
 set(
