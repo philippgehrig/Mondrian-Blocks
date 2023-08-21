@@ -44,9 +44,9 @@ public:
      */
     static void setBoard(int** newBoard)
     {
-        for(int i = 0; i < 8; i++)
+        for(int i = 0; i < BOARD_WIDTH; i++)
         {
-            for(int j = 0; j < 8; j++)
+            for(int j = 0; j < BOARD_HEIGHT; j++)
             {
                 m_board[i][j] = newBoard[i][j];
             }
