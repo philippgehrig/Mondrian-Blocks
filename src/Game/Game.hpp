@@ -61,6 +61,12 @@ public:
      */
     void placeStartblocksGenerate(int difficulty);
 
+    /**
+     * @brief Generates solvable Startboards
+     * @param difficulty choosen difficulty
+     */
+     void boardGeneration(int difficulty);
+
 
 
 private:

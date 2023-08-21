@@ -130,7 +130,7 @@ void Solver::solvePiece(int **board, int difficulty) {
                 }
             }
 
-    if(m_try_counter > 100000000)
+    if(m_try_counter > 1000000000)
     {
         m_is_impossible = true;
     }
@@ -148,7 +148,8 @@ void Solver::solvePiece(int **board, int difficulty) {
                     if (!isPlaced(index)) {
                         m_try_counter++;
 
-                        //std::cout << m_try_counter << "\n";
+                        if(m_try_counter % 10000000 == 0){                        std::cout << m_try_counter << "\n";
+                        }
 
                         // Prune this branch if the block can't be placed here
                         if (!Board::canPlaceBlockSolver(m_play_blocks[index], col, row, board, rotate)) {

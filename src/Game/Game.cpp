@@ -328,13 +328,13 @@ void Game::difficultySelection()
 
         selection = m_gui.drawDifficultySelection();
 
-        if(selection == 1){placeStartblocksGenerate(1);
+        if(selection == 1){boardGeneration(1);
             GamePlay();}
 
-        if(selection == 2){placeStartblocksGenerate(2);
+        if(selection == 2){boardGeneration(2);
             GamePlay();}
 
-        if(selection == 3){placeStartblocksGenerate(3);
+        if(selection == 3){boardGeneration(3);
             GamePlay();}
 
         EndDrawing();
@@ -359,4 +359,126 @@ void Game::showTips()
 
         EndDrawing();
     }
+}
+
+void Game::boardGeneration(int difficulty)
+{
+    int randomboard;
+
+    difficulty -= 1;
+
+    int xCoordinatesBlocks[3][3][3] = {0};
+    int yCoordinatesBlocks[3][3][3] = {0};
+
+    //Hardcoded Boards are following
+
+    //First Board easy
+    xCoordinatesBlocks[0][0][0] = 7;
+    yCoordinatesBlocks[0][0][0] = 6;
+
+    xCoordinatesBlocks[0][1][0] = 2;
+    yCoordinatesBlocks[0][1][0] = 6;
+
+    xCoordinatesBlocks[0][2][0] = 5;
+    yCoordinatesBlocks[0][2][0] = 7;
+
+    //Second Board easy
+    xCoordinatesBlocks[0][0][1] = 5;
+    yCoordinatesBlocks[0][0][1] = 4;
+
+    xCoordinatesBlocks[0][1][1] = 0;
+    yCoordinatesBlocks[0][1][1] = 5;
+
+    xCoordinatesBlocks[0][2][1] = 4;
+    yCoordinatesBlocks[0][2][1] = 0;
+
+    //Third Board easy
+    xCoordinatesBlocks[0][0][2] = 7;
+    yCoordinatesBlocks[0][0][2] = 4;
+
+    xCoordinatesBlocks[0][1][2] = 4;
+    yCoordinatesBlocks[0][1][2] = 4;
+
+    xCoordinatesBlocks[0][2][2] = 5;
+    yCoordinatesBlocks[0][2][2] = 7;
+
+    //First Board medium
+    xCoordinatesBlocks[1][0][0] = 4;
+    yCoordinatesBlocks[1][0][0] = 6;
+
+    xCoordinatesBlocks[1][1][0] = 4;
+    yCoordinatesBlocks[1][1][0] = 1;
+
+    xCoordinatesBlocks[1][2][0] = 5;
+    yCoordinatesBlocks[1][2][0] = 0;
+
+    //Second Board medium
+    xCoordinatesBlocks[1][0][1] = 2;
+    yCoordinatesBlocks[1][0][1] = 3;
+
+    xCoordinatesBlocks[1][1][1] = 1;
+    yCoordinatesBlocks[1][1][1] = 6;
+
+    xCoordinatesBlocks[1][2][1] = 5;
+    yCoordinatesBlocks[1][2][1] = 0;
+
+    //Third Board medium
+    xCoordinatesBlocks[1][0][1] = 7;
+    yCoordinatesBlocks[1][0][1] = 1;
+
+    xCoordinatesBlocks[1][1][1] = 0;
+    yCoordinatesBlocks[1][1][1] = 7;
+
+    xCoordinatesBlocks[1][2][1] = 2;
+    yCoordinatesBlocks[1][2][1] = 3;
+
+    //First Board hard
+    xCoordinatesBlocks[2][0][0] = 6;
+    yCoordinatesBlocks[2][0][0] = 7;
+
+    xCoordinatesBlocks[2][1][0] = 0;
+    yCoordinatesBlocks[2][1][0] = 2;
+
+    xCoordinatesBlocks[2][2][0] = 2;
+    yCoordinatesBlocks[2][2][0] = 4;
+
+    //Second Board hard
+    xCoordinatesBlocks[2][0][1] = 0;
+    yCoordinatesBlocks[2][0][1] = 3;
+
+    xCoordinatesBlocks[2][1][1] = 1;
+    yCoordinatesBlocks[2][1][1] = 6;
+
+    xCoordinatesBlocks[2][2][1] = 0;
+    yCoordinatesBlocks[2][2][1] = 2;
+
+    //Third Board hard
+    xCoordinatesBlocks[2][0][1] = 7;
+    yCoordinatesBlocks[2][0][1] = 6;
+
+    xCoordinatesBlocks[2][1][1] = 3;
+    yCoordinatesBlocks[2][1][1] = 4;
+
+    xCoordinatesBlocks[2][2][1] = 2;
+    yCoordinatesBlocks[2][2][1] = 3;
+
+
+
+    unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
+    std::default_random_engine generator(seed);
+    std::uniform_int_distribution<int> distribution(0, 2);
+    randomboard = distribution(generator);
+
+
+    std::vector<Block> startblocks = Board::getNotPlacedStartBlocks();
+
+    for (auto block : startblocks)
+    {
+        //place
+        int blocknumber = static_cast<int>(block.type);
+        blocknumber -= 1;
+        Board::placeBlock(block, yCoordinatesBlocks[difficulty][blocknumber][randomboard] , xCoordinatesBlocks[difficulty][blocknumber][randomboard] );
+    }
+
+
 }
