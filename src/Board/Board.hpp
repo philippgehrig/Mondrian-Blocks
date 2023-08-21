@@ -9,6 +9,7 @@
 #include <random>
 #include <tuple>
 #include <algorithm>
+#include <chrono>
 
 /**
  * @brief Board class. Implemented as static class -> only one instance of the board is possible
@@ -35,6 +36,21 @@ public:
             }
         }
         return boardCopy;
+    }
+
+    /**
+     * @brief overwrites Board
+     * @param newBoard is the Board which overwrites the old One
+     */
+    static void setBoard(int** newBoard)
+    {
+        for(int i = 0; i < BOARD_WIDTH; i++)
+        {
+            for(int j = 0; j < BOARD_HEIGHT; j++)
+            {
+                m_board[i][j] = newBoard[i][j];
+            }
+        }
     }
 
     /**
@@ -211,6 +227,10 @@ public:
      **/
     static bool canPlaceBlock(const Block& block, int height_coord, int width_coord)
     {
+        if(height_coord < 0 || width_coord < 0)
+        {
+            return false;
+        }
         for(int column = height_coord; column < height_coord + block.height; column++){
             for(int row = width_coord; row < width_coord + block.width; row++)
             {
@@ -237,6 +257,7 @@ public:
      */
     static bool placeBlock(Block& block, const int height_coord, const int width_coord)
     {
+
         //if block can be placed
         if(canPlaceBlock(block, height_coord, width_coord))
         {
@@ -246,10 +267,24 @@ public:
                     m_board[column][row] = static_cast<int>(block.type);
                 }
             }
-
+            setPlacedBlock(block);
+            if(block.type == BlockType::ONEBYONE || block.type == BlockType::ONEBYTWO || block.type == BlockType::ONEBYTHREE)
+                removeNotPlacedStartBlock(block);
+            else
+                removeNotPlacedBlock(block);
             return true;
         }
-        else return false;
+        else
+        {
+            if(block.type == BlockType::ONEBYONE || block.type == BlockType::ONEBYTWO || block.type == BlockType::ONEBYTHREE)
+                Board::setNotPlacedStartBlock(block);
+            else
+                Board::setNotPlacedPlayBlock(block);
+            removePlacedBlock(block);
+            removeBlock(block);
+            return false;
+        }
+
     }
 
     /**
@@ -456,6 +491,7 @@ public:
                 m_board[column][row] = 0;
             }
         }
+
     }
 
     /**
@@ -479,10 +515,12 @@ public:
      */
     static int generateRotation()
     {
-        static std::random_device rd;
-        static std::mt19937 gen(rd());
-        static std::uniform_int_distribution<> dis(0, 1);
-        return dis(gen);
+        unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
+        std::default_random_engine generator(seed);
+        std::uniform_int_distribution<int> distribution(0, 1);
+        int random_number = distribution(generator);
+
+        return random_number;
     }
 
     /**
@@ -490,10 +528,12 @@ public:
      */
     static int generateCoordinate()
     {
-        static std::random_device rd;
-        static std::mt19937 gen(rd());
-        static std::uniform_int_distribution<> dis(0, 7);
-        return dis(gen);
+        unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
+        std::default_random_engine generator(seed);
+        std::uniform_int_distribution<int> distribution(0, 7);
+        int random_number = distribution(generator);
+
+        return random_number;
     }
 
     /**
@@ -524,6 +564,17 @@ public:
             }
         }
     }
+
+    /**
+     * @brief moves all not Placed Playblocks to placed blocks
+     */
+     static void placeAllBlocks()
+     {
+        for(auto block : m_notPlacedPlayBlocks)
+        {
+            setPlacedBlock(block);
+        }
+     }
 
 
 private:

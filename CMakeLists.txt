@@ -57,11 +57,13 @@
 
  # Our Project
  add_executable(${PROJECT_NAME} ${Sources} ${Headers}
-         src/main.cpp)
+         src/main.cpp
+         test/test.cpp
+ )
 
  add_library(${PROJECT_NAME}_lib STATIC ${Sources} ${Headers})
 
- target_link_libraries(${PROJECT_NAME} raylib)
+ target_link_libraries(${PROJECT_NAME} raylib gtest)
 
 
  # Web Configurations

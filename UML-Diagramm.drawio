@@ -83,7 +83,7 @@
         <mxCell id="83zb9Xr7Xoc7tp23zqqq-19" value="void play()" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="p-KNmU-BI59sNPbP7N_D-18">
           <mxGeometry y="240" width="204" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="83zb9Xr7Xoc7tp23zqqq-20" value="void boardSelection()" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="p-KNmU-BI59sNPbP7N_D-18">
+        <mxCell id="83zb9Xr7Xoc7tp23zqqq-20" value="void difficultySelection()" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="p-KNmU-BI59sNPbP7N_D-18">
           <mxGeometry y="270" width="204" height="30" as="geometry" />
         </mxCell>
         <mxCell id="83zb9Xr7Xoc7tp23zqqq-21" value="void GamePlay()" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="p-KNmU-BI59sNPbP7N_D-18">

@@ -1,39 +1,5 @@
 #include "../Game/Game.hpp"
 
-void Game::start()
-{
-    // Creating of blocks
-    m_board.initBoard();
-    initStartblocks();
-    initPlayblocks();
-
-    // GUI
-    InitWindow(SCREEN_WIDTH, SCREEN_HEIGHT, "Mondrian Blocks");
-    SetTargetFPS(60);
-
-    while(!WindowShouldClose())
-    {
-        BeginDrawing();
-        ClearBackground(RAYWHITE);
-        // int game_mode = m_gui.drawStartScreen();
-        EndDrawing();
-        int game_mode = 1;
-        switch(game_mode)
-        {
-            case 1:
-                // placeStartblocksGenerate();
-                buildGame();
-                break;
-            case 2:
-                // placeOwnStartblocks();
-                buildGame();
-                break;
-            default:
-                DrawText("Error, please restart the Game", 10, 10, 20, RED);
-                break;
-        }
-    }
-}
 
 void Game::initStartblocks()
 {
@@ -48,36 +14,28 @@ void Game::initStartblocks()
 
 }
 
-std::vector<Board> Game::placeStartblocksGenerate() {
+void Game::placeStartblocksGenerate(int difficulty) {
     std::vector<Block> startblocks = Board::getNotPlacedStartBlocks();
-    for (auto block : startblocks)
+    do
     {
-        int placecheck = 1;
-        // Rotation
-        if(Board::generateRotation()) // if true rotate once, if false don't rotate
+        m_board.clearBoard();
+        for (auto block : startblocks)
         {
-            Board::rotateBlock(block);
+            int placecheck = 1;
+            // Rotation
+            if(Board::generateRotation()) // if true rotate once, if false don't rotate
+            {
+                Board::rotateBlock(block);
+            }
+            //place
+            do
+            {
+                placecheck = Board::placeBlock(block, Board::generateCoordinate(), Board::generateCoordinate());
+            } while(!placecheck);
         }
+        std::cout << "Durchlauch\n";
+    }while(m_solver.solve() != difficulty);
 
-        //place
-        do
-        {
-            placecheck = Board::placeBlock(block, Board::generateCoordinate(), Board::generateCoordinate());
-        } while(!placecheck);
-    }
-
-//    auto solutions = m_solver.solve(m_board);
-//
-//    int number_of_solutions = solutions.size();
-//    if(!number_of_solutions) // if there is no solutions go in this if
-//    {
-//        Board::clearBoard();
-//        placeStartblocks(startblocks);
-//    }
-//    else
-//    {
-//        return solutions;
-//    }
 }
 
 void Game::initPlayblocks()
@@ -176,35 +134,53 @@ void Game::buildGame()
 
 void Game::GamePlay()
 {
-    //m_board.initBoard();
+    //Initialisation of the Window
     initStartblocks();
     initPlayblocks();
     InitWindow(SCREEN_WIDTH, SCREEN_HEIGHT, "GUI");
     SetTargetFPS(60);
 
+    bool shouldSolve;
+
     std::cout << "GUITest" << std::endl;
+    //Loop for Playing
     while(!WindowShouldClose())
     {
+        //Drawing everything that needs to be drawn
         BeginDrawing();
         ClearBackground(RAYWHITE);
         m_gui.drawGameBackground();
         m_gui.drawNotPlacedBlocks(Board::getNotPlacedPlayBlocks());
         m_gui.drawPlacedBlocks(Board::getPlacedBlocks());
+        m_gui.drawSolverButton();
         Block block;
 
         EndDrawing();
+
+        //Drag and Drop Logic
         if(IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
         {
+            //Solver Button logic and Drawing
+            shouldSolve = m_gui.isMouseOnSolverButton();
+            if(shouldSolve)
+            {
+                std::cout << "Solve it\n";
+                Board::setBoard(m_solver.getWinningBoard());
+                Board::placeAllBlocks();
+
+            }
+            //Drag and Drop finding the block to move
             BlockType blockType = m_gui.isMouseOnBlock();
             if(blockType == BlockType::ONEBYONE || blockType == BlockType::ONEBYTWO || blockType == BlockType::ONEBYTHREE)
             {
                 continue;
             }
             block = m_gui.findBlockFromType(blockType);
-
             Board::removePlacedBlock(block);
             Board::removeNotPlacedBlock(block);
             Board::removeBlock(block);
+
+            //Moving the Block
             while(IsMouseButtonDown(MOUSE_BUTTON_LEFT))
             {
                 if(IsKeyPressed(KEY_R))
@@ -213,24 +189,17 @@ void Game::GamePlay()
                     std::cout << "Rotatet Block\n";
                 }
 
+                //Keep drawing everything
                 BeginDrawing();
                 ClearBackground(RAYWHITE);
-
                 m_gui.drawGameBackground();
                 m_gui.drawNotPlacedBlocks(Board::getNotPlacedPlayBlocks());
                 m_gui.drawPlacedBlocks(Board::getPlacedBlocks());
                 m_gui.drawBlockAtMouse(blockType);
-
-                /*
-                std::tuple<int, int> mouseCoordinates= m_gui.calculateMouseCoordinates();
-                int height_coord = std::get<0>(mouseCoordinates);
-                int width_coord = std::get<1>(mouseCoordinates);
-                */
-
-
-
+                m_gui.drawSolverButton();
                 EndDrawing();
             }
+            //Logic to actual place a Block
             std::tuple<int, int> mouseCoordinates= m_gui.calculateMouseCoordinates();
             int height_coord = std::get<0>(mouseCoordinates);
             int width_coord = std::get<1>(mouseCoordinates);
@@ -238,17 +207,18 @@ void Game::GamePlay()
             {
                 if(m_board.placeBlock(block, height_coord, width_coord))
                 {
-                    Board::setPlacedBlock(block);
+                    //Board::setPlacedBlock(block);
                     std::cout << "Block Placed on " << height_coord << " * " << width_coord <<"\n";
                     Board::printBoard();
                 }
                 else
                 {
-                    Board::setNotPlacedPlayBlock(block);
+                    //Board::setNotPlacedPlayBlock(block);
                     std::cout << "Block not Placed\n";
                 }
 
             }
+
             if(Board::isFull())
             {
                 // draw win screen
@@ -277,18 +247,23 @@ void Game::play()
         if(debugo == 1)
         {
             CloseWindow();
-            boardSelection();
+            difficultySelection();
         }
         if(debugo == 2)
         {
             CloseWindow();
             buildGame();
         }
+        if(debugo == 3)
+        {
+            CloseWindow();
+            showTips();
+        }
         EndDrawing();
     }
 }
 
-void Game::boardSelection()
+void Game::difficultySelection()
 {
     //m_board.initBoard();
     initStartblocks();
@@ -296,23 +271,43 @@ void Game::boardSelection()
     InitWindow(SCREEN_WIDTH, SCREEN_HEIGHT, "GUI");
     SetTargetFPS(60);
 
-    std::cout << "boardSelection" << std::endl;
+    std::cout << "difficultySelection" << std::endl;
     int selection;
+
+
     while(!WindowShouldClose())
     {
         BeginDrawing();
         ClearBackground(RAYWHITE);
-        selection = m_gui.drawBoardSelection();
 
-        if(selection == 1){GamePlay();}
+        selection = m_gui.drawDifficultySelection();
 
-        if(selection == 2){GamePlay();}
+        if(selection == 1){placeStartblocksGenerate(1); GamePlay();}
 
-        if(selection == 3){GamePlay();}
+        if(selection == 2){placeStartblocksGenerate(2);GamePlay();}
+
+        if(selection == 3){placeStartblocksGenerate(3);GamePlay();}
+
+        EndDrawing();
+        //Board::printBoard();
+    }
+}
+
+void Game::showTips()
+{
+    InitWindow(SCREEN_WIDTH, SCREEN_HEIGHT, "GUI");
+    SetTargetFPS(60);
+
+    std::cout << "showTips" << std::endl;
+    int selection;
+
+    while(!WindowShouldClose())
+    {
+        BeginDrawing();
+        ClearBackground(RAYWHITE);
+
+        m_gui.drawShowTips();
 
         EndDrawing();
     }
 }
-
-
-

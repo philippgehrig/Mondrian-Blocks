@@ -28,8 +28,6 @@ public:
 
     bool allPiecesPlaced() const;
 
-
-
 private:
     bool m_is_won;
     bool m_is_impossible;

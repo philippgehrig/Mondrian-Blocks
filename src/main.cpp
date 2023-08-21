@@ -43,4 +43,8 @@ int main()
     }
 
     return 0;
+  
+      Game game;
+      game.play();
+      return 0;
 }
