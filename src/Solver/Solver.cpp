@@ -1,5 +1,8 @@
 #include "Solver.hpp"
 
+/**
+ * @brief sets the pieces to the array, needed for the solver
+ */
 void Solver::setPieces() {
     Block PBlock2x2 = {BlockType::TWOBYTWO, 2, 2, RED};
     Block PBlock1x4 = {BlockType::ONEBYFOUR, 1, 4, GREEN};
@@ -21,6 +24,9 @@ void Solver::setPieces() {
 
 }
 
+/**
+ * @return difficulty level, 0 if impossible
+ */
 int Solver::getDifficulty() {
     if(!m_is_impossible)
         return 0;
@@ -31,6 +37,10 @@ int Solver::getDifficulty() {
     else return 3;
 }
 
+/**
+ * @param difficulty to generate board, -1 to solve the board
+ * @return difficulty level, 0 if impossible
+ */
 int Solver::solve(int difficulty) {
     setPieces();
     Board::printBoard();
@@ -38,7 +48,10 @@ int Solver::solve(int difficulty) {
     return getDifficulty();
 }
 
-
+/**
+ * @brief sets the m_winning_board to the winning board
+ * @param board
+ */
 void Solver::setWinningBoard(int **board) {
     for (int col = 0; col < BOARD_HEIGHT; col++) {
         for (int row = 0; row < BOARD_WIDTH; row++) {
@@ -47,6 +60,10 @@ void Solver::setWinningBoard(int **board) {
     }
 }
 
+/**
+ * @brief returns a copy of the winning board
+ * @return int**
+ */
 int** Solver::getWinningBoard()
 {
     int** boardCopy = new int*[BOARD_HEIGHT];
@@ -59,6 +76,10 @@ int** Solver::getWinningBoard()
     return boardCopy;
 }
 
+
+/**
+ * @brief prints the status of the solver, helper function
+ */
 void Solver::printStatus()
 {
     std::cout << "Try counter " << m_try_counter << std::endl;
@@ -68,7 +89,11 @@ void Solver::printStatus()
 }
 
 
-
+/**
+ * @brief checks if all pieces are placed
+ * @return true if all pieces are placed
+ * @return false if not all pieces are placed
+ */
 
 bool Solver::isPlaced(int index) {
     for(auto & m_placed_block : m_placed_blocks)
@@ -81,7 +106,11 @@ bool Solver::isPlaced(int index) {
     return false;
 }
 
-
+/**
+ * @brief main recursive function to solve the board
+ * @param board
+ * @param difficulty: -1 for solve
+ */
 void Solver::solvePiece(int **board, int difficulty) {
     if (m_is_won || m_is_impossible) {
         return;
@@ -146,6 +175,12 @@ void Solver::solvePiece(int **board, int difficulty) {
     }
 }
 
+
+/**
+ * @brief checks if all pieces are placed
+ * @return true if all pieces are placed
+ * @return false if not all pieces are placed
+ */
 bool Solver::allPiecesPlaced() const {
     return m_placed_blocks.size() == PLAYBLOCK_AMOUNT;
 }

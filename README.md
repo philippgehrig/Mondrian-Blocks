@@ -33,7 +33,7 @@ For our GUI we used [raylib](https://www.raylib.com). We belive that this makes 
 ### Installation
 
 ### Usage
-
+The solver is very slow at this time, the algorithm needs to be improved. Because of this, we recommend to use the solver only for easy games.
 ### Examples
 
 ## Contributions
