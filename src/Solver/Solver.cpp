@@ -21,9 +21,21 @@ void Solver::setPieces() {
 
 }
 
-void Solver::solve() {
+int Solver::getDifficulty() {
+    if(m_is_impossible)
+        return 0;
+    if(m_try_counter < 3000)
+        return 1;
+    else if(m_try_counter < 15000)
+        return 2;
+    else return 3;
+}
+
+int Solver::solve() {
     setPieces();
+    Board::printBoard();
     solvePiece(Board::getBoard());
+    return getDifficulty();
 }
 
 
@@ -50,53 +62,13 @@ int** Solver::getWinningBoard()
 void Solver::printStatus()
 {
     std::cout << "Try counter " << m_try_counter << std::endl;
+    std::cout << "Difficulty " << getDifficulty() << std::endl;
     std::cout << "Is won " << m_is_won << std::endl;
     std::cout << "Is impossible " << m_is_impossible << std::endl;
 }
 
 
-//void Solver::solvePiece(int **board)
-//{
-//    auto localstate = board;
-//
-//    for(int column = 0; column < BOARD_HEIGHT; column++)
-//    {
-//        for(int row = 0; row < BOARD_WIDTH; row++)
-//        {
-//            if(localstate[column][row] < 10) std::cout << " ";
-//            std::cout << localstate[column][row] << " ";
-//        }
-//        std::cout << std::endl;
-//    }
-//    std::cout << std::endl;
-//    for(int rotate = 0; rotate < 2; rotate++) {
-//        for (int col = 0; col < BOARD_HEIGHT; col++) {
-//            for (int row = 0; row < BOARD_WIDTH; row++) {
-//                for (int index = 0; index < PLAYBLOCK_AMOUNT; index++) {
-//                    m_try_counter++;
-//                    if(col == 7 && row == 7 && rotate == 1 && index== 7)
-//                    {
-//                        std::cout << "impossible" << std::endl;
-//                        setWinningBoard(localstate);
-//                    }
-//                    if (isPlaced(index)) continue;
-//                    if (Board::placeBlockSolver(m_play_blocks[index], col, row, localstate, rotate)) {
-//                        m_placed_blocks.push_back(m_play_blocks[index]);
-//                        if (index == PLAYBLOCK_AMOUNT - 1 && m_placed_blocks.size() == PLAYBLOCK_AMOUNT){
-//                            m_is_won = true;
-//                            setWinningBoard(localstate);
-//                        } else {
-//                            localstate = board;
-//                            solvePiece(board);
-//                            m_placed_blocks.pop_back();
-//                            Board::removeBlockSolver(m_play_blocks[index], board);
-//                        }
-//                    }
-//                }
-//            }
-//        }
-//    }
-//}
+
 
 bool Solver::isPlaced(int index) {
     for(auto & m_placed_block : m_placed_blocks)
@@ -115,34 +87,41 @@ void Solver::solvePiece(int **board) {
         return;
     }
 
+//    if(m_try_counter > 200000000)
+//    {
+//        m_is_impossible = true;
+//    }
+
     if (allPiecesPlaced()) {
         m_is_won = true;
         setWinningBoard(board);
         return;
     }
 
-//    for(int column = 0; column < BOARD_HEIGHT; column++)
-//    {
-//        for(int row = 0; row < BOARD_WIDTH; row++)
-//        {
-//            if(board[column][row] < 10) std::cout << " ";
-//            std::cout << board[column][row] << " ";
-//        }
-//        std::cout << std::endl;
-//    }
-//    std::cout << std::endl;
-
-    for (int index = 0; index < PLAYBLOCK_AMOUNT; index++) {
-        if (!isPlaced(index)) {
+    for (int col = 0; col < BOARD_HEIGHT; col++) {
+        for (int row = 0; row < BOARD_WIDTH; row++) {
             for (int rotate = 0; rotate < 2; rotate++) {
-                for (int col = 0; col < BOARD_HEIGHT; col++) {
-                    for (int row = 0; row < BOARD_WIDTH; row++) {
+                for (int index = 0; index < PLAYBLOCK_AMOUNT; index++) {
+                    if (!isPlaced(index)) {
                         m_try_counter++;
+
+                        // Prune this branch if the block can't be placed here
+                        if (!Board::canPlaceBlockSolver(m_play_blocks[index], col, row, board, rotate)) {
+                            continue;
+                        }
+
                         if (Board::placeBlockSolver(m_play_blocks[index], col, row, board, rotate)) {
                             m_placed_blocks.push_back(m_play_blocks[index]);
                             solvePiece(board);
+
+                            //backtrack
                             m_placed_blocks.pop_back();
                             Board::removeBlockSolver(m_play_blocks[index], board);
+
+                            // If a solution is found in the recursive call, exit the loops
+                            if (m_is_won || m_is_impossible) {
+                                return;
+                            }
                         }
                     }
                 }
@@ -155,12 +134,6 @@ bool Solver::allPiecesPlaced() const {
     return m_placed_blocks.size() == PLAYBLOCK_AMOUNT;
 }
 
-// Other methods remain unchanged
 
-// Add a method to delete the board when it's no longer needed
-void Solver::deleteBoard(int **board) {
-    for (int i = 0; i < BOARD_HEIGHT; i++) {
-        delete[] board[i];
-    }
-    delete[] board;
-}
+
+

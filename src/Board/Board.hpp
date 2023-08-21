@@ -260,8 +260,14 @@ public:
      * @param width_coord x-coordinate of the block (row) (top left corner)
      * @return true if the block can be placed, false otherwise
      **/
-    static bool canPlaceBlockSolver(const Block& block, int height_coord, int width_coord, int** board)
+    static bool canPlaceBlockSolver(Block& block, int height_coord, int width_coord, int** board, bool rotated = false)
     {
+        if(rotated)
+        {
+            int tmp = block.height;
+            block.height = block.width;
+            block.width = tmp;
+        }
         for(int column = height_coord; column < height_coord + block.height; column++){
             for(int row = width_coord; row < width_coord + block.width; row++)
             {
@@ -298,13 +304,13 @@ public:
      */
     static bool placeBlockSolver(Block& block, const int height_coord, const int width_coord, int** board, bool rotated = false)
     {
-        //if block can be placed
         if(rotated)
         {
             int tmp = block.height;
             block.height = block.width;
             block.width = tmp;
         }
+        //if block can be placed
         if(canPlaceBlockSolver(block, height_coord, width_coord, board))
         {
 

@@ -5,18 +5,30 @@
 
 int main()
 {
-//    Game game;
-    //game.GamePlay();
-//    game.play();
+
+//    Block startBlock1 = {BlockType::ONEBYONE, 1, 1, BLACK};
+//    Block startBlock2 = {BlockType::ONEBYTWO, 2, 1, BLACK};
+//    Block startBlock3 = {BlockType::ONEBYTHREE, 3, 1, BLACK};
+//    Board::placeBlock(startBlock1, 2,4);
+//    Board::placeBlock(startBlock2, 3,4);
+//    Board::placeBlock(startBlock3, 3,3);
+
+//    Block startBlock1 = {BlockType::ONEBYONE, 1, 1, BLACK};
+//    Block startBlock2 = {BlockType::ONEBYTWO, 1, 2, BLACK};
+//    Block startBlock3 = {BlockType::ONEBYTHREE, 1, 3, BLACK};
+//    Board::placeBlock(startBlock1, 0,0);
+//    Board::placeBlock(startBlock2, 0,1);
+//    Board::placeBlock(startBlock3, 0,3);
 
     Block startBlock1 = {BlockType::ONEBYONE, 1, 1, BLACK};
     Block startBlock2 = {BlockType::ONEBYTWO, 1, 2, BLACK};
     Block startBlock3 = {BlockType::ONEBYTHREE, 1, 3, BLACK};
-    Board::placeBlock(startBlock1, 0,0);
-    Board::placeBlock(startBlock2, 0,1);
-    Board::placeBlock(startBlock3, 0,3);
+    Board::placeBlock(startBlock1, 1,7);
+    Board::placeBlock(startBlock2, 7,0);
+    Board::placeBlock(startBlock3, 3,2);
+
     Solver solver;
-    solver.solve();
+    int diff = solver.solve();
     solver.printStatus();
     int** board = solver.getWinningBoard();
 
