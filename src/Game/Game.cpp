@@ -26,7 +26,7 @@ void Game::placeStartblocksGenerate(int difficulty) {
             // Rotation
             if(Board::generateRotation()) // if true rotate once, if false don't rotate
             {
-                Board::rotateBlock(block);
+                Board::rotateBlockOnHand(block);
             }
             //place
             do
@@ -169,8 +169,12 @@ void Game::GamePlay()
             if(shouldSolve)
             {
                 std::cout << "Solve it\n";
-                Board::setBoard(m_solver.getWinningBoard());
-                Board::placeAllBlocks();
+                if(m_solver.solve(-1))
+                {
+                    Board::setBoard(m_solver.getWinningBoard());
+                    Board::placeAllBlocks();
+                }
+
 
             }
             //Drag and Drop finding the block to move

@@ -472,7 +472,7 @@ public:
      * @brief rotates Block on Hand
      * @param block is Cock
      */
-     void rotateBlockOnHand(Block& block)
+     static void rotateBlockOnHand(Block& block)
      {
          int tmp = block.height;
          block.height = block.width;
