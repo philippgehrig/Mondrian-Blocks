@@ -18,6 +18,17 @@ int main()
     Solver solver;
     solver.solve();
     solver.printStatus();
-//    int** board = solver.getWinningBoard();
+    int** board = solver.getWinningBoard();
+
+    for(int column = 0; column < BOARD_HEIGHT; column++)
+    {
+        for(int row = 0; row < BOARD_WIDTH; row++)
+        {
+            if(board[column][row] < 10) std::cout << " ";
+            std::cout << board[column][row] << " ";
+        }
+        std::cout << std::endl;
+    }
+
     return 0;
 }

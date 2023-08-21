@@ -49,6 +49,7 @@ int** Solver::getWinningBoard()
 
 void Solver::printStatus()
 {
+    std::cout << "Try counter " << m_try_counter << std::endl;
     std::cout << "Is won " << m_is_won << std::endl;
     std::cout << "Is impossible " << m_is_impossible << std::endl;
 }
@@ -73,10 +74,12 @@ void Solver::solvePiece(int **board)
             for (int row = 0; row < BOARD_WIDTH; row++) {
                 for (int index = 0; index < PLAYBLOCK_AMOUNT; index++) {
                     m_try_counter++;
-                    if (isPlaced(index)) continue;
-                    if(index == 2) {
-                        std::cout << "";
+                    if(col == 7 && row == 7 && rotate == 1 && index== 7)
+                    {
+                        std::cout << "impossible" << std::endl;
+                        setWinningBoard(localstate);
                     }
+                    if (isPlaced(index)) continue;
                     if (Board::placeBlockSolver(m_play_blocks[index], col, row, localstate, rotate)) {
                         m_placed_blocks.push_back(m_play_blocks[index]);
                         if (index == PLAYBLOCK_AMOUNT - 1 && m_placed_blocks.size() == PLAYBLOCK_AMOUNT){
