@@ -412,6 +412,7 @@ void GUI::drawShowTips()
     DrawText("Little Tips", 100, 100, 20, BLACK);
     DrawText("Press R to rotate Block", 100, 200, 20, BLACK);
     DrawText("Press S in build Menu to start playing", 100, 300, 20, BLACK);
+    DrawText("The Solver does take some Time but if you wait more than a minute its unsolvable", 100, 400, 20, BLACK);
 }
 
 void GUI::drawSolverButton()

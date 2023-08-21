@@ -22,7 +22,7 @@ void Solver::setPieces() {
 }
 
 int Solver::getDifficulty() {
-    if(m_is_impossible)
+    if(!m_is_impossible)
         return 0;
     if(m_try_counter < 3000)
         return 1;
@@ -101,7 +101,7 @@ void Solver::solvePiece(int **board, int difficulty) {
                 }
             }
 
-    if(m_try_counter > 400000000)
+    if(m_try_counter > 100000000)
     {
         m_is_impossible = true;
     }

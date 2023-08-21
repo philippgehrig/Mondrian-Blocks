@@ -16,29 +16,66 @@ void Game::initStartblocks()
 
 void Game::placeStartblocksGenerate(int difficulty) {
     std::vector<Block> startblocks = Board::getNotPlacedStartBlocks();
+    int loopiterator = 0;
+    int blockiterator = 0;
+
     int solverDifficulty;
     do
     {
         m_board.clearBoard();
+        loopiterator = 0;
+        blockiterator = 0;
         for (auto block : startblocks)
         {
             int placecheck = 1;
-            // Rotation
-            if(Board::generateRotation()) // if true rotate once, if false don't rotate
+
+            //if(blockiterator < 2)
+            //{
+                // Rotation
+                if(Board::generateRotation()) // if true rotate once, if false don't rotate
+                {
+                    Board::rotateBlockOnHand(block);
+                }
+                //place
+                do
+                {
+                    placecheck = Board::placeBlock(block, Board::generateCoordinate(), Board::generateCoordinate());
+                } while(!placecheck);
+            //}
+            /*
+            else
             {
-                Board::rotateBlockOnHand(block);
+                do {
+                    Board::removeBlock(block);
+                    if(Board::generateRotation()) // if true rotate once, if false don't rotate
+                    {
+                        Board::rotateBlockOnHand(block);
+                    }
+                    //place
+                    do
+                    {
+                        placecheck = Board::placeBlock(block, Board::generateCoordinate(), Board::generateCoordinate());
+                        if(!placecheck)
+                        {
+                            Board::removeBlock(block);
+                        }
+                        loopiterator++;
+                    } while(!placecheck);
+                    auto solver = new Solver;
+                    solverDifficulty = solver->solve(difficulty);
+                    delete solver;
+                }
+                while(solverDifficulty != difficulty || loopiterator < 20);
             }
-            //place
-            do
-            {
-                placecheck = Board::placeBlock(block, Board::generateCoordinate(), Board::generateCoordinate());
-            } while(!placecheck);
+             */
+            blockiterator++;
+
         }
         std::cout << "Durchlauch\n";
         auto solver = new Solver;
         solverDifficulty = solver->solve(difficulty);
         delete solver;
-    }while(solverDifficulty != difficulty);
+    }while(!solverDifficulty);
 
 }
 
@@ -173,6 +210,7 @@ void Game::GamePlay()
                 {
                     Board::setBoard(m_solver.getWinningBoard());
                     Board::placeAllBlocks();
+
                 }
 
 
