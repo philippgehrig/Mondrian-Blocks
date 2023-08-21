@@ -87,10 +87,10 @@ void Solver::solvePiece(int **board) {
         return;
     }
 
-//    if(m_try_counter > 200000000)
-//    {
-//        m_is_impossible = true;
-//    }
+    if(m_try_counter > 400000000)
+    {
+        m_is_impossible = true;
+    }
 
     if (allPiecesPlaced()) {
         m_is_won = true;
