@@ -147,7 +147,7 @@ void Game::buildGame()
 
 void Game::GamePlay()
 {
-    //m_board.initBoard();
+    //Initialisation of the Window
     initStartblocks();
     initPlayblocks();
     InitWindow(SCREEN_WIDTH, SCREEN_HEIGHT, "GUI");
@@ -156,8 +156,10 @@ void Game::GamePlay()
     bool shouldSolve;
 
     std::cout << "GUITest" << std::endl;
+    //Loop for Playing
     while(!WindowShouldClose())
     {
+        //Drawing everything that needs to be drawn
         BeginDrawing();
         ClearBackground(RAYWHITE);
         m_gui.drawGameBackground();
@@ -167,8 +169,11 @@ void Game::GamePlay()
         Block block;
 
         EndDrawing();
+
+        //Drag and Drop Logic
         if(IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
         {
+            //Solver Button logic and Drawing
             shouldSolve = m_gui.isMouseOnSolverButton();
             if(shouldSolve)
             {
@@ -177,16 +182,18 @@ void Game::GamePlay()
                 Board::placeAllBlocks();
 
             }
+            //Drag and Drop finding the block to move
             BlockType blockType = m_gui.isMouseOnBlock();
             if(blockType == BlockType::ONEBYONE || blockType == BlockType::ONEBYTWO || blockType == BlockType::ONEBYTHREE)
             {
                 continue;
             }
             block = m_gui.findBlockFromType(blockType);
-
             Board::removePlacedBlock(block);
             Board::removeNotPlacedBlock(block);
             Board::removeBlock(block);
+
+            //Moving the Block
             while(IsMouseButtonDown(MOUSE_BUTTON_LEFT))
             {
                 if(IsKeyPressed(KEY_R))
@@ -195,26 +202,17 @@ void Game::GamePlay()
                     std::cout << "Rotatet Block\n";
                 }
 
+                //Keep drawing everything
                 BeginDrawing();
                 ClearBackground(RAYWHITE);
-
                 m_gui.drawGameBackground();
                 m_gui.drawNotPlacedBlocks(Board::getNotPlacedPlayBlocks());
                 m_gui.drawPlacedBlocks(Board::getPlacedBlocks());
                 m_gui.drawBlockAtMouse(blockType);
                 m_gui.drawSolverButton();
-
-
-                /*
-                std::tuple<int, int> mouseCoordinates= m_gui.calculateMouseCoordinates();
-                int height_coord = std::get<0>(mouseCoordinates);
-                int width_coord = std::get<1>(mouseCoordinates);
-                */
-
-
-
                 EndDrawing();
             }
+            //Logic to actual place a Block
             std::tuple<int, int> mouseCoordinates= m_gui.calculateMouseCoordinates();
             int height_coord = std::get<0>(mouseCoordinates);
             int width_coord = std::get<1>(mouseCoordinates);
@@ -233,6 +231,7 @@ void Game::GamePlay()
                 }
 
             }
+
             if(Board::isFull())
             {
                 // draw win screen
