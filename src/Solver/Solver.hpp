@@ -27,6 +27,10 @@ public:
     bool isPlaced(int index);
 
 
+    bool allPiecesPlaced() const;
+    void deleteBoard(int **board);
+
+
 private:
     int m_difficulty;
     bool m_is_won;

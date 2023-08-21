@@ -299,14 +299,15 @@ public:
     static bool placeBlockSolver(Block& block, const int height_coord, const int width_coord, int** board, bool rotated = false)
     {
         //if block can be placed
+        if(rotated)
+        {
+            int tmp = block.height;
+            block.height = block.width;
+            block.width = tmp;
+        }
         if(canPlaceBlockSolver(block, height_coord, width_coord, board))
         {
-            if(rotated)
-            {
-                int tmp = block.height;
-                block.height = block.width;
-                block.width = tmp;
-            }
+
             for(int column = height_coord; column < height_coord + block.height; column++){
                 for(int row = width_coord; row < width_coord + block.width; row++)
                 {
@@ -362,6 +363,49 @@ public:
         //block wasn't found
         else{
             return false;
+        }
+    }
+
+
+    /**
+     * @brief finds the block in the board
+     * @param block to be find in the board
+     * @return coordinates of the block as a tuple (y, x)
+     * or null opt if the block isn't in the board
+     */
+    static std::optional<std::tuple<int, int>> findBlockSolver(Block& block, int** board){
+        for(int column = 0; column < BOARD_HEIGHT; column++){
+            for(int row = 0; row < BOARD_WIDTH; row++)
+            {
+                if(board[column][row] == static_cast<int>(block.type))
+                {
+                    return std::make_tuple(column, row);
+                }
+            }
+        }
+        //return null opt if block isn't in the board
+        return std::nullopt;
+    }
+
+
+    /**
+     * @brief remove block from the board
+     * @param block to be removed from the board
+     * @return board with removed block
+     */
+    static int** removeBlockSolver(Block& block, int** board)
+    {
+        auto coordinates = findBlockSolver(block, board);
+        //if block was found in the board -> delete
+        if(coordinates.has_value()) {
+            int height_coord = std::get<0>(coordinates.value());
+            int width_coord = std::get<1>(coordinates.value());
+            for (int column = height_coord; column < height_coord + block.height; column++) {
+                for (int row = width_coord; row < width_coord + block.width; row++) {
+                    board[column][row] = 0;
+                }
+            }
+            return board;
         }
     }
 
