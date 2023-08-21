@@ -514,6 +514,17 @@ public:
         }
     }
 
+    /**
+     * @brief moves all not Placed Playblocks to placed blocks
+     */
+     static void placeAllBlocks()
+     {
+        for(auto block : m_notPlacedPlayBlocks)
+        {
+            setPlacedBlock(block);
+        }
+     }
+
 
 private:
     /**
