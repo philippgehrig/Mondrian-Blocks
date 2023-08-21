@@ -212,6 +212,10 @@ public:
      **/
     static bool canPlaceBlock(const Block& block, int height_coord, int width_coord)
     {
+        if(height_coord < 0 || width_coord < 0)
+        {
+            return false;
+        }
         for(int column = height_coord; column < height_coord + block.height; column++){
             for(int row = width_coord; row < width_coord + block.width; row++)
             {
