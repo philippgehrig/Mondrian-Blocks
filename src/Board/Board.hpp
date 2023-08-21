@@ -39,6 +39,21 @@ public:
     }
 
     /**
+     * @brief overwrites Board
+     * @param newBoard is the Board which overwrites the old One
+     */
+    static void setBoard(int** newBoard)
+    {
+        for(int i = 0; i < 8; i++)
+        {
+            for(int j = 0; j < 8; j++)
+            {
+                m_board[i][j] = newBoard[i][j];
+            }
+        }
+    }
+
+    /**
      * @brief getter for the not placed play blocks
      * @return vector of blocks that are not placed on the board
      */

@@ -153,7 +153,7 @@ void Game::GamePlay()
     InitWindow(SCREEN_WIDTH, SCREEN_HEIGHT, "GUI");
     SetTargetFPS(60);
 
-    bool solve;
+    bool shouldSolve;
 
     std::cout << "GUITest" << std::endl;
     while(!WindowShouldClose())
@@ -169,10 +169,11 @@ void Game::GamePlay()
         EndDrawing();
         if(IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
         {
-            solve = m_gui.isMouseOnSolverButton();
-            if(solve)
+            shouldSolve = m_gui.isMouseOnSolverButton();
+            if(shouldSolve)
             {
                 std::cout << "Solve it\n";
+                Board::setBoard(m_solver.getWinningBoard());
             }
             BlockType blockType = m_gui.isMouseOnBlock();
             if(blockType == BlockType::ONEBYONE || blockType == BlockType::ONEBYTWO || blockType == BlockType::ONEBYTHREE)
