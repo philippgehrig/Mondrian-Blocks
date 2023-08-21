@@ -121,7 +121,7 @@ void Solver::solvePiece(int **board, int difficulty) {
 
                         if (Board::placeBlockSolver(m_play_blocks[index], col, row, board, rotate)) {
                             m_placed_blocks.push_back(m_play_blocks[index]);
-                            solvePiece(board);
+                            solvePiece(board, difficulty);
 
                             //backtrack
                             m_placed_blocks.pop_back();
