@@ -3,6 +3,8 @@
 #include "../src/Board/Board.hpp"
 #include "../src/Solver/Solver.hpp"
 
+// tests
+
 TEST(SolverTests, test_easy_board)
 {
     Board board;
