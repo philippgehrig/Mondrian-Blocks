@@ -206,11 +206,11 @@ void Game::GamePlay()
             if(shouldSolve)
             {
                 std::cout << "Solve it\n";
-                if(m_solver.solve(-1))
+                int solvability = m_solver.solve(-1);
+                if(solvability)
                 {
                     Board::setBoard(m_solver.getWinningBoard());
                     Board::placeAllBlocks();
-
                 }
 
 
@@ -373,24 +373,24 @@ void Game::boardGeneration(int difficulty)
     //Hardcoded Boards are following
 
     //First Board easy
-    xCoordinatesBlocks[0][0][0] = 7;
-    yCoordinatesBlocks[0][0][0] = 6;
+    xCoordinatesBlocks[0][0][0] = 0;
+    yCoordinatesBlocks[0][0][0] = 0;
 
-    xCoordinatesBlocks[0][1][0] = 2;
-    yCoordinatesBlocks[0][1][0] = 6;
+    xCoordinatesBlocks[0][1][0] = 1;
+    yCoordinatesBlocks[0][1][0] = 0;
 
-    xCoordinatesBlocks[0][2][0] = 5;
-    yCoordinatesBlocks[0][2][0] = 7;
+    xCoordinatesBlocks[0][2][0] = 3;
+    yCoordinatesBlocks[0][2][0] = 0;
 
     //Second Board easy
-    xCoordinatesBlocks[0][0][1] = 5;
-    yCoordinatesBlocks[0][0][1] = 4;
+    xCoordinatesBlocks[0][0][1] = 0;
+    yCoordinatesBlocks[0][0][1] = 7;
 
-    xCoordinatesBlocks[0][1][1] = 0;
-    yCoordinatesBlocks[0][1][1] = 5;
+    xCoordinatesBlocks[0][1][1] = 6;
+    yCoordinatesBlocks[0][1][1] = 0;
 
-    xCoordinatesBlocks[0][2][1] = 4;
-    yCoordinatesBlocks[0][2][1] = 0;
+    xCoordinatesBlocks[0][2][1] = 0;
+    yCoordinatesBlocks[0][2][1] = 3;
 
     //Third Board easy
     xCoordinatesBlocks[0][0][2] = 7;
@@ -423,14 +423,14 @@ void Game::boardGeneration(int difficulty)
     yCoordinatesBlocks[1][2][1] = 0;
 
     //Third Board medium
-    xCoordinatesBlocks[1][0][1] = 7;
-    yCoordinatesBlocks[1][0][1] = 1;
+    xCoordinatesBlocks[1][0][2] = 7;
+    yCoordinatesBlocks[1][0][2] = 1;
 
-    xCoordinatesBlocks[1][1][1] = 0;
-    yCoordinatesBlocks[1][1][1] = 7;
+    xCoordinatesBlocks[1][1][2] = 0;
+    yCoordinatesBlocks[1][1][2] = 7;
 
-    xCoordinatesBlocks[1][2][1] = 2;
-    yCoordinatesBlocks[1][2][1] = 3;
+    xCoordinatesBlocks[1][2][2] = 2;
+    yCoordinatesBlocks[1][2][2] = 3;
 
     //First Board hard
     xCoordinatesBlocks[2][0][0] = 6;
@@ -453,14 +453,14 @@ void Game::boardGeneration(int difficulty)
     yCoordinatesBlocks[2][2][1] = 2;
 
     //Third Board hard
-    xCoordinatesBlocks[2][0][1] = 7;
-    yCoordinatesBlocks[2][0][1] = 6;
+    xCoordinatesBlocks[2][0][2] = 7;
+    yCoordinatesBlocks[2][0][2] = 6;
 
-    xCoordinatesBlocks[2][1][1] = 3;
-    yCoordinatesBlocks[2][1][1] = 4;
+    xCoordinatesBlocks[2][1][2] = 3;
+    yCoordinatesBlocks[2][1][2] = 4;
 
-    xCoordinatesBlocks[2][2][1] = 2;
-    yCoordinatesBlocks[2][2][1] = 3;
+    xCoordinatesBlocks[2][2][2] = 2;
+    yCoordinatesBlocks[2][2][2] = 3;
 
 
 

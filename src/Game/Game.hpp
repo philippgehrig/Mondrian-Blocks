@@ -56,13 +56,13 @@ public:
     void initPlayblocks();
 
     /**
-     * @brief generates StartBlocks on block depending on choosen difficulty
+     * @brief generates random StartBlocks on block depending on choosen difficulty
      * @param difficulty difficulty influences how the StartBlocks are placed
      */
     void placeStartblocksGenerate(int difficulty);
 
     /**
-     * @brief Generates solvable Startboards
+     * @brief Sets solvable Startboards
      * @param difficulty choosen difficulty
      */
      void boardGeneration(int difficulty);

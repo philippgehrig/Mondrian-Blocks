@@ -16,6 +16,11 @@ public:
 
     ~Solver() = default;
 
+    /**
+     * @brief solves the Board
+     * @param difficulty decides how hard the given Board should be
+     * @return the actual difficulty
+     */
     int solve(int difficulty);
     void setPieces();
     void solvePiece(int** board, int difficulty);
