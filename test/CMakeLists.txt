@@ -21,6 +21,7 @@ target_link_libraries(
         GTest::gtest_main
         ${PROJECT_NAME}
 )
+target_include_directories(CPP_EXAM PUBLIC raylib)
 
 add_test(
         NAME ${Tests}

@@ -2,8 +2,6 @@
 #include "../src/Constants.hpp"
 #include "../src/Board/Board.hpp"
 #include "../src/Solver/Solver.hpp"
-#include "../src/Game/Game.hpp"
-#include "../src/GUI/GUI.hpp"
 
 TEST(SolverTests, test_easy_board)
 {
