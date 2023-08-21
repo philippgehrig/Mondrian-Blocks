@@ -414,6 +414,27 @@ void GUI::drawShowTips()
     DrawText("Press S in build Menu to start playing", 100, 300, 20, BLACK);
 }
 
+void GUI::drawSolverButton()
+{
+    DrawRectangle(2.8 * DRAW_HELP, 9.2 * DRAW_HELP, 4 * DRAW_HELP, 0.5 * DRAW_HELP, GOLD);
+    DrawText("Solver Button", 4 * DRAW_HELP, 9.3 * DRAW_HELP, 20, BLACK);
+}
+
+bool GUI::isMouseOnSolverButton()
+{
+    Vector2 mousePosition = GetMousePosition();
+    int height_coord = mousePosition.y;
+    int width_coord = mousePosition.x;
+
+    if(((width_coord > (2.8 * DRAW_HELP))&& (width_coord < ((2.8 + 4) * DRAW_HELP)))
+       && ((height_coord > (9.2 * DRAW_HELP)) && (height_coord < ((9.2 + 0.5) * DRAW_HELP))))
+    {
+        return true;
+    }
+
+    return false;
+}
+
 
 /*
 int GUI::drawBoardSelection(std::vector<Board> boards)

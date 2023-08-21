@@ -7,7 +7,8 @@ int main()
 {
 
       Game game;
-      game.play();
+      game.GamePlay();
+      //game.play();
 
     /*
     Block startBlock1 = {BlockType::ONEBYONE, 1, 1, BLACK};

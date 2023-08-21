@@ -153,6 +153,8 @@ void Game::GamePlay()
     InitWindow(SCREEN_WIDTH, SCREEN_HEIGHT, "GUI");
     SetTargetFPS(60);
 
+    bool solve;
+
     std::cout << "GUITest" << std::endl;
     while(!WindowShouldClose())
     {
@@ -161,11 +163,17 @@ void Game::GamePlay()
         m_gui.drawGameBackground();
         m_gui.drawNotPlacedBlocks(Board::getNotPlacedPlayBlocks());
         m_gui.drawPlacedBlocks(Board::getPlacedBlocks());
+        m_gui.drawSolverButton();
         Block block;
 
         EndDrawing();
         if(IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
         {
+            solve = m_gui.isMouseOnSolverButton();
+            if(solve)
+            {
+                std::cout << "Solve it\n";
+            }
             BlockType blockType = m_gui.isMouseOnBlock();
             if(blockType == BlockType::ONEBYONE || blockType == BlockType::ONEBYTWO || blockType == BlockType::ONEBYTHREE)
             {
@@ -191,6 +199,8 @@ void Game::GamePlay()
                 m_gui.drawNotPlacedBlocks(Board::getNotPlacedPlayBlocks());
                 m_gui.drawPlacedBlocks(Board::getPlacedBlocks());
                 m_gui.drawBlockAtMouse(blockType);
+                m_gui.drawSolverButton();
+
 
                 /*
                 std::tuple<int, int> mouseCoordinates= m_gui.calculateMouseCoordinates();

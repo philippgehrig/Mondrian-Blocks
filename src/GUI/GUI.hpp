@@ -82,6 +82,11 @@ public:
      void drawShowTips();
 
      /**
+      * @brief draws Solver Button
+      */
+      void drawSolverButton();
+
+     /**
       * @brief checks if mouse is on a Block
       * @return block Type
       */
@@ -92,6 +97,12 @@ public:
       * @return block Type
       */
      BlockType isMouseOnBlock();
+
+     /**
+      * @brief checks if mouse is on Solverbutton
+      * @return true if so, false if not
+      */
+      bool isMouseOnSolverButton();
 
 
 
