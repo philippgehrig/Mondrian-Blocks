@@ -24,10 +24,6 @@ public:
     void solveNextPiece(int new_index, int** newboard);
     int** getWinningBoard();
 
-    bool getWin();
-
-
-
 private:
     int m_difficulty;
     bool m_is_won;

@@ -36,19 +36,6 @@ void Game::placeStartblocksGenerate(int difficulty) {
         std::cout << "Durchlauch\n";
     }while(m_solver.solve() != difficulty);
 
-
-//    auto solutions = m_solver.solve(m_board);
-//
-//    int number_of_solutions = solutions.size();
-//    if(!number_of_solutions) // if there is no solutions go in this if
-//    {
-//        Board::clearBoard();
-//        placeStartblocks(startblocks);
-//    }
-//    else
-//    {
-//        return solutions;
-//    }
 }
 
 void Game::initPlayblocks()
@@ -322,43 +309,5 @@ void Game::showTips()
         m_gui.drawShowTips();
 
         EndDrawing();
-        //Board::printBoard();
     }
 }
-
-/*
-void Game::start()
-{
-    // Creating of blocks
-    m_board.initBoard();
-    initStartblocks();
-    initPlayblocks();
-
-    // GUI
-    InitWindow(SCREEN_WIDTH, SCREEN_HEIGHT, "Mondrian Blocks");
-    SetTargetFPS(60);
-
-    while(!WindowShouldClose())
-    {
-        BeginDrawing();
-        ClearBackground(RAYWHITE);
-        // int game_mode = m_gui.drawStartScreen();
-        EndDrawing();
-        int game_mode = 1;
-        switch(game_mode)
-        {
-            case 1:
-                // placeStartblocksGenerate();
-                buildGame();
-                break;
-            case 2:
-                // placeOwnStartblocks();
-                buildGame();
-                break;
-            default:
-                DrawText("Error, please restart the Game", 10, 10, 20, RED);
-                break;
-        }
-    }
-}
-*/
