@@ -467,6 +467,7 @@ public:
         {
             for(int row = 0; row < BOARD_WIDTH; row++)
             {
+                if(m_board[column][row] < 10) std::cout << " ";
                 std::cout << m_board[column][row] << " ";
             }
             std::cout << std::endl;

@@ -3,7 +3,6 @@
 
 #include "../Board/Board.hpp"
 #include <vector>
-#include <algorithm>
 
 class Solver
 {
