@@ -5,3 +5,4 @@ int Board::m_board[BOARD_HEIGHT][BOARD_WIDTH] = {{0}}; // Initialize the 2D arra
 std::vector<Block> Board::m_notPlacedPlayBlocks;
 std::vector<Block> Board::m_notPlacedStartBlocks;
 std::vector<Block> Board::m_placedBlocks;
+std::vector<Block> Board::m_allBlocks;

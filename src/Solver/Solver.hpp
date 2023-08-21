@@ -8,28 +8,33 @@ class Solver
 {
 public:
     Solver()
-    : m_wining_board{{0}}
+    : m_winning_board{{0}}
     , m_is_impossible{false}
-    , m_win{false}
+    , m_is_won{false}
+    , m_try_counter{0}
     {};
 
-    ~Solver()
-    {};
+    ~Solver() = default;
 
-    void solve(std::optional<int**> board);
+    int solve();
+    void setPieces();
+    void solvePiece(int** board);
     void setWinningBoard(int** board);
-    void nextPiece(int** board);
+    int** getWinningBoard();
+    void printStatus();
+    bool isPlaced(int index);
+    int getDifficulty();
 
 
+    bool allPiecesPlaced() const;
 
 private:
-    int m_difficulty;
-    bool m_win;
+    bool m_is_won;
     bool m_is_impossible;
-    int m_wining_board[BOARD_HEIGHT][BOARD_WIDTH];
-    int m_board_state[BOARD_HEIGHT][BOARD_WIDTH];
-    int m_open_spawns = 0;
-    int m_place_try_counter = 0;
+    int m_winning_board[BOARD_HEIGHT][BOARD_WIDTH];
+    int m_try_counter = 0;
+    Block m_play_blocks[PLAYBLOCK_AMOUNT];
+    std::vector<Block> m_placed_blocks = {};
 
 };
 

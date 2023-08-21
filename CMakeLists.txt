@@ -14,12 +14,14 @@
          src/Board/Board.hpp
          src/GUI/GUI.hpp
          src/Constants.hpp
+         src/Solver/Solver.hpp
          )
 
  set(Sources
          src/Board/Board.cpp
          src/Game/Game.cpp
          src/GUI/GUI.cpp
+         src/Solver/Solver.cpp
          )
 
  # Generate compile_commands.json
@@ -55,13 +57,14 @@
 
  # Our Project
  add_executable(${PROJECT_NAME} ${Sources} ${Headers}
-         src/main.cpp)
+         src/main.cpp
+         test/test.cpp
+ )
 
  add_library(${PROJECT_NAME}_lib STATIC ${Sources} ${Headers})
 
- target_link_libraries(${PROJECT_NAME} raylib)
+ target_link_libraries(${PROJECT_NAME} raylib gtest)
 
- #add_subdirectory(test)
 
  # Web Configurations
  if (${PLATFORM} STREQUAL "Web")

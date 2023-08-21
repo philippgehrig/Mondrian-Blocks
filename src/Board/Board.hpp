@@ -8,6 +8,8 @@
 #include <iostream>
 #include <random>
 #include <tuple>
+#include <algorithm>
+#include <chrono>
 
 /**
  * @brief Board class. Implemented as static class -> only one instance of the board is possible
@@ -34,6 +36,21 @@ public:
             }
         }
         return boardCopy;
+    }
+
+    /**
+     * @brief overwrites Board
+     * @param newBoard is the Board which overwrites the old One
+     */
+    static void setBoard(int** newBoard)
+    {
+        for(int i = 0; i < BOARD_WIDTH; i++)
+        {
+            for(int j = 0; j < BOARD_HEIGHT; j++)
+            {
+                m_board[i][j] = newBoard[i][j];
+            }
+        }
     }
 
     /**
@@ -119,6 +136,89 @@ public:
     }
 
     /**
+     * @brief removes element from placed blocks vector
+     * @param block: the block which will be removed
+     */
+     static void removePlacedBlock(Block& block)
+     {
+        for(auto it = m_placedBlocks.begin(); it != m_placedBlocks.end(); ++it)
+        {
+            if (*it == block.type) {
+                m_placedBlocks.erase(it);
+                break;
+            }
+        }
+        std::cout << "Block ist nicht vorhanden\n";
+     }
+
+    /**
+   * @brief removes element from not placed blocks vector
+   * @param block: the block which will be removed
+   */
+    static void removeNotPlacedBlock(Block& block)
+    {
+        for(auto it = m_notPlacedPlayBlocks.begin(); it != m_notPlacedPlayBlocks.end(); ++it)
+        {
+            if (*it == block.type) {
+                m_notPlacedPlayBlocks.erase(it);
+                break;
+            }
+        }
+        std::cout << "Block ist nicht vorhanden\n";
+    }
+
+    /**
+   * @brief removes element from not placed blocks vector
+   * @param block: the block which will be removed
+   */
+    static void removeNotPlacedStartBlock(Block& block)
+    {
+        for(auto it = m_notPlacedStartBlocks.begin(); it != m_notPlacedStartBlocks.end(); ++it)
+        {
+            if (*it == block.type) {
+                m_notPlacedStartBlocks.erase(it);
+                break;
+            }
+        }
+        std::cout << "Block ist nicht vorhanden\n";
+    }
+
+
+
+    // ------------
+
+    /**
+* @brief getter for all Blocks
+* @return vector of blocks that are not placed on the board
+*/
+    static std::vector<Block> getAllBlocks()
+    {
+        return m_allBlocks;
+    }
+
+    /**
+     * @brief setter for all Blocks (multiple blocks)
+     * @param blocks: vector of blocks that are not placed on the board
+     */
+    static void setAllBlocks(std::vector<Block> blocks)
+    {
+        for(auto block : blocks)
+        m_allBlocks.push_back(block);
+    }
+
+    /**
+     * @brief setter for all Blocks (single block)
+     * @param block: block that is not placed on the board
+     */
+    static void setAllBlock(const Block& block)
+    {
+        m_allBlocks.push_back(block);
+    }
+
+    // ----------
+
+
+    /**
      * @brief checks if block can be placed
      * @param block: block that is to be placed
      * @param height_coord y-coordinate of the block (column) (top left corner)
@@ -127,11 +227,22 @@ public:
      **/
     static bool canPlaceBlock(const Block& block, int height_coord, int width_coord)
     {
+        if(height_coord < 0 || width_coord < 0)
+        {
+            return false;
+        }
         for(int column = height_coord; column < height_coord + block.height; column++){
             for(int row = width_coord; row < width_coord + block.width; row++)
             {
-                if(column > BOARD_HEIGHT || row > BOARD_WIDTH)
-                if(m_board[column][row] != 0) return false;
+                if(column >= BOARD_HEIGHT || row >= BOARD_WIDTH)
+                {
+                    return false;
+                }
+
+                if(m_board[column][row] != 0)
+                {
+                    return false;
+                }
             }
         }
         return true;
@@ -146,6 +257,7 @@ public:
      */
     static bool placeBlock(Block& block, const int height_coord, const int width_coord)
     {
+
         //if block can be placed
         if(canPlaceBlock(block, height_coord, width_coord))
         {
@@ -155,9 +267,67 @@ public:
                     m_board[column][row] = static_cast<int>(block.type);
                 }
             }
+            setPlacedBlock(block);
+            if(block.type == BlockType::ONEBYONE || block.type == BlockType::ONEBYTWO || block.type == BlockType::ONEBYTHREE)
+                removeNotPlacedStartBlock(block);
+            else
+                removeNotPlacedBlock(block);
             return true;
         }
-        else return false;
+        else
+        {
+            if(block.type == BlockType::ONEBYONE || block.type == BlockType::ONEBYTWO || block.type == BlockType::ONEBYTHREE)
+                Board::setNotPlacedStartBlock(block);
+            else
+                Board::setNotPlacedPlayBlock(block);
+            removePlacedBlock(block);
+            removeBlock(block);
+            return false;
+        }
+
+    }
+
+    /**
+     * @brief checks if block can be placed
+     * @param block: block that is to be placed
+     * @param board: board on which the block is to be placed
+     * @param height_coord y-coordinate of the block (column) (top left corner)
+     * @param width_coord x-coordinate of the block (row) (top left corner)
+     * @return true if the block can be placed, false otherwise
+     **/
+    static bool canPlaceBlockSolver(Block& block, int height_coord, int width_coord, int** board, bool rotated = false)
+    {
+        if(rotated)
+        {
+            int tmp = block.height;
+            block.height = block.width;
+            block.width = tmp;
+        }
+        for(int column = height_coord; column < height_coord + block.height; column++){
+            for(int row = width_coord; row < width_coord + block.width; row++)
+            {
+                if(column >= BOARD_HEIGHT || row >= BOARD_WIDTH)
+                {
+                    return false;
+                }
+
+                if(board[column][row] != 0)
+                {
+                    return false;
+                }
+                if(board[column][row] == static_cast<int>(block.type))
+                {
+                    return false;
+                }
+            }
+        }
+        for(int column = 0; column < height_coord + block.height; column++){
+            for(int row = width_coord; row < width_coord + block.width; row++)
+            {
+
+            }
+        }
+        return true;
     }
 
     /**
@@ -169,15 +339,16 @@ public:
      */
     static bool placeBlockSolver(Block& block, const int height_coord, const int width_coord, int** board, bool rotated = false)
     {
-        //if block can be placed
-        if(canPlaceBlock(block, height_coord, width_coord))
+        if(rotated)
         {
-            if(rotated)
-            {
-                int tmp = block.height;
-                block.height = block.width;
-                block.width = tmp;
-            }
+            int tmp = block.height;
+            block.height = block.width;
+            block.width = tmp;
+        }
+        //if block can be placed
+        if(canPlaceBlockSolver(block, height_coord, width_coord, board))
+        {
+
             for(int column = height_coord; column < height_coord + block.height; column++){
                 for(int row = width_coord; row < width_coord + block.width; row++)
                 {
@@ -236,6 +407,49 @@ public:
         }
     }
 
+
+    /**
+     * @brief finds the block in the board
+     * @param block to be find in the board
+     * @return coordinates of the block as a tuple (y, x)
+     * or null opt if the block isn't in the board
+     */
+    static std::optional<std::tuple<int, int>> findBlockSolver(Block& block, int** board){
+        for(int column = 0; column < BOARD_HEIGHT; column++){
+            for(int row = 0; row < BOARD_WIDTH; row++)
+            {
+                if(board[column][row] == static_cast<int>(block.type))
+                {
+                    return std::make_tuple(column, row);
+                }
+            }
+        }
+        //return null opt if block isn't in the board
+        return std::nullopt;
+    }
+
+
+    /**
+     * @brief remove block from the board
+     * @param block to be removed from the board
+     * @return board with removed block
+     */
+    static int** removeBlockSolver(Block& block, int** board)
+    {
+        auto coordinates = findBlockSolver(block, board);
+        //if block was found in the board -> delete
+        if(coordinates.has_value()) {
+            int height_coord = std::get<0>(coordinates.value());
+            int width_coord = std::get<1>(coordinates.value());
+            for (int column = height_coord; column < height_coord + block.height; column++) {
+                for (int row = width_coord; row < width_coord + block.width; row++) {
+                    board[column][row] = 0;
+                }
+            }
+            return board;
+        }
+    }
+
     /**
      * @brief rotate block if it's not in the board
      * @param block
@@ -248,13 +462,22 @@ public:
         //if res == null opt (if block is not in the board)
         if(!res.has_value())
         {
-            int tmp = block.height;
-            block.height = block.width;
-            block.width = tmp;
+
             return true;
         }
         else return false;
     }
+
+    /**
+     * @brief rotates Block on Hand
+     * @param block is Cock
+     */
+     void rotateBlockOnHand(Block& block)
+     {
+         int tmp = block.height;
+         block.height = block.width;
+         block.width = tmp;
+     }
 
     /**
      * @brief clears the board
@@ -268,6 +491,23 @@ public:
                 m_board[column][row] = 0;
             }
         }
+
+    }
+
+    /**
+     * @brief prints the board
+     */
+    static void printBoard()
+    {
+        for(int column = 0; column < BOARD_HEIGHT; column++)
+        {
+            for(int row = 0; row < BOARD_WIDTH; row++)
+            {
+                if(m_board[column][row] < 10) std::cout << " ";
+                std::cout << m_board[column][row] << " ";
+            }
+            std::cout << std::endl;
+        }
     }
 
     /**
@@ -275,10 +515,12 @@ public:
      */
     static int generateRotation()
     {
-        static std::random_device rd;
-        static std::mt19937 gen(rd());
-        static std::uniform_int_distribution<> dis(0, 1);
-        return dis(gen);
+        unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
+        std::default_random_engine generator(seed);
+        std::uniform_int_distribution<int> distribution(0, 1);
+        int random_number = distribution(generator);
+
+        return random_number;
     }
 
     /**
@@ -286,10 +528,12 @@ public:
      */
     static int generateCoordinate()
     {
-        static std::random_device rd;
-        static std::mt19937 gen(rd());
-        static std::uniform_int_distribution<> dis(0, 7);
-        return dis(gen);
+        unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
+        std::default_random_engine generator(seed);
+        std::uniform_int_distribution<int> distribution(0, 7);
+        int random_number = distribution(generator);
+
+        return random_number;
     }
 
     /**
@@ -321,6 +565,18 @@ public:
         }
     }
 
+    /**
+     * @brief moves all not Placed Playblocks to placed blocks
+     */
+     static void placeAllBlocks()
+     {
+        for(auto block : m_notPlacedPlayBlocks)
+        {
+            setPlacedBlock(block);
+        }
+     }
+
+
 private:
     /**
      * @param m_board: 2D array representing the board
@@ -351,6 +607,9 @@ private:
 
     // Container for all placed blocks
     static std::vector<Block> m_placedBlocks;
+
+    // Container for all blocks
+    static std::vector<Block> m_allBlocks;
 
 };
 
