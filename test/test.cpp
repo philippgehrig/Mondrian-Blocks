@@ -15,7 +15,7 @@ TEST(SolverTests, test_easy_board)
     Board::placeBlock(startBlock2, 3,4);
     Board::placeBlock(startBlock3, 3,3);
 
-    int result = solver.solve();
+    int result = solver.solve(1);
     EXPECT_EQ(result, 1);
 }
 
@@ -31,8 +31,8 @@ TEST(SolverTests, test_mdeium_board)
     Board::placeBlock(startBlock2, 2,6);
     Board::placeBlock(startBlock3, 3,5);
 
-    int result = solver.solve();
-    EXPECT_EQ(result, 1);
+    int result = solver.solve(2);
+    EXPECT_EQ(result, 2);
 }
 
 TEST(SolverTests, test_hard_board)
@@ -47,8 +47,8 @@ TEST(SolverTests, test_hard_board)
     Board::placeBlock(startBlock2, 6,6);
     Board::placeBlock(startBlock3, 7,5);
 
-    int result = solver.solve();
-    EXPECT_EQ(result, 1);
+    int result = solver.solve(3);
+    EXPECT_EQ(result, 3);
 }
 
 TEST(SolverTests, test_impossible_board)
@@ -63,7 +63,7 @@ TEST(SolverTests, test_impossible_board)
     Board::placeBlock(startBlock2, 1,1);
     Board::placeBlock(startBlock3, 2,3);
 
-    int result = solver.solve();
+    int result = solver.solve(0);
     EXPECT_EQ(result, 0);
 }
 
