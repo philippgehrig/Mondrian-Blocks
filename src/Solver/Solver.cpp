@@ -31,10 +31,10 @@ int Solver::getDifficulty() {
     else return 3;
 }
 
-int Solver::solve() {
+int Solver::solve(int difficulty) {
     setPieces();
     Board::printBoard();
-    solvePiece(Board::getBoard());
+    solvePiece(Board::getBoard(), difficulty);
     return getDifficulty();
 }
 
@@ -82,10 +82,17 @@ bool Solver::isPlaced(int index) {
 }
 
 
-void Solver::solvePiece(int **board) {
+void Solver::solvePiece(int **board, int difficulty) {
     if (m_is_won || m_is_impossible) {
         return;
     }
+
+    if(difficulty == 1 && m_try_counter > 3000)
+        return;
+    if(difficulty == 2 && m_try_counter > 15000)
+        return;
+    else if(difficulty == 3 && m_try_counter > 100000000)
+        return;
 
     if(m_try_counter > 400000000)
     {
