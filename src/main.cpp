@@ -5,7 +5,7 @@
 
 int main()
 {
-
+    /*
 //    Block startBlock1 = {BlockType::ONEBYONE, 1, 1, BLACK};
 //    Block startBlock2 = {BlockType::ONEBYTWO, 2, 1, BLACK};
 //    Block startBlock3 = {BlockType::ONEBYTHREE, 3, 1, BLACK};
@@ -43,7 +43,7 @@ int main()
     }
 
     return 0;
-  
+  */
       Game game;
       game.play();
       return 0;

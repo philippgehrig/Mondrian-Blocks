@@ -36,12 +36,6 @@ int Solver::solve() {
     Board::printBoard();
     solvePiece(Board::getBoard());
     return getDifficulty();
-=======
-int Solver::solve() {
-    setPieces();
-    solvePiece(0, Board::getBoard());
-
-    return 1;
 }
 
 
