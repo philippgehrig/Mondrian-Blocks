@@ -34,7 +34,7 @@ void Game::placeStartblocksGenerate(int difficulty) {
             } while(!placecheck);
         }
         std::cout << "Durchlauch\n";
-    }while(m_solver.solve() != difficulty);
+    }while(m_solver.solve(difficulty) != difficulty);
 
 }
 
