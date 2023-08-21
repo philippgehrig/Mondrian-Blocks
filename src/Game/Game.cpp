@@ -16,6 +16,7 @@ void Game::initStartblocks()
 
 void Game::placeStartblocksGenerate(int difficulty) {
     std::vector<Block> startblocks = Board::getNotPlacedStartBlocks();
+    int solverDifficulty;
     do
     {
         m_board.clearBoard();
@@ -34,7 +35,10 @@ void Game::placeStartblocksGenerate(int difficulty) {
             } while(!placecheck);
         }
         std::cout << "Durchlauch\n";
-    }while(m_solver.solve(difficulty) != difficulty);
+        auto solver = new Solver;
+        solverDifficulty = solver->solve(difficulty);
+        delete solver;
+    }while(solverDifficulty != difficulty);
 
 }
 

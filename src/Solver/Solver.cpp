@@ -112,7 +112,7 @@ void Solver::solvePiece(int **board, int difficulty) {
                     if (!isPlaced(index)) {
                         m_try_counter++;
 
-                        std::cout << m_try_counter << "\n";
+                        //std::cout << m_try_counter << "\n";
 
                         // Prune this branch if the block can't be placed here
                         if (!Board::canPlaceBlockSolver(m_play_blocks[index], col, row, board, rotate)) {
