@@ -87,9 +87,9 @@ void Solver::solvePiece(int **board, int difficulty) {
         return;
     }
 
-    if(difficulty == 1 && m_try_counter > 3000 && m_is_won == true)
+    if(difficulty == 1 && m_try_counter > 3000 && m_try_counter < 15000 && m_is_won == true)
         return;
-    if(difficulty == 2 && m_try_counter > 15000 && m_is_won == true)
+    if(difficulty == 2 && m_try_counter > 15000 && m_try_counter < 60000 && m_is_won == true)
         return;
     else if(difficulty == 3 && m_try_counter > 100000000 && m_is_won == true)
         return;
